@@ -1,0 +1,4 @@
+seed,chromosome,activation_expression,score
+0,"[0, 6, 9, 15, 11]","((sigmoid(max(x, 0)) * log(1 + exp(x))) + atan(x))",1.148074469915921
+1,"[6, 1, 8]",(sigmoid(exp(x)) * (x * erf(x))),0.6769347838982929
+2,"[0, 7, 11]",(sigmoid(x) + atan(x)),0.9190362997985686
