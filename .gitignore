@@ -1,0 +1,20 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv*/
+venv/
+env/
+
+# Local datasets and runtime caches
+.keras/
+appdata/
+
+# Experiment outputs
+runs/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
