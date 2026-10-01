@@ -1,0 +1,55 @@
+{
+  "reference": {
+    "title": "Activation Function Optimization Scheme for Image Classification",
+    "version": "arXiv:2409.04915v1 (user-provided PDF)",
+    "sections": ["3.1.3", "3.1.5", "3.1.6", "4.1", "Table 2", "Table A.1"]
+  },
+  "search": {
+    "population_size": 30,
+    "generations": 40,
+    "replications": 5,
+    "selection": "ranking",
+    "selected_parents": 6,
+    "crossover": "single_point",
+    "crossover_probability": 0.8,
+    "max_crossover_children": 6,
+    "mutation": "single_point",
+    "mutation_probability": 0.2,
+    "max_mutation_children": 1,
+    "minimum_random_individuals": 17,
+    "fitness": "validation_accuracy / validation_loss"
+  },
+  "training": {
+    "epochs": 15,
+    "batch_size": 64,
+    "optimizer": "SGD",
+    "learning_rate": 0.01,
+    "momentum": 0.9,
+    "kernel_initializer": "he_uniform",
+    "padding": "same",
+    "loss": "categorical_crossentropy",
+    "first_epoch_accuracy_threshold": 0.25,
+    "stop_on_undefined_loss": true
+  },
+  "dataset": {
+    "name": "CIFAR-10",
+    "train_size": 45000,
+    "validation_size": 5000,
+    "test_size": 10000
+  },
+  "post_search": {
+    "top_functions": 15,
+    "selection_metric": "validation_accuracy",
+    "retrain_from_scratch": true,
+    "epochs": 50,
+    "replications": 5,
+    "evaluation_split": "test"
+  },
+  "implementation_notes": [
+    "This is a reference configuration; the existing main.py does not load it yet.",
+    "The paper specifies five replications but does not specify numerical seed values.",
+    "Dropout probability and train/validation split seed are not specified in the cited parameter sections.",
+    "Table 2 starts with 28 convolution filters and lists no intermediate Dense layers; the existing fitness.py differs.",
+    "Section 3.1.1 lists 19 unary and 11 binary functions; the existing search samples 17 unary and 7 binary indices."
+  ]
+}
