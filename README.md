@@ -1,5 +1,24 @@
 ## Activation Function Optimization Scheme for Image Classification
 
+### 論文条件のCIFAR-10実験
+
+論文のCNN・探索候補・GA・Validation評価・上位15関数の再学習に対応する入口は
+`run_paper.py` です。設定は `paper_parameters.json` から読み込みます。
+`main.py` は以前の実験用です。準備・実行・再開・論文の未指定事項は
+[PAPER_REPRODUCTION.md](PAPER_REPRODUCTION.md) を参照してください。
+
+**必要ファイル一覧・別PCでの準備・実行コマンド・ログ確認・再開手順：**
+[日本語実行ガイド](RUN_GUIDE_JA.md)。実行中はCSVへ逐次保存し、全実行終了後に一括描画します。
+
+```powershell
+.\.venv-gpu\Scripts\python.exe run_paper.py --dry-run
+.\.venv-gpu\Scripts\python.exe run_paper.py --smoke --device gpu
+.\.venv-gpu\Scripts\python.exe -u run_paper.py --output runs/paper_full
+```
+
+以下は元プロジェクトの説明です。論文の多データセット・多モデルの汎化検証は、
+上記のCIFAR-10ベースCNN用実装には含まれません。
+
 ### Abstract
 
 Activation function has a significant impact on the dynamics, convergence, and performance of deep neural networks. The search for a consistent and high-performing activation function has always been a pursuit during deep learning model development.
