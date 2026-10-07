@@ -1,5 +1,7 @@
 # AFOS：必要なファイルと実行手順
 
+[English version](RUN_GUIDE_EN.md)
+
 この手順は `run_paper.py` による **CIFAR-10・論文のベースCNNの探索／再学習** 用です。
 旧実験の `main.py` とは別の入口です。論文の他モデル・他データセットの汎化実験は含みません。
 論文に未記載のパラメーターなど、再現上の仮定は [PAPER_REPRODUCTION.md](PAPER_REPRODUCTION.md) を確認してください。

@@ -10,6 +10,8 @@
 **必要ファイル一覧・別PCでの準備・実行コマンド・ログ確認・再開手順：**
 [日本語実行ガイド](RUN_GUIDE_JA.md)。実行中はCSVへ逐次保存し、全実行終了後に一括描画します。
 
+[English execution guide](RUN_GUIDE_EN.md): required files, environment setup, execution, live logs, and resuming interrupted runs.
+
 ```powershell
 .\.venv-gpu\Scripts\python.exe run_paper.py --dry-run
 .\.venv-gpu\Scripts\python.exe run_paper.py --smoke --device gpu
