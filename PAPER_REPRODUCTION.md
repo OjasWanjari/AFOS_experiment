@@ -2,6 +2,8 @@
 
 `run_paper.py` は `paper_parameters.json` を読み込み、論文の **CIFAR-10 / ベースCNNの探索と再学習** を実行する。旧実験の `main.py` と出力は保持する。
 
+**複数PC・複数runの探索結果をまとめて再学習だけ実行する場合**は、新しい `retrain_paper.py` を使用する。全シードの上位15候補を固定し、各再学習を別プロセスで実行する。手順は [日本語版](RETRAIN_POOLED_JA.md) / [English](RETRAIN_POOLED_EN.md) を参照。
+
 参照: ユーザー提供の *Activation Function Optimization Scheme for Image Classification*（arXiv:2409.04915v1）、3.1節、4.1節、Fig. 1–2、Table 2、Appendix A / Table A.1。
 
 論文のResNet50・AlexNet・VGG16・MobileNet・CCTや、他の7データセットを使った汎化検証は別実験であり、この実装には含まれない。論文中のaccuracyを再現したという意味ではない。本番学習・結果の一致は未検証。

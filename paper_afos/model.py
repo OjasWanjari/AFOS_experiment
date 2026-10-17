@@ -56,7 +56,7 @@ def serf(x):
     return x * tf.math.erf(tf.nn.softplus(x))
 
 
-def build_model(config, chromosome=None, baseline=None):
+def build_model(config, chromosome=None, baseline=None, jit_compile=None):
     if (chromosome is None) == (baseline is None):
         raise ValueError("Supply exactly one chromosome or baseline")
     training, cnn = config["training"], config["cnn"]
@@ -74,9 +74,10 @@ def build_model(config, chromosome=None, baseline=None):
             model.add(tf.keras.layers.Dropout(cnn["dropout_rate"]))
     model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dense(10, activation="softmax", kernel_initializer=training["kernel_initializer"]))
+    compile_options = {} if jit_compile is None else {"jit_compile": jit_compile}
     model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=training["learning_rate"],
                                                    momentum=training["momentum"]),
-                  loss=training["loss"], metrics=["accuracy"])
+                  loss=training["loss"], metrics=["accuracy"], **compile_options)
     return model
 
 
@@ -131,7 +132,7 @@ def train_candidate(model, train, validation, config, search=True, verbose=1, on
     return metrics, history
 
 
-def load_data(config, smoke=False):
+def load_data(config, smoke=False, split_file=None):
     if smoke:
         rng = np.random.default_rng(1234)
         def sample(n):
@@ -139,9 +140,21 @@ def load_data(config, smoke=False):
         return sample(32), sample(16), sample(16), None
     from sklearn.model_selection import train_test_split
     (x, y), (tx, ty) = tf.keras.datasets.cifar10.load_data()
-    indices = np.arange(len(x))
-    train_idx, val_idx = train_test_split(indices, test_size=config["dataset"]["validation_size"],
-                                        random_state=config["dataset"]["split_seed"])
+    if split_file is None:
+        indices = np.arange(len(x))
+        train_idx, val_idx = train_test_split(indices, test_size=config["dataset"]["validation_size"],
+                                            random_state=config["dataset"]["split_seed"])
+    else:
+        # Retraining uses the exact split recorded by the original search.
+        with np.load(split_file, allow_pickle=False) as saved:
+            train_idx = saved["train_indices"]
+            val_idx = saved["validation_indices"]
+        combined = np.concatenate((train_idx, val_idx))
+        if (train_idx.shape != (config["dataset"]["train_size"],)
+                or val_idx.shape != (config["dataset"]["validation_size"],)
+                or not np.issubdtype(combined.dtype, np.integer)
+                or not np.array_equal(np.sort(combined), np.arange(len(x)))):
+            raise ValueError("Saved split must partition all CIFAR-10 training examples exactly once")
     def prep(images, labels):
         return images.astype("float32") / 255.0, tf.keras.utils.to_categorical(labels, 10)
     return (prep(x[train_idx], y[train_idx]), prep(x[val_idx], y[val_idx]), prep(tx, ty),
