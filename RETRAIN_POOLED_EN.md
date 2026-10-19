@@ -2,7 +2,13 @@
 
 `retrain_paper.py` reads saved search results, **selects the global top 15 functions across the search seeds, and runs only retraining and test evaluation**. It never starts a search. ReLU, Swish, Mish, GELU, SERF, and ELU are also retrained under the same conditions.
 
-The default workload is **(15 discovered functions + 6 baselines) × 5 retraining seeds = 105 trials**, each lasting 50 epochs. Each trial starts with a new model. Search weights and previous seed-0 retraining results are not reused.
+The default workload is **(15 discovered functions + 6 baselines) × 5 retraining seeds = 105 trials**, each lasting 50 epochs. Each trial starts with a new model. Search weights and previous seed-0 or seed-4 retraining results are not reused.
+
+## Updated workflow: use the new seed-4 results (2026-10-19)
+
+This guide selects the newly added `paper_full_results/paper_full_seeds4` as the source for search seed 4. Its results are pooled with search seeds 0–3 to select one common set of 15 functions, each evaluated with retraining seeds 0–4. This does not retrain only seed 4.
+
+**Resuming the previous `retrain_runs/pooled_top15_prepared` does not incorporate the new search results.** Candidates in `plan.json` are frozen when the plan is created. Use the new output directory `retrain_runs/pooled_top15_updated`. If you have already created a plan there, verify its source as described in Section 2 before resuming. If it uses different sources, choose another unused output directory.
 
 ## Relationship to the paper
 
@@ -46,8 +52,16 @@ paper_full_results/
     manifest.json
     split_indices.npz
     results/evaluation_results_seed_0.csv
-  ... each run's manifest, split archive, and search CSVs ...
+  paper_full_seeds1/         # Search seed 1
+  paper_full_seeds2/         # Search seed 2, also contains a partial seed-3 run
+  paper_full_seeds3 and 4/   # Use its 1,200 seed-3 records; also contains old seed 4
+  paper_full_seeds4/         # Use this newly added search seed 4
+    manifest.json
+    split_indices.npz
+    results/evaluation_results_seed_4.csv
 ```
+
+Each run needs `manifest.json`, `split_indices.npz`, and `results/evaluation_results_seed_*.csv`. Keep `paper_full_seeds3 and 4`: it is still needed for seed 3. Do not delete that directory to exclude old seed 4. The explicit `--source` option chooses new seed 4 without pooling both seed-4 trajectories. Search results were not included in the code push to GitHub; copy them separately to the execution PC.
 
 `run_paper.py` is imported only for helpers; no search function is called. Copying just `retrain_paper.py` is insufficient. Run every command below from the repository root.
 
@@ -69,10 +83,10 @@ python -c "import tensorflow as tf; print(tf.__version__); print(tf.config.list_
 
 The following commands use the activated environment's `python`. Alternatively, replace `python` with that environment's Python executable. Workers use the same executable. A real training run downloads CIFAR-10 if it is absent from the Keras cache.
 
-## 2. Inspect the top 15 without training
+## 2. Reselect the top 15 using the new seed-4 source
 
 ```bash
-python retrain_paper.py --results-root paper_full_results --output retrain_runs/pooled_top15 --plan-only
+python retrain_paper.py --results-root paper_full_results --source "4=paper_full_results/paper_full_seeds4" --output retrain_runs/pooled_top15_updated --plan-only
 ```
 
 This does not import TensorFlow, start GPU training, or download the dataset. Specify an output directory that does not already exist.
@@ -82,28 +96,40 @@ This does not import TensorFlow, start GPU training, or download the dataset. Sp
 - `plan.json`: frozen selection, 105 trials, configuration, and source-code hashes.
 - `source_snapshot/` and `split_indices.npz`: copies of the execution code and dataset split.
 
-When several runs contain the same search seed, choose **one trajectory with the largest contiguous record count**, starting at evaluation 1. This does not pick a trajectory by its accuracy. For the supplied seed-3 data, the 1,200-record run takes precedence over the 382-record partial run. Different trajectories of equal length are ambiguous and require an explicit override:
+When several runs contain the same search seed, choose **one trajectory with the largest contiguous record count**, starting at evaluation 1. This does not pick a trajectory by its accuracy. For the supplied seed-3 data, the 1,200-record run takes precedence over the 382-record partial run.
+
+Old and new seed 4 both contain 1,200 records but have different contents. Omitting `--source` therefore produces `Ambiguous equal-length trajectories for seed 4`. Include the override in the command above. To explicitly select seed 3 as well, specify both sources (this creates a separate new plan):
 
 ```bash
-python retrain_paper.py --results-root paper_full_results --source "3=paper_full_results/paper_full_seeds3 and 4" --output retrain_runs/pooled_explicit --plan-only
+python retrain_paper.py --results-root paper_full_results --source "3=paper_full_results/paper_full_seeds3 and 4" --source "4=paper_full_results/paper_full_seeds4" --output retrain_runs/pooled_explicit_updated --plan-only
 ```
 
 All configured search seeds, 0–4 by default, must be present. Chosen runs must agree on training conditions, primitive ordering, and the saved data split. Only records with `status=completed`, the full search epoch count, and finite losses/accuracies are eligible for ranking.
 
-**The supplied seed-4 data contains 851 zero-epoch records.** These are excluded and a warning is retained in the plan and status output. Retraining can use the available valid results, but it does not repair the missing search evaluations. Do not describe this as five fully successful searches.
+New seed 4 contains 1,200 evaluations: 596 completed all 15 epochs, 130 stopped for low accuracy, and 474 stopped with nonfinite values. None ended at zero epochs. The earlier 851 zero-epoch records belong to old seed 4; selecting the new source removes that old-source warning. Nonfinite evaluations remain excluded from candidate selection.
+
+Before training, inspect `retrain_runs/pooled_top15_updated/selection_audit.json`. For `seed: 4`, check that `selected_source` ends in `paper_full_seeds4`, `recorded` is 1200, `eligible` is 596, and `zero_epoch_records` is 0. `plan.json` should contain 105 trials, retraining seeds `[0, 1, 2, 3, 4]`, and 50 epochs.
+
+For the data checked on 2026-10-19, rank 1 is `(erf(x)*sigmoid(sinh(x)))` (82.50% validation accuracy), and rank 2 is `(sigmoid(x)*erf(erf(x)))` from new seed 4 (81.94%). One function is replaced compared with the old top-15 set. These validation metrics help verify selection; they are not test accuracies from the new retraining run.
+
+To inspect an existing plan without training, use the following command. It does not reselect candidates:
+
+```bash
+python retrain_paper.py --output retrain_runs/pooled_top15_updated --resume --plan-only
+```
 
 ## 3. Start retraining
 
 Execute the plan prepared above:
 
 ```bash
-python retrain_paper.py --output retrain_runs/pooled_top15 --resume
+python retrain_paper.py --output retrain_runs/pooled_top15_updated --resume
 ```
 
 Or prepare a plan and begin training in one command, using another new directory:
 
 ```bash
-python retrain_paper.py --results-root paper_full_results --output retrain_runs/pooled_new
+python retrain_paper.py --results-root paper_full_results --source "4=paper_full_results/paper_full_seeds4" --output retrain_runs/pooled_new_updated
 ```
 
 GPU execution is the default. If TensorFlow cannot find a GPU, the trial fails rather than silently using the CPU. To use the CPU, add `--device cpu` **when preparing the plan**.
@@ -111,23 +137,25 @@ GPU execution is the default. If TensorFlow cannot find a GPU, the trial fails r
 Run only the first trial to inspect behavior and duration:
 
 ```bash
-python retrain_paper.py --output retrain_runs/pooled_top15 --resume --max-trials 1
+python retrain_paper.py --output retrain_runs/pooled_top15_updated --resume --max-trials 1
 ```
 
 Resume without `--max-trials` to continue. Each trial writes progress to `trials/<function>_seed_<seed>/attempt_0001/worker.log` and `histories/`. Use `tail -f <worker.log path>` on Linux or `Get-Content <worker.log path> -Wait` in PowerShell to follow it.
+
+Do not add `--source` or `--results-root` to `--resume`: it uses the inputs frozen in the output directory. Always specify the newly prepared output directory; resuming an old directory trains its old selection.
 
 If only metrics are needed, add `--no-save-models` **when creating a new plan**. To use a different configuration, pass `--config <JSON file>`. Distinguish experiments with modified settings from the default paper protocol.
 
 ## 4. Resume after interruption or an error
 
 ```bash
-python retrain_paper.py --output retrain_runs/pooled_top15 --resume
+python retrain_paper.py --output retrain_runs/pooled_top15_updated --resume
 ```
 
 Completed trials are skipped. An OOM, Python exception, or abnormal worker termination stops the coordinator immediately to avoid a cascade of failures. After investigating and resolving the cause, explicitly retry infrastructure failures:
 
 ```bash
-python retrain_paper.py --output retrain_runs/pooled_top15 --resume --retry-errors
+python retrain_paper.py --output retrain_runs/pooled_top15_updated --resume --retry-errors
 ```
 
 - A failed trial restarts from **epoch 1 with the same seed**. Mid-training weights and optimizer state are not restored.
@@ -153,15 +181,17 @@ Each worker exits after one trial, releasing that process's GPU allocations. Thi
 | `trials/<trial>/attempt_0001/model.keras` | Model with a valid test evaluation, when model saving is enabled |
 | `error.txt` / `save_error.txt` | Exception details within the affected attempt, if applicable |
 
-Nonfinite values become null/blank in aggregate JSON/CSV files. A mean of 0.825 is 82.5%; an SD of 0.0014 is 0.14 percentage points. Selection warnings, such as missing seed-4 search coverage, remain even if all retraining trials succeed.
+Nonfinite values become null/blank in aggregate JSON/CSV files. A mean of 0.825 is 82.5%; an SD of 0.0014 is 0.14 percentage points. Any warnings present when the plan was created remain even if retraining succeeds. The old seed-4 warning about 851 zero-epoch evaluations does not apply to the new seed-4 source used here.
+
+The legacy runner for new seed 4 failed during plotting after training with `No module named 'matplotlib'`. Its saved search CSVs remain usable for candidate selection. The retraining-only runner produces CSV/JSON summaries without plotting, so it does not require `matplotlib`. ELU's NaN in that legacy run is a separate numerical issue; numerical failures may still occur during the new retraining run.
 
 Exit codes: 0 = the requested invocation finished normally (planning or `--max-trials` may leave pending trials); 1 = configuration/runtime error; 2 = processing finished but numerical failures or model-save errors remain; 130 = user interruption. Check `all_evaluations_completed` and `model_save_errors` in `status.json` for full completion.
 
 ## Small smoke test
 
 ```bash
-python retrain_paper.py --results-root paper_full_results --output retrain_runs/smoke --smoke-test --device cpu
-python retrain_paper.py --output retrain_runs/smoke --resume
+python retrain_paper.py --results-root paper_full_results --source "4=paper_full_results/paper_full_seeds4" --output retrain_runs/smoke_updated --smoke-test --device cpu
+python retrain_paper.py --output retrain_runs/smoke_updated --resume
 ```
 
 This trains the top candidate and ReLU for one epoch each, seed 0, on 32 synthetic training examples. It does not download CIFAR-10. The plan is labeled `smoke=true`. **Do not compare these accuracies with the paper.** The second command also checks that completed trials are skipped.
