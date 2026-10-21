@@ -1,0 +1,17 @@
+seed,evaluation_count,chromosome,activation_expression,status,epochs_completed,validation_loss,validation_accuracy,rank,previous_rank,previous_validation_accuracy,change,observed_retraining_seeds
+1,879,"[9, 15, 9]",(erf(x)*sigmoid(sinh(x))),completed,15,0.5454068183898926,0.824999988079071,1,1,0.824999988079071,retained,[]
+4,670,"[10, 16, 15]",(sigmoid(x)*erf(erf(x))),completed,15,0.5523670315742493,0.8194000124931335,2,6,0.8162000179290771,retained,[4]
+3,1181,"[9, 12, 9]",(atan(x)*sigmoid(sinh(x))),completed,15,0.5399792194366455,0.8185999989509583,3,2,0.8185999989509583,retained,[]
+2,548,"[9, 13, 9]",(asinh(x)*sigmoid(sinh(x))),completed,15,0.5679590702056885,0.8172000050544739,4,3,0.8172000050544739,retained,[]
+0,876,"[10, 16, 7]",(sigmoid(x)*erf(sin(x))),completed,15,0.5577393174171448,0.8167999982833862,5,4,0.8167999982833862,retained,[0]
+2,185,"[9, 13, 0]",(asinh(x)*sigmoid(x)),completed,15,0.5780497789382935,0.8167999982833862,6,5,0.8167999982833862,retained,[]
+2,1085,"[10, 16, 0]",(sigmoid(x)*erf(x)),completed,15,0.5611582398414612,0.8151999711990356,7,7,0.8151999711990356,retained,[]
+2,730,"[10, 16, 9]",(sigmoid(x)*erf(sinh(x))),completed,15,0.5487887263298035,0.8149999976158142,8,8,0.8149999976158142,retained,[]
+2,157,"[5, 10, 9, 2, 10, 0, 6]","max(min((exp(x)*erf(tanh(x))),0),(x*sigmoid(max(x,0))))",completed,15,0.6192063689231873,0.8131999969482422,9,9,0.8131999969482422,retained,[]
+2,1087,"[9, 15, 0]",(erf(x)*sigmoid(x)),completed,15,0.5567511916160583,0.8130000233650208,10,10,0.8130000233650208,retained,[]
+0,422,"[5, 1, 3, 18, 15, 10, 7]","max(min((log(1+exp(x))*erf(x)),0),min(tanh(x),sin(x)))",completed,15,0.6037057638168335,0.8116000294685364,11,11,0.8116000294685364,retained,[0]
+0,244,"[10, 5, 7, 0, 16]","(max(min(sin(x),0),x)*erf(sigmoid(x)))",completed,15,0.6168041229248047,0.8094000220298767,12,12,0.8094000220298767,retained,[0]
+4,154,"[0, 1, 12, 5, 10]","((atan(x)*min(x,0))+tanh(x))",completed,15,0.5811285972595215,0.8087999820709229,13,,,added,[4]
+1,693,"[3, 10, 10, 18, 0, 12, 12]","min((log(1+exp(x))*erf(x)),(atan(x)*erf(atan(x))))",completed,15,0.5769343376159668,0.8076000213623047,14,13,0.8076000213623047,retained,[]
+2,799,"[9, 7, 13]",(sin(x)*sigmoid(asinh(x))),completed,15,0.5713181495666504,0.8068000078201294,15,14,0.8068000078201294,retained,[]
+,,,(sigmoid(x)*sin(x)),,,,,,15,,removed,

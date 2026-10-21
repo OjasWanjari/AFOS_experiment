@@ -1,0 +1,2 @@
+activation_expression,source_run,function,seed,observed_n,test_accuracy_pct,paper_mean_pct,paper_sd_pp,paper_n,delta_vs_paper_pp,paper_source
+(log(1+exp(x))*erf(erf(x))),paper_full_seeds4,discovered_04,4,1,81.01999759674072,82.4,0.47,5,-1.380002403259283,"User-provided PDF, Table 3, page 16; checked visually"

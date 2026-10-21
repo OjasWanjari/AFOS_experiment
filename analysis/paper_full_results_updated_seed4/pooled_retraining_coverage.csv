@@ -1,0 +1,16 @@
+rank,activation_expression,observed_seeds,observed_count,expected_replications
+1,(erf(x)*sigmoid(sinh(x))),[],0,5
+2,(sigmoid(x)*erf(erf(x))),[4],1,5
+3,(atan(x)*sigmoid(sinh(x))),[],0,5
+4,(asinh(x)*sigmoid(sinh(x))),[],0,5
+5,(sigmoid(x)*erf(sin(x))),[0],1,5
+6,(asinh(x)*sigmoid(x)),[],0,5
+7,(sigmoid(x)*erf(x)),[],0,5
+8,(sigmoid(x)*erf(sinh(x))),[],0,5
+9,"max(min((exp(x)*erf(tanh(x))),0),(x*sigmoid(max(x,0))))",[],0,5
+10,(erf(x)*sigmoid(x)),[],0,5
+11,"max(min((log(1+exp(x))*erf(x)),0),min(tanh(x),sin(x)))",[0],1,5
+12,"(max(min(sin(x),0),x)*erf(sigmoid(x)))",[0],1,5
+13,"((atan(x)*min(x,0))+tanh(x))",[4],1,5
+14,"min((log(1+exp(x))*erf(x)),(atan(x)*erf(atan(x))))",[],0,5
+15,(sin(x)*sigmoid(asinh(x))),[],0,5

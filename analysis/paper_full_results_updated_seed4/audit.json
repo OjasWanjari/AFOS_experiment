@@ -1,0 +1,1137 @@
+{
+  "summary": {
+    "date": "2026-10-21",
+    "records": 6000,
+    "search_status_counts": {
+      "completed": 3032,
+      "nonfinite": 2318,
+      "early_stopped": 650
+    },
+    "unique_completed_expressions": 1000,
+    "best_search_accuracy_mean_pct": 81.94000005722046,
+    "best_search_accuracy_sample_sd_pp": 0.3301509308297312,
+    "retraining_counts": {
+      "completed": 40,
+      "nonfinite": 1
+    },
+    "coverage": [
+      {
+        "rank": 1,
+        "activation_expression": "(erf(x)*sigmoid(sinh(x)))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 2,
+        "activation_expression": "(sigmoid(x)*erf(erf(x)))",
+        "observed_seeds": [
+          4
+        ],
+        "observed_count": 1,
+        "expected_replications": 5
+      },
+      {
+        "rank": 3,
+        "activation_expression": "(atan(x)*sigmoid(sinh(x)))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 4,
+        "activation_expression": "(asinh(x)*sigmoid(sinh(x)))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 5,
+        "activation_expression": "(sigmoid(x)*erf(sin(x)))",
+        "observed_seeds": [
+          0
+        ],
+        "observed_count": 1,
+        "expected_replications": 5
+      },
+      {
+        "rank": 6,
+        "activation_expression": "(asinh(x)*sigmoid(x))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 7,
+        "activation_expression": "(sigmoid(x)*erf(x))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 8,
+        "activation_expression": "(sigmoid(x)*erf(sinh(x)))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 9,
+        "activation_expression": "max(min((exp(x)*erf(tanh(x))),0),(x*sigmoid(max(x,0))))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 10,
+        "activation_expression": "(erf(x)*sigmoid(x))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 11,
+        "activation_expression": "max(min((log(1+exp(x))*erf(x)),0),min(tanh(x),sin(x)))",
+        "observed_seeds": [
+          0
+        ],
+        "observed_count": 1,
+        "expected_replications": 5
+      },
+      {
+        "rank": 12,
+        "activation_expression": "(max(min(sin(x),0),x)*erf(sigmoid(x)))",
+        "observed_seeds": [
+          0
+        ],
+        "observed_count": 1,
+        "expected_replications": 5
+      },
+      {
+        "rank": 13,
+        "activation_expression": "((atan(x)*min(x,0))+tanh(x))",
+        "observed_seeds": [
+          4
+        ],
+        "observed_count": 1,
+        "expected_replications": 5
+      },
+      {
+        "rank": 14,
+        "activation_expression": "min((log(1+exp(x))*erf(x)),(atan(x)*erf(atan(x))))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      },
+      {
+        "rank": 15,
+        "activation_expression": "(sin(x)*sigmoid(asinh(x)))",
+        "observed_seeds": [],
+        "observed_count": 0,
+        "expected_replications": 5
+      }
+    ],
+    "baselines": [
+      {
+        "function": "relu",
+        "paper_mean_pct": 81.37,
+        "paper_sd_pp": 0.46,
+        "paper_n": 5,
+        "seed0_accuracy_pct": 79.90999817848206,
+        "seed4_accuracy_pct": 79.24000024795532,
+        "observed_n": 2,
+        "observed_mean_pct": 79.57499921321869,
+        "observed_sample_sd_pp": 0.4737600800564065,
+        "mean_minus_paper_pp": -1.7950007867813156
+      },
+      {
+        "function": "swish",
+        "paper_mean_pct": 81.46,
+        "paper_sd_pp": 0.6,
+        "paper_n": 5,
+        "seed0_accuracy_pct": 81.9599986076355,
+        "seed4_accuracy_pct": 81.5999984741211,
+        "observed_n": 2,
+        "observed_mean_pct": 81.7799985408783,
+        "observed_sample_sd_pp": 0.25455853563609776,
+        "mean_minus_paper_pp": 0.31999854087830215
+      },
+      {
+        "function": "mish",
+        "paper_mean_pct": 82.23,
+        "paper_sd_pp": 0.27,
+        "paper_n": 5,
+        "seed0_accuracy_pct": 81.97000026702881,
+        "seed4_accuracy_pct": 82.20000267028809,
+        "observed_n": 2,
+        "observed_mean_pct": 82.08500146865845,
+        "observed_sample_sd_pp": 0.16263625903383788,
+        "mean_minus_paper_pp": -0.1449985313415567
+      },
+      {
+        "function": "gelu",
+        "paper_mean_pct": 81.75,
+        "paper_sd_pp": 0.26,
+        "paper_n": 5,
+        "seed0_accuracy_pct": 81.44000172615051,
+        "seed4_accuracy_pct": 82.73000121116638,
+        "observed_n": 2,
+        "observed_mean_pct": 82.08500146865845,
+        "observed_sample_sd_pp": 0.9121673835818752,
+        "mean_minus_paper_pp": 0.33500146865844727
+      },
+      {
+        "function": "serf",
+        "paper_mean_pct": 82.16,
+        "paper_sd_pp": 0.22,
+        "paper_n": 5,
+        "seed0_accuracy_pct": 81.00000023841858,
+        "seed4_accuracy_pct": 81.19000196456909,
+        "observed_n": 2,
+        "observed_mean_pct": 81.09500110149384,
+        "observed_sample_sd_pp": 0.1343515089981769,
+        "mean_minus_paper_pp": -1.0649988985061611
+      },
+      {
+        "function": "elu",
+        "paper_mean_pct": 82.29,
+        "paper_sd_pp": 0.57,
+        "paper_n": 5,
+        "seed0_accuracy_pct": null,
+        "seed4_accuracy_pct": null,
+        "observed_n": 0,
+        "observed_mean_pct": null,
+        "observed_sample_sd_pp": null,
+        "mean_minus_paper_pp": null
+      }
+    ],
+    "eelus": [
+      {
+        "function": "EELU-1",
+        "matching_records": 8,
+        "completed": 7,
+        "best_validation_accuracy": 0.7996000051498413,
+        "match_scope": "Listed direct expressions only; not exhaustive algebraic equivalence"
+      },
+      {
+        "function": "EELU-2",
+        "matching_records": 0,
+        "completed": 0,
+        "best_validation_accuracy": null,
+        "match_scope": "Listed direct expressions only; not exhaustive algebraic equivalence"
+      },
+      {
+        "function": "EELU-3",
+        "matching_records": 0,
+        "completed": 0,
+        "best_validation_accuracy": null,
+        "match_scope": "Listed direct expressions only; not exhaustive algebraic equivalence"
+      },
+      {
+        "function": "EELU-4",
+        "matching_records": 3,
+        "completed": 2,
+        "best_validation_accuracy": 0.7996000051498413,
+        "match_scope": "Listed direct expressions only; not exhaustive algebraic equivalence"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "seed": 0,
+      "selected_source": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds0",
+      "csv_sha256": "0ecb634bfe851f1bd61dfed1654e3417be2ac7e2bf639f071e5568638589b3f0",
+      "manifest_sha256": "1fcedf33e8582685cb920c9d71ce1e59d58fa2cd651411c5d27d1daf235555ce",
+      "recorded": 1200,
+      "expected": 1200,
+      "eligible": 595,
+      "status_counts": {
+        "completed": 595,
+        "nonfinite": 445,
+        "early_stopped": 160
+      },
+      "zero_epoch_records": 0,
+      "alternatives": []
+    },
+    {
+      "seed": 1,
+      "selected_source": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds1",
+      "csv_sha256": "879f50c1fd512d95288d09ac7c45e7c277cae215915b2ed9578a2194678f9afd",
+      "manifest_sha256": "18ef1635baf66853f525855ceab34a8f1a84ea8159703aa80f8028644eadc60f",
+      "recorded": 1200,
+      "expected": 1200,
+      "eligible": 630,
+      "status_counts": {
+        "nonfinite": 451,
+        "completed": 630,
+        "early_stopped": 119
+      },
+      "zero_epoch_records": 0,
+      "alternatives": []
+    },
+    {
+      "seed": 2,
+      "selected_source": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds2",
+      "csv_sha256": "c96aa9e7a496c42ab3d2413aa516b8df899f808414448f477557c9afa2c1eda1",
+      "manifest_sha256": "50382fedafab57a2f1c484a90cd138412dc575374c2f8cca3fca7e875624c010",
+      "recorded": 1200,
+      "expected": 1200,
+      "eligible": 611,
+      "status_counts": {
+        "nonfinite": 485,
+        "early_stopped": 104,
+        "completed": 611
+      },
+      "zero_epoch_records": 0,
+      "alternatives": []
+    },
+    {
+      "seed": 3,
+      "selected_source": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds3 and 4",
+      "csv_sha256": "8b53ac132dd6f179120cd25fe22a85537190df3c84fa5270320f8d6cf281014b",
+      "manifest_sha256": "9719c71a33b660399377c12b20d6acc9c6139e871c288064d205407c23a2c303",
+      "recorded": 1200,
+      "expected": 1200,
+      "eligible": 600,
+      "status_counts": {
+        "early_stopped": 137,
+        "nonfinite": 463,
+        "completed": 600
+      },
+      "zero_epoch_records": 0,
+      "alternatives": [
+        {
+          "path": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds2",
+          "recorded": 382,
+          "csv_sha256": "41e5a3c4fbb2a741ce1ae62c721a1f52c9f4785de20413304cd9c4c2d9127451"
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "selected_source": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds4",
+      "csv_sha256": "bb7989999c7198cad74e6165850dfc1af3b697bba760818d7a3af6178750d5df",
+      "manifest_sha256": "49fe49e3cf696a018573d70f06c5002ce1e88c94672c9478a70db4d91278b42b",
+      "recorded": 1200,
+      "expected": 1200,
+      "eligible": 596,
+      "status_counts": {
+        "nonfinite": 474,
+        "early_stopped": 130,
+        "completed": 596
+      },
+      "zero_epoch_records": 0,
+      "alternatives": [
+        {
+          "path": "D:\\vscode\\AFOS-main\\paper_full_results\\paper_full_seeds3 and 4",
+          "recorded": 1200,
+          "csv_sha256": "f9f82d3855a1553f4a37e2f657ca33f6d840a7bf1713dc2830ff0cc59d3c9520"
+        }
+      ]
+    }
+  ],
+  "run_audit": [
+    {
+      "run": "paper_full_seeds0",
+      "config": {
+        "reference": {
+          "title": "Activation Function Optimization Scheme for Image Classification",
+          "version": "arXiv:2409.04915v1 (user-provided PDF)",
+          "sections": [
+            "3.1.3",
+            "3.1.5",
+            "3.1.6",
+            "4.1",
+            "Table 2",
+            "Table A.1"
+          ]
+        },
+        "search": {
+          "seeds": [
+            0
+          ],
+          "population_size": 30,
+          "generations": 40,
+          "replications": 1,
+          "selection": "ranking",
+          "selected_parents": 6,
+          "crossover": "single_point",
+          "crossover_probability": 0.8,
+          "max_crossover_children": 6,
+          "mutation": "single_point",
+          "mutation_probability": 0.2,
+          "max_mutation_children": 1,
+          "minimum_random_individuals": 17,
+          "fitness": "validation_accuracy / validation_loss"
+        },
+        "training": {
+          "epochs": 15,
+          "batch_size": 64,
+          "optimizer": "SGD",
+          "learning_rate": 0.01,
+          "momentum": 0.9,
+          "kernel_initializer": "he_uniform",
+          "padding": "same",
+          "loss": "categorical_crossentropy",
+          "first_epoch_accuracy_threshold": 0.25,
+          "stop_on_undefined_loss": true
+        },
+        "dataset": {
+          "name": "CIFAR-10",
+          "split_seed": 1234,
+          "train_size": 45000,
+          "validation_size": 5000,
+          "test_size": 10000
+        },
+        "post_search": {
+          "seeds": [
+            0
+          ],
+          "baselines": [
+            "relu",
+            "swish",
+            "mish",
+            "gelu",
+            "serf",
+            "elu"
+          ],
+          "top_functions": 15,
+          "selection_metric": "validation_accuracy",
+          "retrain_from_scratch": true,
+          "epochs": 50,
+          "replications": 1,
+          "evaluation_split": "test"
+        },
+        "cnn": {
+          "filters": [
+            28,
+            32,
+            64,
+            64,
+            128,
+            128
+          ],
+          "dropout_rate": 0.2
+        },
+        "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+        "implementation_notes": [
+          "Loaded by run_paper.py; main.py remains the legacy experiment.",
+          "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+          "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+          "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+          "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+          "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+          "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+          "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+          "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+          "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+        ],
+        "smoke_test": false
+      },
+      "packages": {
+        "tensorflow": "2.21.0",
+        "keras": "3.12.4",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.7.2",
+        "matplotlib": "3.10.9"
+      },
+      "source_hashes_verified": true,
+      "manifest_sha256": "1fcedf33e8582685cb920c9d71ce1e59d58fa2cd651411c5d27d1daf235555ce",
+      "status": {
+        "status": "failed",
+        "error": "ResourceExhaustedError()"
+      },
+      "search_complete": true,
+      "retraining_complete": false,
+      "retraining_rows": 20,
+      "events_tail": [
+        {
+          "timestamp": "2026-10-12T08:10:00.163198+09:00",
+          "event": "retraining_completed",
+          "trial": "serf_0",
+          "detail": {
+            "function": "serf",
+            "seed": 0,
+            "chromosome": null,
+            "activation_expression": "serf",
+            "test_loss": 0.8158509135246277,
+            "test_accuracy": 0.8100000023841858,
+            "train_loss": 0.2727956473827362,
+            "train_accuracy": 0.9067333340644836,
+            "validation_loss": 0.8400164842605591,
+            "validation_accuracy": 0.8047999739646912,
+            "epochs_completed": 50,
+            "status": "completed"
+          }
+        },
+        {
+          "timestamp": "2026-10-12T08:10:08.008230+09:00",
+          "event": "training_started",
+          "trial": "elu_0",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-12T08:10:15.357894+09:00",
+          "event": "training_failed",
+          "trial": "elu_0",
+          "detail": "ResourceExhaustedError()"
+        },
+        {
+          "timestamp": "2026-10-12T08:10:15.358039+09:00",
+          "event": "run_failed",
+          "trial": null,
+          "detail": "ResourceExhaustedError()"
+        }
+      ]
+    },
+    {
+      "run": "paper_full_seeds1",
+      "config": {
+        "reference": {
+          "title": "Activation Function Optimization Scheme for Image Classification",
+          "version": "arXiv:2409.04915v1 (user-provided PDF)",
+          "sections": [
+            "3.1.3",
+            "3.1.5",
+            "3.1.6",
+            "4.1",
+            "Table 2",
+            "Table A.1"
+          ]
+        },
+        "search": {
+          "seeds": [
+            1
+          ],
+          "population_size": 30,
+          "generations": 40,
+          "replications": 1,
+          "selection": "ranking",
+          "selected_parents": 6,
+          "crossover": "single_point",
+          "crossover_probability": 0.8,
+          "max_crossover_children": 6,
+          "mutation": "single_point",
+          "mutation_probability": 0.2,
+          "max_mutation_children": 1,
+          "minimum_random_individuals": 17,
+          "fitness": "validation_accuracy / validation_loss"
+        },
+        "training": {
+          "epochs": 15,
+          "batch_size": 64,
+          "optimizer": "SGD",
+          "learning_rate": 0.01,
+          "momentum": 0.9,
+          "kernel_initializer": "he_uniform",
+          "padding": "same",
+          "loss": "categorical_crossentropy",
+          "first_epoch_accuracy_threshold": 0.25,
+          "stop_on_undefined_loss": true
+        },
+        "dataset": {
+          "name": "CIFAR-10",
+          "split_seed": 1234,
+          "train_size": 45000,
+          "validation_size": 5000,
+          "test_size": 10000
+        },
+        "post_search": {
+          "seeds": [
+            1
+          ],
+          "baselines": [
+            "relu",
+            "swish",
+            "mish",
+            "gelu",
+            "serf",
+            "elu"
+          ],
+          "top_functions": 15,
+          "selection_metric": "validation_accuracy",
+          "retrain_from_scratch": true,
+          "epochs": 50,
+          "replications": 1,
+          "evaluation_split": "test"
+        },
+        "cnn": {
+          "filters": [
+            28,
+            32,
+            64,
+            64,
+            128,
+            128
+          ],
+          "dropout_rate": 0.2
+        },
+        "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+        "implementation_notes": [
+          "Loaded by run_paper.py; main.py remains the legacy experiment.",
+          "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+          "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+          "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+          "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+          "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+          "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+          "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+          "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+          "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+        ],
+        "smoke_test": false
+      },
+      "packages": {
+        "tensorflow": "2.21.0",
+        "keras": "3.12.4",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.7.2"
+      },
+      "source_hashes_verified": true,
+      "manifest_sha256": "18ef1635baf66853f525855ceab34a8f1a84ea8159703aa80f8028644eadc60f",
+      "status": {
+        "status": "failed",
+        "error": "ValueError('Invalid filepath extension for saving. Please add either a `.keras` extension for the native Keras format (recommended) or a `.h5` extension. Use `model.export(filepath)` if you want to export a SavedModel for use with TFLite/TFServing/etc. Received: filepath=/home/victor/AFOS_experiment/runs/paper_full/models/discovered_01_seed_1.')"
+      },
+      "search_complete": true,
+      "retraining_complete": false,
+      "retraining_rows": 0,
+      "events_tail": [
+        {
+          "timestamp": "2026-10-10T07:15:45.253345+09:00",
+          "event": "evaluation_completed",
+          "trial": "search_1_1200",
+          "detail": {
+            "seed": 1,
+            "generation": 40,
+            "evaluation_count": 1200,
+            "training_seed": 2086348781,
+            "chromosome": [
+              3,
+              7,
+              5
+            ],
+            "activation_expression": "min(sin(x),min(x,0))",
+            "score": 0.8382603200576633,
+            "train_loss": 0.7665547728538513,
+            "train_accuracy": 0.7284666895866394,
+            "validation_loss": 0.8398345708847046,
+            "validation_accuracy": 0.7039999961853027,
+            "epochs_completed": 15,
+            "status": "completed"
+          }
+        },
+        {
+          "timestamp": "2026-10-10T07:15:51.816040+09:00",
+          "event": "training_started",
+          "trial": "discovered_01_1",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-10T07:17:58.851013+09:00",
+          "event": "training_finished",
+          "trial": "discovered_01_1",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-10T07:18:00.309367+09:00",
+          "event": "run_failed",
+          "trial": null,
+          "detail": "ValueError('Invalid filepath extension for saving. Please add either a `.keras` extension for the native Keras format (recommended) or a `.h5` extension. Use `model.export(filepath)` if you want to export a SavedModel for use with TFLite/TFServing/etc. Received: filepath=/home/victor/AFOS_experiment/runs/paper_full/models/discovered_01_seed_1.')"
+        }
+      ]
+    },
+    {
+      "run": "paper_full_seeds2",
+      "config": {
+        "reference": {
+          "title": "Activation Function Optimization Scheme for Image Classification",
+          "version": "arXiv:2409.04915v1 (user-provided PDF)",
+          "sections": [
+            "3.1.3",
+            "3.1.5",
+            "3.1.6",
+            "4.1",
+            "Table 2",
+            "Table A.1"
+          ]
+        },
+        "search": {
+          "seeds": [
+            2,
+            3,
+            4
+          ],
+          "population_size": 30,
+          "generations": 40,
+          "replications": 3,
+          "selection": "ranking",
+          "selected_parents": 6,
+          "crossover": "single_point",
+          "crossover_probability": 0.8,
+          "max_crossover_children": 6,
+          "mutation": "single_point",
+          "mutation_probability": 0.2,
+          "max_mutation_children": 1,
+          "minimum_random_individuals": 17,
+          "fitness": "validation_accuracy / validation_loss"
+        },
+        "training": {
+          "epochs": 15,
+          "batch_size": 64,
+          "optimizer": "SGD",
+          "learning_rate": 0.01,
+          "momentum": 0.9,
+          "kernel_initializer": "he_uniform",
+          "padding": "same",
+          "loss": "categorical_crossentropy",
+          "first_epoch_accuracy_threshold": 0.25,
+          "stop_on_undefined_loss": true
+        },
+        "dataset": {
+          "name": "CIFAR-10",
+          "split_seed": 1234,
+          "train_size": 45000,
+          "validation_size": 5000,
+          "test_size": 10000
+        },
+        "post_search": {
+          "seeds": [
+            2,
+            3,
+            4
+          ],
+          "baselines": [
+            "relu",
+            "swish",
+            "mish",
+            "gelu",
+            "serf",
+            "elu"
+          ],
+          "top_functions": 15,
+          "selection_metric": "validation_accuracy",
+          "retrain_from_scratch": true,
+          "epochs": 50,
+          "replications": 3,
+          "evaluation_split": "test"
+        },
+        "cnn": {
+          "filters": [
+            28,
+            32,
+            64,
+            64,
+            128,
+            128
+          ],
+          "dropout_rate": 0.2
+        },
+        "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+        "implementation_notes": [
+          "Loaded by run_paper.py; main.py remains the legacy experiment.",
+          "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+          "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+          "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+          "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+          "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+          "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+          "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+          "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+          "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+        ],
+        "smoke_test": false
+      },
+      "packages": {
+        "tensorflow": "2.21.0",
+        "keras": "3.12.4",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.7.2"
+      },
+      "source_hashes_verified": true,
+      "manifest_sha256": "50382fedafab57a2f1c484a90cd138412dc575374c2f8cca3fca7e875624c010",
+      "status": {
+        "status": "failed",
+        "error": "ResourceExhaustedError()"
+      },
+      "search_complete": false,
+      "retraining_complete": false,
+      "retraining_rows": 0,
+      "events_tail": [
+        {
+          "timestamp": "2026-10-11T05:41:09.869762+09:00",
+          "event": "evaluation_completed",
+          "trial": "search_3_382",
+          "detail": {
+            "seed": 3,
+            "generation": 13,
+            "evaluation_count": 382,
+            "training_seed": 310876397,
+            "chromosome": [
+              8,
+              7,
+              5,
+              13,
+              7
+            ],
+            "activation_expression": "(min(min(min(x,0),0),asinh(x))*exp(sin(x)))",
+            "score": 0.0,
+            "train_loss": null,
+            "train_accuracy": 0.3842865526676178,
+            "validation_loss": null,
+            "validation_accuracy": 0.10559999942779541,
+            "epochs_completed": 2,
+            "status": "nonfinite"
+          }
+        },
+        {
+          "timestamp": "2026-10-11T05:41:18.275148+09:00",
+          "event": "training_started",
+          "trial": "search_3_383",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-11T05:41:27.900157+09:00",
+          "event": "training_failed",
+          "trial": "search_3_383",
+          "detail": "ResourceExhaustedError()"
+        },
+        {
+          "timestamp": "2026-10-11T05:41:27.900218+09:00",
+          "event": "run_failed",
+          "trial": null,
+          "detail": "ResourceExhaustedError()"
+        }
+      ]
+    },
+    {
+      "run": "paper_full_seeds3 and 4",
+      "config": {
+        "reference": {
+          "title": "Activation Function Optimization Scheme for Image Classification",
+          "version": "arXiv:2409.04915v1 (user-provided PDF)",
+          "sections": [
+            "3.1.3",
+            "3.1.5",
+            "3.1.6",
+            "4.1",
+            "Table 2",
+            "Table A.1"
+          ]
+        },
+        "search": {
+          "seeds": [
+            3,
+            4
+          ],
+          "population_size": 30,
+          "generations": 40,
+          "replications": 2,
+          "selection": "ranking",
+          "selected_parents": 6,
+          "crossover": "single_point",
+          "crossover_probability": 0.8,
+          "max_crossover_children": 6,
+          "mutation": "single_point",
+          "mutation_probability": 0.2,
+          "max_mutation_children": 1,
+          "minimum_random_individuals": 17,
+          "fitness": "validation_accuracy / validation_loss"
+        },
+        "training": {
+          "epochs": 15,
+          "batch_size": 64,
+          "optimizer": "SGD",
+          "learning_rate": 0.01,
+          "momentum": 0.9,
+          "kernel_initializer": "he_uniform",
+          "padding": "same",
+          "loss": "categorical_crossentropy",
+          "first_epoch_accuracy_threshold": 0.25,
+          "stop_on_undefined_loss": true
+        },
+        "dataset": {
+          "name": "CIFAR-10",
+          "split_seed": 1234,
+          "train_size": 45000,
+          "validation_size": 5000,
+          "test_size": 10000
+        },
+        "post_search": {
+          "seeds": [
+            3,
+            4
+          ],
+          "baselines": [
+            "relu",
+            "swish",
+            "mish",
+            "gelu",
+            "serf",
+            "elu"
+          ],
+          "top_functions": 15,
+          "selection_metric": "validation_accuracy",
+          "retrain_from_scratch": true,
+          "epochs": 50,
+          "replications": 2,
+          "evaluation_split": "test"
+        },
+        "cnn": {
+          "filters": [
+            28,
+            32,
+            64,
+            64,
+            128,
+            128
+          ],
+          "dropout_rate": 0.2
+        },
+        "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+        "implementation_notes": [
+          "Loaded by run_paper.py; main.py remains the legacy experiment.",
+          "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+          "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+          "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+          "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+          "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+          "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+          "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+          "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+          "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+        ],
+        "smoke_test": false
+      },
+      "packages": {
+        "tensorflow": "2.21.0",
+        "keras": "3.12.4",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.7.2"
+      },
+      "source_hashes_verified": true,
+      "manifest_sha256": "9719c71a33b660399377c12b20d6acc9c6139e871c288064d205407c23a2c303",
+      "status": {
+        "status": "failed",
+        "error": "InternalError()"
+      },
+      "search_complete": true,
+      "retraining_complete": false,
+      "retraining_rows": 0,
+      "events_tail": [
+        {
+          "timestamp": "2026-10-12T06:29:31.001531+09:00",
+          "event": "evaluation_completed",
+          "trial": "search_4_1200",
+          "detail": {
+            "seed": 4,
+            "generation": 40,
+            "evaluation_count": 1200,
+            "training_seed": 897779759,
+            "chromosome": [
+              6,
+              7,
+              6,
+              2,
+              0
+            ],
+            "activation_expression": "min(max(min(min(max(x,0),0),exp(x)),0),x)",
+            "score": 0.0,
+            "train_loss": null,
+            "train_accuracy": null,
+            "validation_loss": null,
+            "validation_accuracy": null,
+            "epochs_completed": 0,
+            "status": "nonfinite"
+          }
+        },
+        {
+          "timestamp": "2026-10-12T06:29:40.137992+09:00",
+          "event": "training_started",
+          "trial": "discovered_01_3",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-12T06:29:50.534058+09:00",
+          "event": "training_failed",
+          "trial": "discovered_01_3",
+          "detail": "InternalError()"
+        },
+        {
+          "timestamp": "2026-10-12T06:29:50.534119+09:00",
+          "event": "run_failed",
+          "trial": null,
+          "detail": "InternalError()"
+        }
+      ]
+    },
+    {
+      "run": "paper_full_seeds4",
+      "config": {
+        "reference": {
+          "title": "Activation Function Optimization Scheme for Image Classification",
+          "version": "arXiv:2409.04915v1 (user-provided PDF)",
+          "sections": [
+            "3.1.3",
+            "3.1.5",
+            "3.1.6",
+            "4.1",
+            "Table 2",
+            "Table A.1"
+          ]
+        },
+        "search": {
+          "seeds": [
+            4
+          ],
+          "population_size": 30,
+          "generations": 40,
+          "replications": 1,
+          "selection": "ranking",
+          "selected_parents": 6,
+          "crossover": "single_point",
+          "crossover_probability": 0.8,
+          "max_crossover_children": 6,
+          "mutation": "single_point",
+          "mutation_probability": 0.2,
+          "max_mutation_children": 1,
+          "minimum_random_individuals": 17,
+          "fitness": "validation_accuracy / validation_loss"
+        },
+        "training": {
+          "epochs": 15,
+          "batch_size": 64,
+          "optimizer": "SGD",
+          "learning_rate": 0.01,
+          "momentum": 0.9,
+          "kernel_initializer": "he_uniform",
+          "padding": "same",
+          "loss": "categorical_crossentropy",
+          "first_epoch_accuracy_threshold": 0.25,
+          "stop_on_undefined_loss": true
+        },
+        "dataset": {
+          "name": "CIFAR-10",
+          "split_seed": 1234,
+          "train_size": 45000,
+          "validation_size": 5000,
+          "test_size": 10000
+        },
+        "post_search": {
+          "seeds": [
+            4
+          ],
+          "baselines": [
+            "relu",
+            "swish",
+            "mish",
+            "gelu",
+            "serf",
+            "elu"
+          ],
+          "top_functions": 15,
+          "selection_metric": "validation_accuracy",
+          "retrain_from_scratch": true,
+          "epochs": 50,
+          "replications": 1,
+          "evaluation_split": "test"
+        },
+        "cnn": {
+          "filters": [
+            28,
+            32,
+            64,
+            64,
+            128,
+            128
+          ],
+          "dropout_rate": 0.2
+        },
+        "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+        "implementation_notes": [
+          "Loaded by run_paper.py; main.py remains the legacy experiment.",
+          "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+          "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+          "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+          "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+          "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+          "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+          "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+          "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+          "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+        ],
+        "smoke_test": false
+      },
+      "packages": {
+        "tensorflow": "2.21.0",
+        "keras": "3.12.4",
+        "numpy": "2.2.6",
+        "scikit-learn": "1.7.2"
+      },
+      "source_hashes_verified": true,
+      "manifest_sha256": "49fe49e3cf696a018573d70f06c5002ce1e88c94672c9478a70db4d91278b42b",
+      "status": {
+        "status": "failed",
+        "error": "ModuleNotFoundError(\"No module named 'matplotlib'\")"
+      },
+      "search_complete": true,
+      "retraining_complete": true,
+      "retraining_rows": 21,
+      "events_tail": [
+        {
+          "timestamp": "2026-10-17T11:26:56.978157+09:00",
+          "event": "training_finished",
+          "trial": "elu_4",
+          "detail": null
+        },
+        {
+          "timestamp": "2026-10-17T11:26:56.995105+09:00",
+          "event": "retraining_completed",
+          "trial": "elu_4",
+          "detail": {
+            "function": "elu",
+            "seed": 4,
+            "chromosome": null,
+            "activation_expression": "elu",
+            "test_loss": null,
+            "test_accuracy": null,
+            "train_loss": null,
+            "train_accuracy": 0.1003333330154419,
+            "validation_loss": null,
+            "validation_accuracy": 0.10559999942779541,
+            "epochs_completed": 1,
+            "status": "nonfinite"
+          }
+        },
+        {
+          "timestamp": "2026-10-17T11:26:57.020299+09:00",
+          "event": "plotting_started",
+          "trial": null,
+          "detail": "all"
+        },
+        {
+          "timestamp": "2026-10-17T11:26:57.030737+09:00",
+          "event": "run_failed",
+          "trial": null,
+          "detail": "ModuleNotFoundError(\"No module named 'matplotlib'\")"
+        }
+      ]
+    }
+  ],
+  "paper_reference": {
+    "reference_path": "C:\\Users\\Windows_10\\Documents\\論文\\Activation Function Optimization Scheme for Image.pdf",
+    "sha256": "6abc93ae8d0155169207ed0c17e8d12e26e89f1c05bcfd5ca2a9f899a0ee1d60",
+    "pages": 36,
+    "version": "arXiv:2409.04915v1, 7 Sep 2024",
+    "verified_pages": [
+      11,
+      12,
+      15,
+      16,
+      19,
+      35
+    ],
+    "same_function_comparison": "Shared baselines only; EELU retraining results absent",
+    "scope": "CIFAR-10 base CNN, not other architectures/datasets"
+  }
+}
