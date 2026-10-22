@@ -1,0 +1,12 @@
+{
+  "updated_at": "2026-10-21T18:05:31.011874+00:00",
+  "smoke": false,
+  "planned": 105,
+  "status_counts": {
+    "completed": 99,
+    "nonfinite": 6
+  },
+  "all_evaluations_completed": false,
+  "model_save_errors": 0,
+  "selection_warnings": []
+}
