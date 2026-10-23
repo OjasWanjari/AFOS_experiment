@@ -1,15 +1,13 @@
 """One fresh process, one model, one retraining seed."""
-import importlib.metadata
-import json
 import math
 import os
-import platform
 import time
 import traceback
 from pathlib import Path
 
 from .recording import EpochCSV
 from .retraining import now, read_plan, write_json
+from .runtime_environment import environment_mismatches, inspect_environment
 
 
 def run_worker(output, trial_id, attempt, quiet=False):
@@ -21,32 +19,14 @@ def run_worker(output, trial_id, attempt, quiet=False):
     write_json(attempt / "result.json", result)
     started = time.monotonic()
     try:
-        # Must be set before importing TensorFlow. No automatic CPU fallback.
-        if plan["runtime"]["device"] == "cpu":
-            os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-        os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "true"
-        os.environ["TF_XLA_FLAGS"] = "--tf_xla_auto_jit=0"
-        # The default JIT compilation policy changed between TF/Keras versions.
+        environment = inspect_environment(plan["runtime"])
+        write_json(attempt / "environment.json", environment)
+        if "reference_environment" in plan:
+            differences = environment_mismatches(plan["reference_environment"], environment)
+            write_json(attempt / "environment_check.json", dict(matched=not differences, differences=differences))
+            if differences:
+                raise RuntimeError("Reference environment mismatch; no training started: " + "; ".join(differences))
         import tensorflow as tf
-        tf.config.optimizer.set_jit(False)
-        devices = tf.config.list_physical_devices("GPU")
-        if plan["runtime"]["device"] == "cpu":
-            tf.config.set_visible_devices([], "GPU")
-        elif not devices:
-            raise RuntimeError("No TensorFlow GPU found. Fix the GPU environment or prepare a new run with --device cpu.")
-        else:
-            for gpu in devices:
-                tf.config.experimental.set_memory_growth(gpu, True)
-        versions = {}
-        for package in ("tensorflow", "tensorflow-cpu", "keras", "numpy", "scikit-learn"):
-            try:
-                versions[package] = importlib.metadata.version(package)
-            except importlib.metadata.PackageNotFoundError:
-                pass
-        write_json(attempt / "environment.json", dict(python=platform.python_version(), platform=platform.platform(),
-                   packages=versions, tensorflow=tf.__version__, build=tf.sysconfig.get_build_info(),
-                   devices=[str(d) for d in devices], runtime=plan["runtime"],
-                   environment={k: os.environ.get(k) for k in ("CUDA_VISIBLE_DEVICES", "TF_XLA_FLAGS", "XLA_FLAGS")}))
         from .model import build_model, load_data, train_candidate
         tf.keras.utils.set_random_seed(trial["seed"])
         train, validation, test, _ = load_data(plan["config"], smoke=plan["smoke"],
