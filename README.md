@@ -12,6 +12,10 @@
 
 [English execution guide](RUN_GUIDE_EN.md): required files, environment setup, execution, live logs, and resuming interrupted runs.
 
+**NaN/Infで失敗した再学習の原因調査 / Diagnosing failed retraining trials:**
+[日本語手順](DIAGNOSE_RETRAINING_JA.md)・[English instructions](DIAGNOSE_RETRAINING_EN.md)・[実行用ZIP / Execution ZIP](retrain_runs/nonfinite_diagnostics_bundle.zip)。
+元のLinux GPU環境で、保存済みの分割・シード・学習コードを使って再実行し、演算ごとの数値検査で発生箇所を調べます。
+
 ```powershell
 .\.venv-gpu\Scripts\python.exe run_paper.py --dry-run
 .\.venv-gpu\Scripts\python.exe run_paper.py --smoke --device gpu
