@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-31",
+  "records": 6000,
+  "evaluations_per_seed": 1200,
+  "includes_all_recorded_statuses": true,
+  "nonfinite_policy": "Use the original recorded score of zero; do not drop evaluation positions.",
+  "checks": [
+    "Raw CSVs match the selected aggregate",
+    "Each seed covers 1..1200 without gaps",
+    "All scores match the original fitness rule",
+    "Cumulative maxima are monotonic and end at the raw maximum"
+  ],
+  "sources": [
+    {
+      "seed": 0,
+      "csv": "paper_full_results\\paper_full_seeds0\\results\\evaluation_results_seed_0.csv",
+      "sha256": "0ecb634bfe851f1bd61dfed1654e3417be2ac7e2bf639f071e5568638589b3f0"
+    },
+    {
+      "seed": 1,
+      "csv": "paper_full_results\\paper_full_seeds1\\results\\evaluation_results_seed_1.csv",
+      "sha256": "879f50c1fd512d95288d09ac7c45e7c277cae215915b2ed9578a2194678f9afd"
+    },
+    {
+      "seed": 2,
+      "csv": "paper_full_results\\paper_full_seeds2\\results\\evaluation_results_seed_2.csv",
+      "sha256": "c96aa9e7a496c42ab3d2413aa516b8df899f808414448f477557c9afa2c1eda1"
+    },
+    {
+      "seed": 3,
+      "csv": "paper_full_results\\paper_full_seeds3 and 4\\results\\evaluation_results_seed_3.csv",
+      "sha256": "8b53ac132dd6f179120cd25fe22a85537190df3c84fa5270320f8d6cf281014b"
+    },
+    {
+      "seed": 4,
+      "csv": "paper_full_results\\paper_full_seeds4\\results\\evaluation_results_seed_4.csv",
+      "sha256": "bb7989999c7198cad74e6165850dfc1af3b697bba760818d7a3af6178750d5df"
+    }
+  ]
+}

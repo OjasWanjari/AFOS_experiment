@@ -1,0 +1,6 @@
+﻿seed,evaluations,best_fitness,best_first_reached_at,best_generation,best_expression,best_status,best_epochs_completed,evaluations_without_further_improvement,record_updates_after_first
+0,1200,1.479815058678917,934,32,(sigmoid(x)*erf(sin(x))),completed,15,266,16
+1,1200,1.5591342462810418,1081,37,(erf(x)*sigmoid(sinh(x))),completed,15,119,18
+2,1200,1.4850888119848635,730,25,(sigmoid(x)*erf(sinh(x))),completed,15,470,14
+3,1200,1.5159842628851437,1181,40,(atan(x)*sigmoid(sinh(x))),completed,15,19,20
+4,1200,1.4872992575539907,638,22,(sigmoid(x)*erf(erf(x))),completed,15,562,17

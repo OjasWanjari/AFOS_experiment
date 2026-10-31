@@ -1,0 +1,6 @@
+﻿seed,total_evaluations,eligible_evaluations,first_eligible_evaluation,best_validation_accuracy_pct,best_accuracy_at,best_accuracy_expression,minimum_validation_loss,minimum_loss_at,minimum_loss_expression,f1_availability
+0,1200,755,1,81.67999982833862,876,(sigmoid(x)*erf(sin(x))),0.548717200756073,934,(sigmoid(x)*erf(sin(x))),not_recorded
+1,1200,749,3,82.4999988079071,879,(erf(x)*sigmoid(sinh(x))),0.5282418727874756,1081,(erf(x)*sigmoid(sinh(x))),not_recorded
+2,1200,715,3,81.72000050544739,548,(asinh(x)*sigmoid(sinh(x))),0.5487887263298035,730,(sigmoid(x)*erf(sinh(x))),not_recorded
+3,1200,737,1,81.85999989509583,1181,(atan(x)*sigmoid(sinh(x))),0.5399792194366455,1181,(atan(x)*sigmoid(sinh(x))),not_recorded
+4,1200,726,5,81.94000124931335,670,(sigmoid(x)*erf(erf(x))),0.5469088554382324,632,(sigmoid(x)*erf(erf(x))),not_recorded

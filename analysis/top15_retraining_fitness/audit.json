@@ -1,0 +1,473 @@
+{
+  "date": "2026-10-31",
+  "source": "paper_full_results\\retrain_runs\\pooled_top15_updated",
+  "plan_sha256": "ab04f092d8a4dc407a3258d3c1403dffbbf0774591a2eed400240eb8c3e82f54",
+  "trials": 75,
+  "epochs": 3750,
+  "finite_fitness_epochs": 3749,
+  "undefined": [
+    [
+      13,
+      1,
+      50
+    ]
+  ],
+  "median_peak_epoch_completed": 20.5,
+  "completed_trials_with_peak_before_final": 74,
+  "shared_y_limits": [
+    0,
+    1.7000000000000002
+  ],
+  "sources": [
+    {
+      "trial_id": "discovered_01_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_01_seed_0\\attempt_0001\\histories\\discovered_01_seed_0.csv",
+      "sha256": "9c8487b94a331218ad3d8099fae078427d4f30c2318bd6fe8c12ed5ff92dfe3b",
+      "result_sha256": "4507d5a6df23cc04a3930ff66762f9060607925f24b140f3d51de5cfc8cae815"
+    },
+    {
+      "trial_id": "discovered_01_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_01_seed_1\\attempt_0001\\histories\\discovered_01_seed_1.csv",
+      "sha256": "ea9e2baf9f90ae45fbdd7b446c24e6dfcc0a858c0e75e18ecac91b694b9191ce",
+      "result_sha256": "5ad9c4ea835ebe082de975439919cdd0bfc227d6c8e4c12be83b3b9ae2abe262"
+    },
+    {
+      "trial_id": "discovered_01_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_01_seed_2\\attempt_0001\\histories\\discovered_01_seed_2.csv",
+      "sha256": "feb027fc64ddd40dd7e337ebebcb5589dd1df96009103b80ac112ad911af2c91",
+      "result_sha256": "7060500f3eb56d829524dfa0dd328a660b0c296b5fac7bf1e7f2ace05f1cab00"
+    },
+    {
+      "trial_id": "discovered_01_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_01_seed_3\\attempt_0001\\histories\\discovered_01_seed_3.csv",
+      "sha256": "85bcd633d697460f8d0d7fa53b62bcaf068e1b14aa14ccdf36ab0fd03c24bbab",
+      "result_sha256": "96f41297a873b89c3d6afa150cd1432519e6cd72f4a818149091b723bfdef0a7"
+    },
+    {
+      "trial_id": "discovered_01_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_01_seed_4\\attempt_0001\\histories\\discovered_01_seed_4.csv",
+      "sha256": "00bf16d44ca12ae89a4b5dc6eda72d392fd7998309a5de1ff0c5a20bd043186f",
+      "result_sha256": "2c488758653f2d577bf351e0357774bbe9528f96f92536dd04a4d0bff32e7a47"
+    },
+    {
+      "trial_id": "discovered_02_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_02_seed_0\\attempt_0001\\histories\\discovered_02_seed_0.csv",
+      "sha256": "40b9057250d2a1baf34a3c1b0607eaaccc21258ef2e681631d93f9b170ec540b",
+      "result_sha256": "7ac8528103c2eb3e6eecab62bc68f29ce10a1b503caa09062f6d365deb411880"
+    },
+    {
+      "trial_id": "discovered_02_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_02_seed_1\\attempt_0001\\histories\\discovered_02_seed_1.csv",
+      "sha256": "2baeaab768ef946e603b0b5f9a08af967f7f0ea5d0e5cbc3ad1ec251ad1a0d5b",
+      "result_sha256": "5987f2bb2842d7ad5047bba6f66c225c0894fe3c69746adef117886a785c5fbb"
+    },
+    {
+      "trial_id": "discovered_02_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_02_seed_2\\attempt_0001\\histories\\discovered_02_seed_2.csv",
+      "sha256": "4113f24873d884e5a597936b81a69ff1103bc63bab739d6265c8a42037c77707",
+      "result_sha256": "75cc20d1824c2581b9d23e10b3427c44ff07ac94600c7089c66d1ab404d5031a"
+    },
+    {
+      "trial_id": "discovered_02_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_02_seed_3\\attempt_0001\\histories\\discovered_02_seed_3.csv",
+      "sha256": "d01b8039af5c7e3f540c1ed57ac360bfe5e0b2332d1949dc8015d3caa01170ef",
+      "result_sha256": "9f1b40ed8e3878a24f66f32b6577be204a3b30fd3d706a70766801c03cd63ca5"
+    },
+    {
+      "trial_id": "discovered_02_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_02_seed_4\\attempt_0001\\histories\\discovered_02_seed_4.csv",
+      "sha256": "37a36e1cf6fe0e35b6f74bbc1f9423c22f29f87a33230c88bf673cd87c7b940c",
+      "result_sha256": "02c6affb9d7e764ab98a3b5014461eb7554102ba290be4e8dd775aa73af49bf7"
+    },
+    {
+      "trial_id": "discovered_03_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_03_seed_0\\attempt_0001\\histories\\discovered_03_seed_0.csv",
+      "sha256": "0df20da5ede4b1309210a3e085adbcbb3ae1cd543c835ca505c4a1177081dde7",
+      "result_sha256": "feede9360168a1015b0b3c587faf6335d3d83eacf99f7e8e3db292e8482039d3"
+    },
+    {
+      "trial_id": "discovered_03_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_03_seed_1\\attempt_0001\\histories\\discovered_03_seed_1.csv",
+      "sha256": "7ccfa57fe0f2848a29ef07341d96823ef339f04d9428f2ec750bf3e9c1dfddf0",
+      "result_sha256": "30899bcf6fd1fe74ef22f0aa851b02d224939f6d1c55be7f9c0a1cccce02c75e"
+    },
+    {
+      "trial_id": "discovered_03_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_03_seed_2\\attempt_0001\\histories\\discovered_03_seed_2.csv",
+      "sha256": "d87c46b0ee358604b2fa19a925ce48f7e40613538a23f7d8fb5309563ed94e34",
+      "result_sha256": "36d38864badc5f01c03d46e4827d24b604bdc40b00e5c849b1a86ade556862d3"
+    },
+    {
+      "trial_id": "discovered_03_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_03_seed_3\\attempt_0001\\histories\\discovered_03_seed_3.csv",
+      "sha256": "ea0f9c87ed5799031f81c752296e9d72a2f19ae0d588c1871212a96b2352a12a",
+      "result_sha256": "d71cce55ef58d1ee74d3e63d71792b3e177ad6adab4e285ee1c8a5a46d9c706c"
+    },
+    {
+      "trial_id": "discovered_03_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_03_seed_4\\attempt_0001\\histories\\discovered_03_seed_4.csv",
+      "sha256": "102a2efabe2d527cc4feb5bf0ec469040e84637db3fda9cafa0354cd7525c638",
+      "result_sha256": "912de4c5fb7e2ab31f2c8bf7467d5f8416fdcd411ae9d88dc12fab0ac331e498"
+    },
+    {
+      "trial_id": "discovered_04_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_04_seed_0\\attempt_0001\\histories\\discovered_04_seed_0.csv",
+      "sha256": "e4ee6d6542d969ee8b8f4a629d12254b57ec20d87c27831734d6da76291dca5c",
+      "result_sha256": "f1feca2234e2662806dc2c80cf817ea6721fb787591d80608345bd5018f882c5"
+    },
+    {
+      "trial_id": "discovered_04_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_04_seed_1\\attempt_0001\\histories\\discovered_04_seed_1.csv",
+      "sha256": "de8db1d08e106535638bf48e3bc94ab1f69cdb4a887a2a5c83e9e81bae8c3b5c",
+      "result_sha256": "8ab852a5464b9a39db3654eb05ec59c8f7f55ea7edf6dda8e05b5191204a9148"
+    },
+    {
+      "trial_id": "discovered_04_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_04_seed_2\\attempt_0001\\histories\\discovered_04_seed_2.csv",
+      "sha256": "c8f32aea5fb1dd9abffd80ec19280ad4ebfc6b09bddcbbe60cf591870abc6d3c",
+      "result_sha256": "368c5843d96845b14bd8ea428e9329ee737ad9023e2473a442ecb68ac70e7ed1"
+    },
+    {
+      "trial_id": "discovered_04_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_04_seed_3\\attempt_0001\\histories\\discovered_04_seed_3.csv",
+      "sha256": "cbf6d52c76764c5ef2015b8d54c9741cc241c4d5c950a05b021b974aefb16225",
+      "result_sha256": "9bc6fce05e4ae7a0ef87ee962d16878b3aec22d53e78cfac55ac95727f4f3d23"
+    },
+    {
+      "trial_id": "discovered_04_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_04_seed_4\\attempt_0001\\histories\\discovered_04_seed_4.csv",
+      "sha256": "8f43f32ea844f232adfabb4c3a830bbb2eef8fe5b1b6be925bf939946ac98299",
+      "result_sha256": "a1bd79d9d10fb3da619da2cc1f64eb65f9e559f6b998f3b33d1921c30cda605e"
+    },
+    {
+      "trial_id": "discovered_05_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_05_seed_0\\attempt_0001\\histories\\discovered_05_seed_0.csv",
+      "sha256": "cc9de46dfaa1abea771610bad73fdb11b8a3e4bd9ea9432d11bc0a74be7f0832",
+      "result_sha256": "e09203aa3ac56eeafaf937af43c3b0bdeba728910b72d8d58e01cbd9a66fe2a2"
+    },
+    {
+      "trial_id": "discovered_05_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_05_seed_1\\attempt_0001\\histories\\discovered_05_seed_1.csv",
+      "sha256": "977c7897de329bb8d33650fd0d5cfc369c4f7dd46210c36a09f9d1bccc2fc7ff",
+      "result_sha256": "ab240ed4907f9fb2ac369cb4b67b99605484a7a9ed867378205c7a47f1e475b1"
+    },
+    {
+      "trial_id": "discovered_05_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_05_seed_2\\attempt_0001\\histories\\discovered_05_seed_2.csv",
+      "sha256": "c4c839e1b2a074ad4aa15ce325ae581da573f29088f0bfd1a4b394a327fd61f5",
+      "result_sha256": "e68f1d6753268d0784fe8dee36316e42bf6db7c44296ee61e7d9b4bba0df3ca0"
+    },
+    {
+      "trial_id": "discovered_05_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_05_seed_3\\attempt_0001\\histories\\discovered_05_seed_3.csv",
+      "sha256": "a72526b0127c42569c14d102800a2797e1d04db660595de701d71f523004bc10",
+      "result_sha256": "4f9f5ec6f03f75057820e4ed6798a86e3e963b89f2e1336521b9999b40345f04"
+    },
+    {
+      "trial_id": "discovered_05_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_05_seed_4\\attempt_0001\\histories\\discovered_05_seed_4.csv",
+      "sha256": "ea3362bad2c60bf2ebb38b0e7e1310fc1af864413e165a4de04053b544243cf9",
+      "result_sha256": "b457d43b83642ba122847ddcaac472857c7b836c356bb86168cfa7caa6a8ad6f"
+    },
+    {
+      "trial_id": "discovered_06_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_06_seed_0\\attempt_0001\\histories\\discovered_06_seed_0.csv",
+      "sha256": "ed2464e5eb6b18a9e8bcc2f70c0d696b4db7c515d568f196085b9aed268be9bd",
+      "result_sha256": "088e269da778d78803b2880ac0e0c9f7afa3c4bab1c6c872171d3af53a562e97"
+    },
+    {
+      "trial_id": "discovered_06_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_06_seed_1\\attempt_0001\\histories\\discovered_06_seed_1.csv",
+      "sha256": "7f9565fd40ae66a753f402301c01232a538364be7ffff62f2a47d388e57f57eb",
+      "result_sha256": "fdd47e53cff4e2ba1858b3ccdb164e69f968c860f33bd24dd0c284da05157be2"
+    },
+    {
+      "trial_id": "discovered_06_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_06_seed_2\\attempt_0001\\histories\\discovered_06_seed_2.csv",
+      "sha256": "bd1fff00914f8c4868caeb2f90a869675c2c50b08211a1adc45744ef77f85ca8",
+      "result_sha256": "52d3985cf33930b79f8c01b0587287db5c71b0882e200dbb9c5d40d8a4644e34"
+    },
+    {
+      "trial_id": "discovered_06_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_06_seed_3\\attempt_0001\\histories\\discovered_06_seed_3.csv",
+      "sha256": "1a36d440bdd666d88b75dc631965c4301493321b55fa763f574cdd5859f06c8d",
+      "result_sha256": "91b16591850673c6d3162227f7b2af19bb6c26538360b363da49e0c46ed810ad"
+    },
+    {
+      "trial_id": "discovered_06_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_06_seed_4\\attempt_0001\\histories\\discovered_06_seed_4.csv",
+      "sha256": "b76da2884f8da8d675c78d7b7406308f2ab4a93355f598ac7eded8a0b94ecc13",
+      "result_sha256": "5766a3ef116944093a461c1a83fd5197ca7cb6db8cd0a9d20e0dedf613bb0897"
+    },
+    {
+      "trial_id": "discovered_07_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_07_seed_0\\attempt_0001\\histories\\discovered_07_seed_0.csv",
+      "sha256": "365eae77d6106da9519599ddc49e88d5480a12fb7c772293bff8c8a79e7a2d4b",
+      "result_sha256": "85b4f807c45deb2e16490d96da5ef805cb9ab2da1b2231f84d5c9305db0a9a22"
+    },
+    {
+      "trial_id": "discovered_07_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_07_seed_1\\attempt_0001\\histories\\discovered_07_seed_1.csv",
+      "sha256": "f72d9ff257197e695eea7e7879cd281d38d6e7c735661d6a765f1cdd1f97bc01",
+      "result_sha256": "840c2c8bfcc6a3a9c5347a2b8a2b4078b8782b996a804cd49036489837690ccf"
+    },
+    {
+      "trial_id": "discovered_07_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_07_seed_2\\attempt_0001\\histories\\discovered_07_seed_2.csv",
+      "sha256": "20fcd4b06a6c766b963162c2fb0ded6c0dec86191c850918f6a3f863b077f5ec",
+      "result_sha256": "31733f90003720dcc8f4a3c166c76d0b18dbe64cd02b4230d887de0dfe20f4bb"
+    },
+    {
+      "trial_id": "discovered_07_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_07_seed_3\\attempt_0001\\histories\\discovered_07_seed_3.csv",
+      "sha256": "9c094700fcda8b24cac11966314d9636428062bf09353fdd3232a0182c3c606a",
+      "result_sha256": "860087fff56f4f11a88c9d3a59a27f65c60b5481b072f479a9a8c19c2728bfa4"
+    },
+    {
+      "trial_id": "discovered_07_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_07_seed_4\\attempt_0001\\histories\\discovered_07_seed_4.csv",
+      "sha256": "70aa60bcb20f01ce0909ba24e4a8b5867fdddac17863a03c50e3ee7f12cd279b",
+      "result_sha256": "d43dfb5737ad4de02b897b1e337a14262e492b098aec40482152bd9b80cef0b9"
+    },
+    {
+      "trial_id": "discovered_08_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_08_seed_0\\attempt_0001\\histories\\discovered_08_seed_0.csv",
+      "sha256": "6a8a7d4d08d0781e1267b75f183b7469f2d7b629239fbfc016485a52aefd4bf6",
+      "result_sha256": "f3fa713460fa103390585e62ef063a29db1df03c56689bcd4ac1743355c82cc9"
+    },
+    {
+      "trial_id": "discovered_08_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_08_seed_1\\attempt_0001\\histories\\discovered_08_seed_1.csv",
+      "sha256": "3c2b07618d9e717e930f04f24ecb7f608fc71ffc57524522e891693cc237aabd",
+      "result_sha256": "790fe42a60c923d7b81ff786e99ca49c0c62628b54ed5c7fbd992b2b987aa9c5"
+    },
+    {
+      "trial_id": "discovered_08_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_08_seed_2\\attempt_0001\\histories\\discovered_08_seed_2.csv",
+      "sha256": "a4818f6c4b96c81343262702a586ea066392080a41a1cb2fe5a88a9a24e1b733",
+      "result_sha256": "395ce5c950c2ac0cc5b91fdcb1bbce3782975b1d9a468e364d745e826c62165b"
+    },
+    {
+      "trial_id": "discovered_08_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_08_seed_3\\attempt_0001\\histories\\discovered_08_seed_3.csv",
+      "sha256": "6f1e42f629ce3972fd2e463e110954356f8a5cc95f8bb56ca1ce2504fe9255ae",
+      "result_sha256": "afaeae7f25e6de123c1b25ca570068809e6968b7be8f118b87f9b1762cb88e7b"
+    },
+    {
+      "trial_id": "discovered_08_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_08_seed_4\\attempt_0001\\histories\\discovered_08_seed_4.csv",
+      "sha256": "3f872378ae8e5e260042842ead1ca4446287687c9abe6cfa67ea62b208461756",
+      "result_sha256": "e0a16640c81fcc3ecfdb3c0b7cd4ea970717e350c6a35f33e2f363856e4724fc"
+    },
+    {
+      "trial_id": "discovered_09_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_09_seed_0\\attempt_0001\\histories\\discovered_09_seed_0.csv",
+      "sha256": "622e8aabc8c33b8854691cf2eb313ca8773f116a6afdf123870e8f8437ba0b77",
+      "result_sha256": "5e3ab7186b68939fdf437310c4127910c444740cf58ec56600561966d774857f"
+    },
+    {
+      "trial_id": "discovered_09_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_09_seed_1\\attempt_0001\\histories\\discovered_09_seed_1.csv",
+      "sha256": "81c2ee7c1e28d39ced323aede7428372f5b85d936acd8bf125058ef1b8500a45",
+      "result_sha256": "6a344dba29654631febecf0f1afbfaa8f2673ddbf76b2596b7a859e51fbba428"
+    },
+    {
+      "trial_id": "discovered_09_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_09_seed_2\\attempt_0001\\histories\\discovered_09_seed_2.csv",
+      "sha256": "530613abaed76190355815cb643a495b79181f709dd6605c32d0aad0332aa489",
+      "result_sha256": "0d486c718039de315d45d2fdc4f01ded45843b3449c3882d3ca7e7ad3f3b6430"
+    },
+    {
+      "trial_id": "discovered_09_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_09_seed_3\\attempt_0001\\histories\\discovered_09_seed_3.csv",
+      "sha256": "cf29f6321edca0d9f56e826fe8be278efffd09f6d70760d25285f862914358f3",
+      "result_sha256": "24e675ee5f40e6b883de907693dbaeaa22a4681a0337bdc110eb8ca8bf2e1f38"
+    },
+    {
+      "trial_id": "discovered_09_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_09_seed_4\\attempt_0001\\histories\\discovered_09_seed_4.csv",
+      "sha256": "d4d6e00d17abccf693ecfb496e2913bd9430e8942ec8ec3fe22c48fa13c677c4",
+      "result_sha256": "f59d59944248c468cd2a004eb5c6fce9fc3e26b0e18dfc2a8a2abe7b111f227f"
+    },
+    {
+      "trial_id": "discovered_10_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_10_seed_0\\attempt_0001\\histories\\discovered_10_seed_0.csv",
+      "sha256": "a8223b57b12e16b33a6dce84e9109456ded32ae0e4a64ae688638bef2e2d4ca5",
+      "result_sha256": "39071734009c9ee0481aff3ba66dc7aabda74b07a3ffcf781f8babf154f68fd3"
+    },
+    {
+      "trial_id": "discovered_10_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_10_seed_1\\attempt_0001\\histories\\discovered_10_seed_1.csv",
+      "sha256": "3e8b8e4e0e804f16890989c42501fcc3e09fca680136969feea12f79fdb68921",
+      "result_sha256": "a7eb171f02ad1be476687a74871792cde398562549ba89fb78456ca11ee9533d"
+    },
+    {
+      "trial_id": "discovered_10_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_10_seed_2\\attempt_0001\\histories\\discovered_10_seed_2.csv",
+      "sha256": "60dd33d345e9f2cb3429e258068a78cb355e02242aa4c5554b87eee42939b9b8",
+      "result_sha256": "03a099f8edef349ea60fcb0a1d888aab86d477baf6a667eb01628814c99e5a7a"
+    },
+    {
+      "trial_id": "discovered_10_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_10_seed_3\\attempt_0001\\histories\\discovered_10_seed_3.csv",
+      "sha256": "4331483fd2562d83c48cb47b8bb7467f33adf7d0570e226de23edecfb6421697",
+      "result_sha256": "22478a2355a5bcbfee51d884bb07167174021e950e5fdf550455ca5f3c8e89e2"
+    },
+    {
+      "trial_id": "discovered_10_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_10_seed_4\\attempt_0001\\histories\\discovered_10_seed_4.csv",
+      "sha256": "097ac0a81a21e7ee3a85a699752f899a64826596a2fe1972c6c5b979dd3a7bb2",
+      "result_sha256": "30aa52bd67be2b96a69956846d956ed424a269582bb9c8eb8c2dc6f6ae256977"
+    },
+    {
+      "trial_id": "discovered_11_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_11_seed_0\\attempt_0001\\histories\\discovered_11_seed_0.csv",
+      "sha256": "51b3a119bf9088f3ebe205f8d30080743391a644f4014b8e85f7b58bab621a85",
+      "result_sha256": "d836faf0deeb552b32ef3d08bcc791ddb9dc53afed393c184357426738b3c152"
+    },
+    {
+      "trial_id": "discovered_11_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_11_seed_1\\attempt_0001\\histories\\discovered_11_seed_1.csv",
+      "sha256": "7910bb636ac3abc4b8dadab548eb336a62f632dc81c102307eed8aa8cdbf6b8e",
+      "result_sha256": "694b6a99f9232d3dbe2898eef31aada7853d68cc04ff2d6caf81a1891f051fb7"
+    },
+    {
+      "trial_id": "discovered_11_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_11_seed_2\\attempt_0001\\histories\\discovered_11_seed_2.csv",
+      "sha256": "bf69a861273be0e915d78b42dd86b2d47b3eae01689605d7ca80f636efcd00e6",
+      "result_sha256": "d0c357ee6c45f04a0d45a4716023b55faef993515648580e53f4622442829c80"
+    },
+    {
+      "trial_id": "discovered_11_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_11_seed_3\\attempt_0001\\histories\\discovered_11_seed_3.csv",
+      "sha256": "b4d0eb3525428cc32da100a390d41c1871662699b7f83eee6997932393df0080",
+      "result_sha256": "0dafe3a4ba46c40b4930612700a594a9c3566a50911f6830af2bd7d04b0275ea"
+    },
+    {
+      "trial_id": "discovered_11_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_11_seed_4\\attempt_0001\\histories\\discovered_11_seed_4.csv",
+      "sha256": "197168e292ef6ab2390a8c250dd802363ea8722e1e88be1d44541654b749bedd",
+      "result_sha256": "810275f4dca92b362fc121f89790de898237180735f5759e18b50a08c84f90d7"
+    },
+    {
+      "trial_id": "discovered_12_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_12_seed_0\\attempt_0001\\histories\\discovered_12_seed_0.csv",
+      "sha256": "71db65212aa62d011c69d751c5b9d39589322496600308ae9f8c1b2df51d9c13",
+      "result_sha256": "d1489489ad8332dd88db0084173f5f6979bcde7d5bc8e7746eb3aeed2acbc3e5"
+    },
+    {
+      "trial_id": "discovered_12_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_12_seed_1\\attempt_0001\\histories\\discovered_12_seed_1.csv",
+      "sha256": "88390f85666fa455d1892ccee2a5ceeb551b61fdbe47916a05ecd9e9308ded5f",
+      "result_sha256": "5e4b5d0cc500b6ca95b2d86b3363d20d710059c3d7625f8f48eda4821d497910"
+    },
+    {
+      "trial_id": "discovered_12_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_12_seed_2\\attempt_0001\\histories\\discovered_12_seed_2.csv",
+      "sha256": "2ff2c514854b84cb3ebe12b81d4a79ef97add7b59d10b2e7e1170a2f04635eea",
+      "result_sha256": "edee7d344a597105349d54f3ab9ff62863d71bbb77f247041d0afeb325366418"
+    },
+    {
+      "trial_id": "discovered_12_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_12_seed_3\\attempt_0001\\histories\\discovered_12_seed_3.csv",
+      "sha256": "0cbcd9450cad450acbb4b1ec70119e6bbd2cb30551981252f64577dede79a89f",
+      "result_sha256": "942cc1d28db2b0206bb34d7917e5c663bde36ac6736c1daa5c85f0f6c6870c90"
+    },
+    {
+      "trial_id": "discovered_12_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_12_seed_4\\attempt_0001\\histories\\discovered_12_seed_4.csv",
+      "sha256": "a039f3660d3cb48f3cc850184877812afc99df2ab8557a796e3a92d759ce4a76",
+      "result_sha256": "808659761de39ed232c92a42caa703b00139c2d8272f7d6f9d88a1b11c3efca1"
+    },
+    {
+      "trial_id": "discovered_13_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_13_seed_0\\attempt_0001\\histories\\discovered_13_seed_0.csv",
+      "sha256": "d5c69e9ce592c58c50b970f1e95d423475be6678c3de635bc9c7758e1f2f9799",
+      "result_sha256": "810b09ea0c159717736d0e030719a5e9721101c447df571aeb2903a22db2654d"
+    },
+    {
+      "trial_id": "discovered_13_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_13_seed_1\\attempt_0001\\histories\\discovered_13_seed_1.csv",
+      "sha256": "9886f34bf8c787a2fc5b42f8cbbf2a70715a1678eb64d2cc660f07ed3773d2d6",
+      "result_sha256": "7ebe84ed17a255bf743395cd2436953de78a9efbee1d5bf309d821276cd69259"
+    },
+    {
+      "trial_id": "discovered_13_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_13_seed_2\\attempt_0001\\histories\\discovered_13_seed_2.csv",
+      "sha256": "2076275cf58d0f7f6abd28a6f77d6846e2db3b964b2852e4a3dd253927778d1f",
+      "result_sha256": "6239f1ef57c2565c888a84c556288357376afa1d741e1af657028b2a59906b39"
+    },
+    {
+      "trial_id": "discovered_13_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_13_seed_3\\attempt_0001\\histories\\discovered_13_seed_3.csv",
+      "sha256": "6be0510de4ee1e413ec18dfd11fbe8a3f307bad069f7b30c03cdd92dae8e7578",
+      "result_sha256": "ba7c5aea5a3bf28c0b55a3530d212cd96dc51dca5ac144dfb1819324f1267356"
+    },
+    {
+      "trial_id": "discovered_13_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_13_seed_4\\attempt_0001\\histories\\discovered_13_seed_4.csv",
+      "sha256": "cec1e3fffd34e5c46db5aae64e6c83af672f7646c3155f314145d755b84a1728",
+      "result_sha256": "fca92e65af8e0e4a3767b820a3d4347cffdd95e0d99314176b8676b53c80c8e8"
+    },
+    {
+      "trial_id": "discovered_14_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_14_seed_0\\attempt_0001\\histories\\discovered_14_seed_0.csv",
+      "sha256": "dcea1ffdb92a3cc203452c3cd2dfbc9f17aa02d1526cef860aa3879cda4c341e",
+      "result_sha256": "2c7f6d59dcf7168f5c95fa79ed8989e7b469a0c21c8ab09d4c6e0143f5fc835d"
+    },
+    {
+      "trial_id": "discovered_14_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_14_seed_1\\attempt_0001\\histories\\discovered_14_seed_1.csv",
+      "sha256": "4fbf4fdfafed0ec55fb1a1b748e8c2b92ec237c6ae1e35e74c639be5921305bb",
+      "result_sha256": "3774e82765ab80c56f04eb411d803a745c1638fb3224b79d728e6be109da25a7"
+    },
+    {
+      "trial_id": "discovered_14_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_14_seed_2\\attempt_0001\\histories\\discovered_14_seed_2.csv",
+      "sha256": "2f930f3e6ba0e42c763189c3a66ff159919dad5bcf6196a1427a0933a6e0255f",
+      "result_sha256": "2776669f07fd8ddaf834dd86891bdb08be9528b0c2aa57aa606da0c020f40443"
+    },
+    {
+      "trial_id": "discovered_14_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_14_seed_3\\attempt_0001\\histories\\discovered_14_seed_3.csv",
+      "sha256": "860d6ae0596883058e74804e16e4d7ba5ecdf950fb534e33c349256a0ef7cbdd",
+      "result_sha256": "048f47f02cfde390dfafd32fb6c265630a66d1426b8e7a0a1a7634eaf6b9be96"
+    },
+    {
+      "trial_id": "discovered_14_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_14_seed_4\\attempt_0001\\histories\\discovered_14_seed_4.csv",
+      "sha256": "c9b52244e796c4855783f6b20f369dd6caabc05793a492c07c36c73c72468e78",
+      "result_sha256": "726a0734893d8918431c0628e61a94dc1a3d6eb768980fb958d19c682f058026"
+    },
+    {
+      "trial_id": "discovered_15_seed_0",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_15_seed_0\\attempt_0001\\histories\\discovered_15_seed_0.csv",
+      "sha256": "fa31b318aa61803e849dde5366a851429e5d5d6e13f87e96bb171c78deb97517",
+      "result_sha256": "94f8726cbb6fec0a3fd1af0c485647420f947f4d3a5dea86ce9eda7c9bc8035b"
+    },
+    {
+      "trial_id": "discovered_15_seed_1",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_15_seed_1\\attempt_0001\\histories\\discovered_15_seed_1.csv",
+      "sha256": "3d62e86bee18f26a2c466397233cd6f5a76444156e634ab51be7889838541278",
+      "result_sha256": "d527c54c786c3ab5ac99259dfd80d80631098c53580b6db5c54aa25612d000a8"
+    },
+    {
+      "trial_id": "discovered_15_seed_2",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_15_seed_2\\attempt_0001\\histories\\discovered_15_seed_2.csv",
+      "sha256": "fe67d04b11afbce748dd50d0d2689d30c7dcc3b62453a476c21471923904c7fa",
+      "result_sha256": "b509009e210c9d531c5f1644a3204e50acedec49669001c7812ccdff4563abb2"
+    },
+    {
+      "trial_id": "discovered_15_seed_3",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_15_seed_3\\attempt_0001\\histories\\discovered_15_seed_3.csv",
+      "sha256": "ad53f3af0d3d48b19fb70d7337e25cbd89bc291a20a19854753f6b464ceb42d8",
+      "result_sha256": "5834c4f07ef51b964244a0e015a1ef45bbfb4e2808b72dccd7e1b58fb1ee9267"
+    },
+    {
+      "trial_id": "discovered_15_seed_4",
+      "history": "paper_full_results\\retrain_runs\\pooled_top15_updated\\trials\\discovered_15_seed_4\\attempt_0001\\histories\\discovered_15_seed_4.csv",
+      "sha256": "291fb17f0e8494e510a17da44114418e7c7acce447bee901e69919b2c123250e",
+      "result_sha256": "3b6105ac376cf6751b5bb02c8a469b2a04434ff0463ab6ed1718fbe3645c6b56"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-31",
+  "total_search_records": 6000,
+  "matched_top15_records": 1354,
+  "possible_function_seed_pairs": 75,
+  "observed_function_seed_pairs": 16,
+  "unobserved_function_seed_pairs": 59,
+  "matching": "exact activation_expression string",
+  "coverage": {
+    "1": [
+      0,
+      153,
+      0,
+      0,
+      0
+    ],
+    "2": [
+      0,
+      7,
+      0,
+      0,
+      278
+    ],
+    "3": [
+      0,
+      0,
+      0,
+      202,
+      0
+    ],
+    "4": [
+      0,
+      0,
+      27,
+      0,
+      0
+    ],
+    "5": [
+      215,
+      0,
+      0,
+      0,
+      0
+    ],
+    "6": [
+      0,
+      0,
+      126,
+      0,
+      0
+    ],
+    "7": [
+      0,
+      0,
+      169,
+      0,
+      0
+    ],
+    "8": [
+      0,
+      0,
+      20,
+      0,
+      0
+    ],
+    "9": [
+      0,
+      0,
+      18,
+      0,
+      0
+    ],
+    "10": [
+      0,
+      0,
+      26,
+      0,
+      0
+    ],
+    "11": [
+      78,
+      0,
+      0,
+      0,
+      0
+    ],
+    "12": [
+      17,
+      0,
+      0,
+      0,
+      0
+    ],
+    "13": [
+      0,
+      0,
+      0,
+      0,
+      6
+    ],
+    "14": [
+      0,
+      9,
+      0,
+      0,
+      0
+    ],
+    "15": [
+      0,
+      0,
+      3,
+      0,
+      0
+    ]
+  },
+  "shared_y_limits": [
+    0,
+    1.7
+  ],
+  "selected_top15_sha256": "db083bfb045e1e0235dc985b71d3091e86b4c2daa61e996c6c780d02b30beb35",
+  "sources": [
+    {
+      "seed": 0,
+      "path": "paper_full_results\\paper_full_seeds0\\results\\evaluation_results_seed_0.csv",
+      "sha256": "0ecb634bfe851f1bd61dfed1654e3417be2ac7e2bf639f071e5568638589b3f0"
+    },
+    {
+      "seed": 1,
+      "path": "paper_full_results\\paper_full_seeds1\\results\\evaluation_results_seed_1.csv",
+      "sha256": "879f50c1fd512d95288d09ac7c45e7c277cae215915b2ed9578a2194678f9afd"
+    },
+    {
+      "seed": 2,
+      "path": "paper_full_results\\paper_full_seeds2\\results\\evaluation_results_seed_2.csv",
+      "sha256": "c96aa9e7a496c42ab3d2413aa516b8df899f808414448f477557c9afa2c1eda1"
+    },
+    {
+      "seed": 3,
+      "path": "paper_full_results\\paper_full_seeds3 and 4\\results\\evaluation_results_seed_3.csv",
+      "sha256": "8b53ac132dd6f179120cd25fe22a85537190df3c84fa5270320f8d6cf281014b"
+    },
+    {
+      "seed": 4,
+      "path": "paper_full_results\\paper_full_seeds4\\results\\evaluation_results_seed_4.csv",
+      "sha256": "bb7989999c7198cad74e6165850dfc1af3b697bba760818d7a3af6178750d5df"
+    }
+  ]
+}
