@@ -1,0 +1,14 @@
+{"phase": "train", "epoch": 1, "batch": null, "event": "epoch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 0, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 0, "event": "batch_end", "metrics": {"accuracy": "0.09375", "loss": "9.321102142333984"}}
+{"phase": "train", "epoch": 1, "batch": 1, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 1, "event": "batch_end", "metrics": {"accuracy": "0.0703125", "loss": "19.21727752685547"}}
+{"phase": "train", "epoch": 1, "batch": 2, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 2, "event": "batch_end", "metrics": {"accuracy": "0.078125", "loss": "21.83658790588379"}}
+{"phase": "train", "epoch": 1, "batch": 3, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 3, "event": "batch_end", "metrics": {"accuracy": "0.109375", "loss": "18.057373046875"}}
+{"phase": "train", "epoch": 1, "batch": 4, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 4, "event": "batch_end", "metrics": {"accuracy": "0.10312499850988388", "loss": "16.83555030822754"}}
+{"phase": "train", "epoch": 1, "batch": 5, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 5, "event": "batch_end", "metrics": {"accuracy": "0.0989583358168602", "loss": "17.68100929260254"}}
+{"phase": "train", "epoch": 1, "batch": 6, "event": "batch_begin", "metrics": {}}

@@ -1,0 +1,320 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793242102.930071  507928 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1793242102.954015  507928 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793242103.560645  507928 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/core/input_layer.py:27: UserWarning: Argument `input_shape` is deprecated. Use `shape` instead.
+  warnings.warn(
+I0000 00:00:1793242105.799922  507928 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 13459 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4080 SUPER, pci bus id: 0000:01:00.0, compute capability: 8.9
+Epoch 1/50
+E0000 00:00:1793242107.894862  507928 meta_optimizer.cc:967] layout failed: INVALID_ARGUMENT: Size of values 0 does not match size of permutation 4 @ fanin shape inStatefulPartitionedCall/sequential_1/dropout_1/stateless_dropout/SelectV2-2-TransposeNHWCToNCHW-LayoutOptimizer
+I0000 00:00:1793242108.159121  508073 cuda_dnn.cc:461] Loaded cuDNN version 92700
+W0000 00:00:1793242109.464488  508046 local_rendezvous.cc:412] Local rendezvous is aborting with status: INVALID_ARGUMENT: 
+
+!!! Detected Infinity or NaN in output 0 of graph op "Conv2D" (# of outputs: 1) !!!
+  dtype: <dtype: 'float32'>
+  shape: (None, 8, 8, 128)
+
+  Input tensors (2):
+         0: Tensor("sequential_1/paper_activation_4_1/Maximum:0", shape=(None, 8, 8, 128), dtype=float32)
+         1: Tensor("sequential_1/conv2d_5_1/convolution/ReadVariableOp:0", shape=(3, 3, 128, 128), dtype=float32)
+  Graph name: "one_step_on_data"
+
+  Stack trace of op's creation ("->": inferred user code):
+    + ... (Omitted 22 frames)
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L154) multi_step_on_iterator
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L125) wrapper
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py (L164) error_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L833) __call__
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L906) _call
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L132) call_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L178) trace_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L283) _maybe_define_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L310) _create_concrete_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/func_graph.py (L1060) func_graph_from_py_func
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L599) wrapped_fn
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/autograph_util.py (L41) autograph_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L331) converted_call
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L459) _call_unconverted
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L643) wrapper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L134) one_step_on_data
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L1673) run
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L3263) call_for_each_replica
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L4061) _call_for_each_replica
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L643) wrapper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L59) train_step
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py (L941) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py (L59) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L156) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/sequential.py (L220) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py (L183) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/function.py (L206) _run_through_graph
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py (L655) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py (L941) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py (L59) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L156) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py (L250) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py (L240) convolution_op
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/nn.py (L1350) conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py (L340) conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py (L313) _conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py (L164) error_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/dispatch.py (L1264) op_dispatch_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L1186) convolution_v2
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L1319) convolution_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L2793) _conv2d_expanded_batch
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/gen_nn_ops.py (L1378) conv2d
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/op_def_library.py (L796) _apply_op_helper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/func_graph.py (L614) _create_op_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/ops.py (L2726) _create_op_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/ops.py (L1221) from_node_def
+    |   
+
+ : Tensor had -Inf and +Inf values
+	 [[{{function_node __inference_one_step_on_data_5418}}{{node sequential_1/conv2d_5_1/convolution/CheckNumericsV2}}]]
+Traceback (most recent call last):
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 120, in run_training
+    metrics, _ = train_candidate(model, train, validation, plan["config"], search=False, verbose=2, on_epoch=epoch)
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/source_snapshot/paper_afos/model.py", line 111, in train_candidate
+    first = model.fit(*train, validation_data=validation, batch_size=config["training"]["batch_size"],
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 109, in fit_with_trace
+    return original_fit(*args, **kwargs)
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/execute.py", line 53, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Graph execution error:
+
+Detected at node sequential_1/conv2d_5_1/convolution/CheckNumericsV2 defined at (most recent call last):
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 246, in <module>
+
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 208, in main
+
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 177, in worker
+
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 120, in run_training
+
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/source_snapshot/paper_afos/model.py", line 111, in train_candidate
+
+  File "/home/victor/afos_diagnostics/AFOS_diagnostics/published/diagnose_retraining.py", line 109, in fit_with_trace
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 399, in fit
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 241, in function
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 154, in multi_step_on_iterator
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 125, in wrapper
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 134, in one_step_on_data
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py", line 59, in train_step
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py", line 941, in __call__
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py", line 59, in __call__
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 156, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/models/sequential.py", line 220, in call
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py", line 183, in call
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/function.py", line 206, in _run_through_graph
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py", line 655, in call
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py", line 941, in __call__
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py", line 59, in __call__
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py", line 156, in error_handler
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py", line 250, in call
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py", line 240, in convolution_op
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/nn.py", line 1350, in conv
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py", line 340, in conv
+
+  File "/home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py", line 313, in _conv
+
+!!! Detected Infinity or NaN in output 0 of graph op "Conv2D" (# of outputs: 1) !!!
+  dtype: <dtype: 'float32'>
+  shape: (None, 8, 8, 128)
+
+  Input tensors (2):
+         0: Tensor("sequential_1/paper_activation_4_1/Maximum:0", shape=(None, 8, 8, 128), dtype=float32)
+         1: Tensor("sequential_1/conv2d_5_1/convolution/ReadVariableOp:0", shape=(3, 3, 128, 128), dtype=float32)
+  Graph name: "one_step_on_data"
+
+  Stack trace of op's creation ("->": inferred user code):
+    + ... (Omitted 22 frames)
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L154) multi_step_on_iterator
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L125) wrapper
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py (L164) error_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L833) __call__
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L906) _call
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L132) call_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L178) trace_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L283) _maybe_define_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/tracing_compilation.py (L310) _create_concrete_function
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/func_graph.py (L1060) func_graph_from_py_func
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py (L599) wrapped_fn
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/eager/polymorphic_function/autograph_util.py (L41) autograph_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L331) converted_call
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L459) _call_unconverted
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L643) wrapper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L134) one_step_on_data
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L1673) run
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L3263) call_for_each_replica
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/distribute/distribute_lib.py (L4061) _call_for_each_replica
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/autograph/impl/api.py (L643) wrapper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py (L59) train_step
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py (L941) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py (L59) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L156) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/sequential.py (L220) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py (L183) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/function.py (L206) _run_through_graph
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/models/functional.py (L655) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/layer.py (L941) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L117) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/operation.py (L59) __call__
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py (L156) error_handler
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py (L250) call
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/layers/convolutional/base_conv.py (L240) convolution_op
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/ops/nn.py (L1350) conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py (L340) conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/keras/src/backend/tensorflow/nn.py (L313) _conv
+ -> |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/traceback_utils.py (L164) error_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/util/dispatch.py (L1264) op_dispatch_handler
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L1186) convolution_v2
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L1319) convolution_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/nn_ops.py (L2793) _conv2d_expanded_batch
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/ops/gen_nn_ops.py (L1378) conv2d
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/op_def_library.py (L796) _apply_op_helper
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/func_graph.py (L614) _create_op_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/ops.py (L2726) _create_op_internal
+    |   
+    + /home/victor/myafos/lib/python3.10/site-packages/tensorflow/python/framework/ops.py (L1221) from_node_def
+    |   
+
+ : Tensor had -Inf and +Inf values
+	 [[{{node sequential_1/conv2d_5_1/convolution/CheckNumericsV2}}]] [Op:__inference_multi_step_on_iterator_5497]

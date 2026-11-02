@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Preserve diagnostic evidence byte-for-byte for SHA-256 verification.
+analysis/AFOS_diagnostics/** -text

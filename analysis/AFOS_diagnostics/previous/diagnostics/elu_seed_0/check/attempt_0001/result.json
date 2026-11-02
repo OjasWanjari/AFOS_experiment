@@ -1,0 +1,13 @@
+{
+  "trial_id": "elu_seed_0",
+  "mode": "check",
+  "started_at": "2026-10-29T02:48:53.347577+00:00",
+  "status": "numerics_check_triggered",
+  "error": "InvalidArgumentError()",
+  "context": {
+    "phase": "train",
+    "epoch": 1,
+    "batch": 14
+  },
+  "finished_at": "2026-10-29T02:48:55.739382+00:00"
+}

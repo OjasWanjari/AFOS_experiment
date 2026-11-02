@@ -1,0 +1,2132 @@
+{
+  "format_version": 1,
+  "experiment": "published_top15",
+  "created_at": "2026-10-23T04:53:20.975289+00:00",
+  "smoke": false,
+  "config": {
+    "reference": {
+      "title": "Activation Function Optimization Scheme for Image Classification",
+      "version": "arXiv:2409.04915v1 (user-provided PDF)",
+      "sections": [
+        "3.1.3",
+        "3.1.5",
+        "3.1.6",
+        "4.1",
+        "Table 2",
+        "Table A.1"
+      ]
+    },
+    "search": {
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "population_size": 30,
+      "generations": 40,
+      "replications": 5,
+      "selection": "ranking",
+      "selected_parents": 6,
+      "crossover": "single_point",
+      "crossover_probability": 0.8,
+      "max_crossover_children": 6,
+      "mutation": "single_point",
+      "mutation_probability": 0.2,
+      "max_mutation_children": 1,
+      "minimum_random_individuals": 17,
+      "fitness": "validation_accuracy / validation_loss"
+    },
+    "training": {
+      "epochs": 15,
+      "batch_size": 64,
+      "optimizer": "SGD",
+      "learning_rate": 0.01,
+      "momentum": 0.9,
+      "kernel_initializer": "he_uniform",
+      "padding": "same",
+      "loss": "categorical_crossentropy",
+      "first_epoch_accuracy_threshold": 0.25,
+      "stop_on_undefined_loss": true
+    },
+    "dataset": {
+      "name": "CIFAR-10",
+      "split_seed": 1234,
+      "train_size": 45000,
+      "validation_size": 5000,
+      "test_size": 10000
+    },
+    "post_search": {
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "baselines": [
+        "relu",
+        "swish",
+        "mish",
+        "gelu",
+        "serf",
+        "elu"
+      ],
+      "top_functions": 15,
+      "selection_metric": "validation_accuracy",
+      "retrain_from_scratch": true,
+      "epochs": 50,
+      "replications": 5,
+      "evaluation_split": "test"
+    },
+    "cnn": {
+      "filters": [
+        28,
+        32,
+        64,
+        64,
+        128,
+        128
+      ],
+      "dropout_rate": 0.2
+    },
+    "chromosome_schema": "paper_v1_19_unary_11_binary_fig2",
+    "implementation_notes": [
+      "Loaded by run_paper.py; main.py remains the legacy experiment.",
+      "Seeds 0..4, dropout 0.2, split seed 1234, normalization /255 and no augmentation are explicit implementation assumptions.",
+      "Fig. 2(a-c) shapes (3, 5, 7 genes) and depth <=2 are used: the text's two core units conflicts with Fig. 2(c)'s three binary nodes. 11^3 * 19^4 exceeds 170 million, consistent with the claimed search space.",
+      "Table 2 is authoritative: first Conv has 28 filters; no extra Dense layers; the output Dense uses softmax as in Fig. 1.",
+      "Single-point crossover samples type-valid cuts including 0. Unequal-length binary-first encodings may only permit whole-parent exchange. Cut sampling details are not specified by the paper.",
+      "Ranking preserves duplicate individuals; crossover uses three independently sampled parent pairs; mutation chooses from the whole population. Operators that do not fire are replaced by random individuals.",
+      "Undefined includes NaN and infinity; no clipping changes asin/atanh domains. Softplus uses its numerically stable equivalent.",
+      "Top 15 distinct expression strings are pooled across all five searches and ranked by their best completed validation accuracy. Pooling and duplicate handling are not specified by the paper.",
+      "Post-search training retains the 45000/5000 split and uses the same optimizer settings. Sample standard deviation (ddof=1) is reported. These details are not fully specified.",
+      "This implements CIFAR-10 base-network search, retraining and baseline comparison, not the separate multi-dataset/multi-architecture generalization study."
+    ]
+  },
+  "selected": [
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33
+    }
+  ],
+  "trials": [
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14,
+      "seed": 0,
+      "trial_id": "paper_01_seed_0"
+    },
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14,
+      "seed": 1,
+      "trial_id": "paper_01_seed_1"
+    },
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14,
+      "seed": 2,
+      "trial_id": "paper_01_seed_2"
+    },
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14,
+      "seed": 3,
+      "trial_id": "paper_01_seed_3"
+    },
+    {
+      "function": "paper_01",
+      "paper_table3_row": 1,
+      "eelu_name": "EELU-4",
+      "chromosome": [
+        1,
+        15,
+        18
+      ],
+      "baseline": null,
+      "activation_expression": "(erf(x)*log(1+exp(x)))",
+      "paper_test_mean_percent": 82.74,
+      "paper_test_std_percent": 0.14,
+      "seed": 4,
+      "trial_id": "paper_01_seed_4"
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3,
+      "seed": 0,
+      "trial_id": "paper_02_seed_0"
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3,
+      "seed": 1,
+      "trial_id": "paper_02_seed_1"
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3,
+      "seed": 2,
+      "trial_id": "paper_02_seed_2"
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3,
+      "seed": 3,
+      "trial_id": "paper_02_seed_3"
+    },
+    {
+      "function": "paper_02",
+      "paper_table3_row": 2,
+      "eelu_name": "EELU-2",
+      "chromosome": [
+        10,
+        1,
+        4
+      ],
+      "baseline": null,
+      "activation_expression": "((-x)*erf(exp(-x)))",
+      "paper_test_mean_percent": 82.67,
+      "paper_test_std_percent": 0.3,
+      "seed": 4,
+      "trial_id": "paper_02_seed_4"
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29,
+      "seed": 0,
+      "trial_id": "paper_03_seed_0"
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29,
+      "seed": 1,
+      "trial_id": "paper_03_seed_1"
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29,
+      "seed": 2,
+      "trial_id": "paper_03_seed_2"
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29,
+      "seed": 3,
+      "trial_id": "paper_03_seed_3"
+    },
+    {
+      "function": "paper_03",
+      "paper_table3_row": 3,
+      "eelu_name": "EELU-1",
+      "chromosome": [
+        10,
+        0,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "(x*erf(exp(x)))",
+      "paper_test_mean_percent": 82.66,
+      "paper_test_std_percent": 0.29,
+      "seed": 4,
+      "trial_id": "paper_03_seed_4"
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61,
+      "seed": 0,
+      "trial_id": "paper_04_seed_0"
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61,
+      "seed": 1,
+      "trial_id": "paper_04_seed_1"
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61,
+      "seed": 2,
+      "trial_id": "paper_04_seed_2"
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61,
+      "seed": 3,
+      "trial_id": "paper_04_seed_3"
+    },
+    {
+      "function": "paper_04",
+      "paper_table3_row": 4,
+      "eelu_name": "EELU-3",
+      "chromosome": [
+        10,
+        10,
+        0,
+        2,
+        2
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(exp(x)))*erf(exp(x)))",
+      "paper_test_mean_percent": 82.48,
+      "paper_test_std_percent": 0.61,
+      "seed": 4,
+      "trial_id": "paper_04_seed_4"
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54,
+      "seed": 0,
+      "trial_id": "paper_05_seed_0"
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54,
+      "seed": 1,
+      "trial_id": "paper_05_seed_1"
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54,
+      "seed": 2,
+      "trial_id": "paper_05_seed_2"
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54,
+      "seed": 3,
+      "trial_id": "paper_05_seed_3"
+    },
+    {
+      "function": "paper_05",
+      "paper_table3_row": 5,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        2,
+        0,
+        5,
+        5
+      ],
+      "baseline": null,
+      "activation_expression": "(max(x,min(x,0))*erf(min(x,0)))",
+      "paper_test_mean_percent": 82.46,
+      "paper_test_std_percent": 0.54,
+      "seed": 4,
+      "trial_id": "paper_05_seed_4"
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37,
+      "seed": 0,
+      "trial_id": "paper_06_seed_0"
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37,
+      "seed": 1,
+      "trial_id": "paper_06_seed_1"
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37,
+      "seed": 2,
+      "trial_id": "paper_06_seed_2"
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37,
+      "seed": 3,
+      "trial_id": "paper_06_seed_3"
+    },
+    {
+      "function": "paper_06",
+      "paper_table3_row": 6,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        10,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*erf(atan(x)))+(-x))",
+      "paper_test_mean_percent": 82.44,
+      "paper_test_std_percent": 0.37,
+      "seed": 4,
+      "trial_id": "paper_06_seed_4"
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47,
+      "seed": 0,
+      "trial_id": "paper_07_seed_0"
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47,
+      "seed": 1,
+      "trial_id": "paper_07_seed_1"
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47,
+      "seed": 2,
+      "trial_id": "paper_07_seed_2"
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47,
+      "seed": 3,
+      "trial_id": "paper_07_seed_3"
+    },
+    {
+      "function": "paper_07",
+      "paper_table3_row": 7,
+      "eelu_name": "",
+      "chromosome": [
+        10,
+        18,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*erf(erf(x)))",
+      "paper_test_mean_percent": 82.4,
+      "paper_test_std_percent": 0.47,
+      "seed": 4,
+      "trial_id": "paper_07_seed_4"
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39,
+      "seed": 0,
+      "trial_id": "paper_08_seed_0"
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39,
+      "seed": 1,
+      "trial_id": "paper_08_seed_1"
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39,
+      "seed": 2,
+      "trial_id": "paper_08_seed_2"
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39,
+      "seed": 3,
+      "trial_id": "paper_08_seed_3"
+    },
+    {
+      "function": "paper_08",
+      "paper_table3_row": 8,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        12
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "paper_test_mean_percent": 82.38,
+      "paper_test_std_percent": 0.39,
+      "seed": 4,
+      "trial_id": "paper_08_seed_4"
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18,
+      "seed": 0,
+      "trial_id": "paper_09_seed_0"
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18,
+      "seed": 1,
+      "trial_id": "paper_09_seed_1"
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18,
+      "seed": 2,
+      "trial_id": "paper_09_seed_2"
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18,
+      "seed": 3,
+      "trial_id": "paper_09_seed_3"
+    },
+    {
+      "function": "paper_09",
+      "paper_table3_row": 9,
+      "eelu_name": "",
+      "chromosome": [
+        1,
+        18,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "(log(1+exp(x))*tanh(x))",
+      "paper_test_mean_percent": 82.29,
+      "paper_test_std_percent": 0.18,
+      "seed": 4,
+      "trial_id": "paper_09_seed_4"
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35,
+      "seed": 0,
+      "trial_id": "paper_10_seed_0"
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35,
+      "seed": 1,
+      "trial_id": "paper_10_seed_1"
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35,
+      "seed": 2,
+      "trial_id": "paper_10_seed_2"
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35,
+      "seed": 3,
+      "trial_id": "paper_10_seed_3"
+    },
+    {
+      "function": "paper_10",
+      "paper_table3_row": 10,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        9,
+        0,
+        7,
+        7,
+        17,
+        10
+      ],
+      "baseline": null,
+      "activation_expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "paper_test_mean_percent": 82.27,
+      "paper_test_std_percent": 0.35,
+      "seed": 4,
+      "trial_id": "paper_10_seed_4"
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13,
+      "seed": 0,
+      "trial_id": "paper_11_seed_0"
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13,
+      "seed": 1,
+      "trial_id": "paper_11_seed_1"
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13,
+      "seed": 2,
+      "trial_id": "paper_11_seed_2"
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13,
+      "seed": 3,
+      "trial_id": "paper_11_seed_3"
+    },
+    {
+      "function": "paper_11",
+      "paper_table3_row": 11,
+      "eelu_name": "",
+      "chromosome": [
+        9,
+        0,
+        10,
+        10,
+        6,
+        18,
+        9
+      ],
+      "baseline": null,
+      "activation_expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "paper_test_mean_percent": 82.26,
+      "paper_test_std_percent": 0.13,
+      "seed": 4,
+      "trial_id": "paper_11_seed_4"
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47,
+      "seed": 0,
+      "trial_id": "paper_12_seed_0"
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47,
+      "seed": 1,
+      "trial_id": "paper_12_seed_1"
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47,
+      "seed": 2,
+      "trial_id": "paper_12_seed_2"
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47,
+      "seed": 3,
+      "trial_id": "paper_12_seed_3"
+    },
+    {
+      "function": "paper_12",
+      "paper_table3_row": 12,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        17,
+        7
+      ],
+      "baseline": null,
+      "activation_expression": "((x*erf(x))+sin(x))",
+      "paper_test_mean_percent": 82.25,
+      "paper_test_std_percent": 0.47,
+      "seed": 4,
+      "trial_id": "paper_12_seed_4"
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51,
+      "seed": 0,
+      "trial_id": "paper_13_seed_0"
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51,
+      "seed": 1,
+      "trial_id": "paper_13_seed_1"
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51,
+      "seed": 2,
+      "trial_id": "paper_13_seed_2"
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51,
+      "seed": 3,
+      "trial_id": "paper_13_seed_3"
+    },
+    {
+      "function": "paper_13",
+      "paper_table3_row": 13,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        0,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max(x,erf(x))",
+      "paper_test_mean_percent": 82.19,
+      "paper_test_std_percent": 0.51,
+      "seed": 4,
+      "trial_id": "paper_13_seed_4"
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29,
+      "seed": 0,
+      "trial_id": "paper_14_seed_0"
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29,
+      "seed": 1,
+      "trial_id": "paper_14_seed_1"
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29,
+      "seed": 2,
+      "trial_id": "paper_14_seed_2"
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29,
+      "seed": 3,
+      "trial_id": "paper_14_seed_3"
+    },
+    {
+      "function": "paper_14",
+      "paper_table3_row": 14,
+      "eelu_name": "",
+      "chromosome": [
+        0,
+        1,
+        6,
+        12,
+        1
+      ],
+      "baseline": null,
+      "activation_expression": "((max(x,0)*atan(x))+(-x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.29,
+      "seed": 4,
+      "trial_id": "paper_14_seed_4"
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33,
+      "seed": 0,
+      "trial_id": "paper_15_seed_0"
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33,
+      "seed": 1,
+      "trial_id": "paper_15_seed_1"
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33,
+      "seed": 2,
+      "trial_id": "paper_15_seed_2"
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33,
+      "seed": 3,
+      "trial_id": "paper_15_seed_3"
+    },
+    {
+      "function": "paper_15",
+      "paper_table3_row": 15,
+      "eelu_name": "",
+      "chromosome": [
+        2,
+        1,
+        18,
+        10,
+        15
+      ],
+      "baseline": null,
+      "activation_expression": "max((log(1+exp(x))*tanh(x)),erf(x))",
+      "paper_test_mean_percent": 82.15,
+      "paper_test_std_percent": 0.33,
+      "seed": 4,
+      "trial_id": "paper_15_seed_4"
+    }
+  ],
+  "runtime": {
+    "device": "gpu",
+    "jit_compile": false,
+    "memory_growth": true,
+    "save_models": true
+  },
+  "warnings": [
+    "Same recorded environment does not guarantee bitwise GPU determinism; original driver version was not recorded."
+  ],
+  "selection_policy": "Fixed Table 3 rows from arXiv:2409.04915v1; no new search or test-based selection.",
+  "reference": {
+    "path": "D:\\vscode\\AFOS-main\\paper_full_results\\retrain_runs\\pooled_top15_updated",
+    "plan_sha256": "ab04f092d8a4dc407a3258d3c1403dffbbf0774591a2eed400240eb8c3e82f54",
+    "computation_source_sha256": {
+      "retrain_paper.py": "87a8775d675007d964765ece1bff2ec63e56b9d7cef11bb13b7e097c195e88c9",
+      "run_paper.py": "78daf4ce83b72984f6ef021422400b2c5f4f4cf636a4c971235239ee568b7d57",
+      "paper_afos/retraining.py": "9054df0c0c92e6c098c6eab4a4b7b5639c0cbb4f7b06c52515bd5d90618d1712",
+      "paper_afos/recording.py": "acbcc58eb6b740464a49c40ffca99212df094d9e24b702cc104bc07741a48f79",
+      "paper_afos/search.py": "e2ef1e601a14849db4f53727f6ada1cc9b3cc140dcb78cc43524e1ba0ffb1631",
+      "paper_afos/model.py": "35bd14424b082ae54c0aaa8336d5ca346527bf8f0cc2692f9768633f87a79ec3",
+      "paper_afos/__init__.py": "b7a7e8028b3376762cb7b26622c490b0a3800147afbd1211471444b777522846"
+    },
+    "environments": [
+      {
+        "trial_id": "discovered_01_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_01_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_01_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_01_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_01_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_02_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_02_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_02_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_02_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_02_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_03_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_03_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_03_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_03_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_03_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_04_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_04_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_04_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_04_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_04_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_05_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_05_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_05_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_05_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_05_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_06_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_06_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_06_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_06_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_06_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_07_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_07_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_07_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_07_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_07_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_08_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_08_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_08_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_08_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_08_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_09_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_09_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_09_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_09_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_09_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_10_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_10_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_10_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_10_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_10_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_11_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_11_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_11_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_11_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_11_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_12_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_12_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_12_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_12_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_12_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_13_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_13_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_13_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_13_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_14_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_14_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_14_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_14_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_14_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_15_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_15_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_15_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_15_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "discovered_15_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "relu_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "relu_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "relu_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "relu_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "relu_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "swish_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "swish_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "swish_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "swish_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "swish_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "mish_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "mish_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "mish_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "mish_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "mish_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "gelu_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "gelu_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "gelu_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "gelu_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "gelu_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "serf_seed_0",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "serf_seed_1",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "serf_seed_2",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "serf_seed_3",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      },
+      {
+        "trial_id": "serf_seed_4",
+        "environment_sha256": "f5eef75147cbae58b73f7f91f70b9c5896462a5753ed1c447d2b1dbeeabb84de"
+      }
+    ]
+  },
+  "reference_environment": {
+    "python": "3.10.12",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "packages": {
+      "tensorflow": "2.21.0",
+      "keras": "3.12.4",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.7.2"
+    },
+    "tensorflow": "2.21.0",
+    "build": {
+      "cpu_compiler": "clang",
+      "cuda_compute_capabilities": [
+        "sm_60",
+        "sm_70",
+        "sm_80",
+        "sm_89",
+        "compute_90"
+      ],
+      "cuda_version": "12.5.1",
+      "cudnn_version": "9",
+      "is_cuda_build": true,
+      "is_rocm_build": false,
+      "is_tensorrt_build": false
+    },
+    "devices": [
+      "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+    ],
+    "runtime": {
+      "device": "gpu",
+      "jit_compile": false,
+      "memory_growth": true,
+      "save_models": true
+    },
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": null,
+      "TF_XLA_FLAGS": "--tf_xla_auto_jit=0",
+      "XLA_FLAGS": null
+    },
+    "gpu_names": [
+      "NVIDIA GeForce RTX 4080 SUPER"
+    ]
+  },
+  "source_sha256": {
+    "retrain_paper.py": "87a8775d675007d964765ece1bff2ec63e56b9d7cef11bb13b7e097c195e88c9",
+    "retrain_published_top15.py": "83bb86649d52be38553beb29f1fea9d2618a01d3ef88a158c51a4c120b66dc82",
+    "run_paper.py": "78daf4ce83b72984f6ef021422400b2c5f4f4cf636a4c971235239ee568b7d57",
+    "paper_afos/model.py": "35bd14424b082ae54c0aaa8336d5ca346527bf8f0cc2692f9768633f87a79ec3",
+    "paper_afos/published_top15.py": "25fb230a638598a9aebc5cd7f53e3fd559d887b47312109411c00485a08dc27e",
+    "paper_afos/recording.py": "acbcc58eb6b740464a49c40ffca99212df094d9e24b702cc104bc07741a48f79",
+    "paper_afos/retraining.py": "9054df0c0c92e6c098c6eab4a4b7b5639c0cbb4f7b06c52515bd5d90618d1712",
+    "paper_afos/retrain_worker.py": "8ec6222823ca8ef50bff4dff50508ddb5fe0f989dfe5c03498c3ce22a40c4e1d",
+    "paper_afos/runtime_environment.py": "2e1f3486e61b928d0db2ab406c8ccb1f9e47b3d15a2c69c6be3c235867d0e8e5",
+    "paper_afos/search.py": "e2ef1e601a14849db4f53727f6ada1cc9b3cc140dcb78cc43524e1ba0ffb1631",
+    "paper_afos/__init__.py": "b7a7e8028b3376762cb7b26622c490b0a3800147afbd1211471444b777522846"
+  },
+  "split_sha256": "fb97511b4fe6df79b37aa851875d193c93e3cef5b6c836e013941f1301fb9858"
+}

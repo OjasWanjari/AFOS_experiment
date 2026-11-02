@@ -1,0 +1,20 @@
+{
+  "trial_id": "discovered_13_seed_1",
+  "mode": "check",
+  "started_at": "2026-10-29T02:48:59.709676+00:00",
+  "train_loss": 0.38349777460098267,
+  "train_accuracy": 0.8637555837631226,
+  "validation_loss": 0.60518479347229,
+  "validation_accuracy": 0.8090000152587891,
+  "epochs_completed": 50,
+  "status": "not_reproduced",
+  "test_loss": 0.6182870864868164,
+  "test_accuracy": 0.8115000128746033,
+  "context": {
+    "phase": "test",
+    "epoch": 50,
+    "batch": 156,
+    "final_test": true
+  },
+  "finished_at": "2026-10-29T02:59:27.413540+00:00"
+}

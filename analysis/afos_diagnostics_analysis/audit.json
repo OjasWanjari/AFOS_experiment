@@ -1,0 +1,1041 @@
+{
+  "input": "analysis/AFOS_diagnostics",
+  "groups": {
+    "published": {
+      "planned_failed_trials": 25,
+      "observed_unique_trials": 5,
+      "missing_trials": [
+        "paper_08_seed_1",
+        "paper_08_seed_2",
+        "paper_08_seed_3",
+        "paper_08_seed_4",
+        "paper_10_seed_1",
+        "paper_10_seed_2",
+        "paper_10_seed_3",
+        "paper_10_seed_4",
+        "paper_11_seed_1",
+        "paper_11_seed_2",
+        "paper_11_seed_3",
+        "paper_11_seed_4",
+        "paper_12_seed_1",
+        "paper_12_seed_2",
+        "paper_12_seed_3",
+        "paper_12_seed_4",
+        "paper_13_seed_1",
+        "paper_13_seed_2",
+        "paper_13_seed_3",
+        "paper_13_seed_4"
+      ],
+      "hash_checks_passed": true
+    },
+    "previous": {
+      "planned_failed_trials": 6,
+      "observed_unique_trials": 2,
+      "missing_trials": [
+        "elu_seed_1",
+        "elu_seed_2",
+        "elu_seed_3",
+        "elu_seed_4"
+      ],
+      "hash_checks_passed": true
+    }
+  },
+  "attempts": [
+    {
+      "path": "published/diagnostics/paper_08_seed_0/check/attempt_0001",
+      "result": {
+        "trial_id": "paper_08_seed_0",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:18.834695+00:00",
+        "status": "numerics_check_triggered",
+        "error": "InvalidArgumentError()",
+        "context": {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 12
+        },
+        "finished_at": "2026-10-29T02:48:22.266059+00:00"
+      },
+      "expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(atan(x)))))",
+      "environment_matched": true,
+      "detected_node": "gradient_tape/sequential_1/paper_activation_5_1/Square_1/CheckNumericsV2",
+      "detected_op": "Square",
+      "detected_values": "+Inf",
+      "atan_gradient_stack": true,
+      "train_batches_ended": 12,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 7,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "18.740882873535156"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 8,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0920138880610466",
+            "loss": "20.497825622558594"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 9,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09531249850988388",
+            "loss": "37.59020233154297"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 10,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09090909361839294",
+            "loss": "264.9557189941406"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 11,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0950520858168602",
+            "loss": "461457.96875"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 0,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 1.4163125057122153e+20
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 0,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 1.4163125057122153e+20
+        }
+      },
+      "epochs_logged": 0,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "published/diagnostics/paper_10_seed_0/check/attempt_0001",
+      "result": {
+        "trial_id": "paper_10_seed_0",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:26.311444+00:00",
+        "status": "numerics_check_triggered",
+        "error": "InvalidArgumentError()",
+        "context": {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 4
+        },
+        "finished_at": "2026-10-29T02:48:29.494206+00:00"
+      },
+      "expression": "max((sin(x)*sigmoid(sin(x))),((x*erf(x))+tanh(x)))",
+      "environment_matched": true,
+      "detected_node": "sequential_1/conv2d_5_1/convolution/CheckNumericsV2",
+      "detected_op": "Conv2D",
+      "detected_values": "-Inf and +Inf",
+      "atan_gradient_stack": false,
+      "train_batches_ended": 4,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 0,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "16.719661712646484"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 1,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "62.77287292480469"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 2,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.1145833358168602",
+            "loss": "499.2966613769531"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 3,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.10546875",
+            "loss": "1913287680.0"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        }
+      },
+      "epochs_logged": 0,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "published/diagnostics/paper_11_seed_0/check/attempt_0001",
+      "result": {
+        "trial_id": "paper_11_seed_0",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:33.508272+00:00",
+        "status": "numerics_check_triggered",
+        "error": "InvalidArgumentError()",
+        "context": {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 6
+        },
+        "finished_at": "2026-10-29T02:48:36.734528+00:00"
+      },
+      "expression": "((tanh(x)+max(x,0))*sigmoid((log(1+exp(x))*erf(sinh(x)))))",
+      "environment_matched": true,
+      "detected_node": "sequential_1/paper_activation_4_1/Sinh/CheckNumericsV2",
+      "detected_op": "Sinh",
+      "detected_values": "-Inf and +Inf",
+      "atan_gradient_stack": false,
+      "train_batches_ended": 6,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 1,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0703125",
+            "loss": "19.21727752685547"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 2,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.078125",
+            "loss": "21.83658790588379"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 3,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.109375",
+            "loss": "18.057373046875"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 4,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.10312499850988388",
+            "loss": "16.83555030822754"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 5,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0989583358168602",
+            "loss": "17.68100929260254"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 233859,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 0.8033953309059143
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 233859,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 0.8580713868141174
+        }
+      },
+      "epochs_logged": 0,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "published/diagnostics/paper_12_seed_0/check/attempt_0001",
+      "result": {
+        "trial_id": "paper_12_seed_0",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:40.724297+00:00",
+        "status": "numerics_check_triggered",
+        "error": "InvalidArgumentError()",
+        "context": {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 4
+        },
+        "finished_at": "2026-10-29T02:48:43.354280+00:00"
+      },
+      "expression": "((x*erf(x))+sin(x))",
+      "environment_matched": true,
+      "detected_node": "sequential_1/conv2d_3_1/convolution/CheckNumericsV2",
+      "detected_op": "Conv2D",
+      "detected_values": "-Inf and +Inf",
+      "atan_gradient_stack": false,
+      "train_batches_ended": 4,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 0,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.125",
+            "loss": "15.788135528564453"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 1,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "91.2802734375"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 2,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.1145833358168602",
+            "loss": "2828.3564453125"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 3,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.10546875",
+            "loss": "651978183016448.0"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        }
+      },
+      "epochs_logged": 0,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "published/diagnostics/paper_13_seed_0/replay/attempt_0001",
+      "result": {
+        "trial_id": "paper_13_seed_0",
+        "mode": "replay",
+        "started_at": "2026-10-29T02:46:10.609335+00:00",
+        "train_loss": null,
+        "train_accuracy": 0.0972222238779068,
+        "validation_loss": null,
+        "validation_accuracy": 0.09600000083446503,
+        "epochs_completed": 1,
+        "status": "nonfinite",
+        "context": {
+          "phase": "validation",
+          "epoch": 1,
+          "batch": 78
+        },
+        "finished_at": "2026-10-29T02:46:13.289261+00:00"
+      },
+      "expression": "max(x,erf(x))",
+      "environment_matched": true,
+      "detected_node": null,
+      "detected_op": null,
+      "detected_values": null,
+      "atan_gradient_stack": false,
+      "train_batches_ended": 9,
+      "first_nonfinite_train_metric": {
+        "phase": "train",
+        "epoch": 1,
+        "batch": 8,
+        "event": "batch_end",
+        "metrics": {
+          "accuracy": "0.0972222238779068",
+          "loss": "nan"
+        }
+      },
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 4,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.08749999850988388",
+            "loss": "77.76618957519531"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 5,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0859375",
+            "loss": "70.43685150146484"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 6,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "3663.667724609375"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 7,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09765625",
+            "loss": "901907584.0"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 8,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0972222238779068",
+            "loss": "nan"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        }
+      },
+      "epochs_logged": 1,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "published/diagnostics/paper_13_seed_0/replay/attempt_0002",
+      "result": {
+        "trial_id": "paper_13_seed_0",
+        "mode": "replay",
+        "started_at": "2026-10-29T02:46:31.323269+00:00",
+        "train_loss": null,
+        "train_accuracy": 0.1006944477558136,
+        "validation_loss": null,
+        "validation_accuracy": 0.09600000083446503,
+        "epochs_completed": 1,
+        "status": "nonfinite",
+        "context": {
+          "phase": "validation",
+          "epoch": 1,
+          "batch": 78
+        },
+        "finished_at": "2026-10-29T02:46:33.881554+00:00"
+      },
+      "expression": "max(x,erf(x))",
+      "environment_matched": true,
+      "detected_node": null,
+      "detected_op": null,
+      "detected_values": null,
+      "atan_gradient_stack": false,
+      "train_batches_ended": 9,
+      "first_nonfinite_train_metric": {
+        "phase": "train",
+        "epoch": 1,
+        "batch": 8,
+        "event": "batch_end",
+        "metrics": {
+          "accuracy": "0.1006944477558136",
+          "loss": "nan"
+        }
+      },
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 4,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.08749999850988388",
+            "loss": "77.54625701904297"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 5,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0859375",
+            "loss": "70.23531341552734"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 6,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "3892.612548828125"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 7,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09765625",
+            "loss": "865598976.0"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 8,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.1006944477558136",
+            "loss": "nan"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 306234,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": null
+        }
+      },
+      "epochs_logged": 1,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "previous/diagnostics/discovered_13_seed_1/check/attempt_0001",
+      "result": {
+        "trial_id": "discovered_13_seed_1",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:59.709676+00:00",
+        "train_loss": 0.38349777460098267,
+        "train_accuracy": 0.8637555837631226,
+        "validation_loss": 0.60518479347229,
+        "validation_accuracy": 0.8090000152587891,
+        "epochs_completed": 50,
+        "status": "not_reproduced",
+        "test_loss": 0.6182870864868164,
+        "test_accuracy": 0.8115000128746033,
+        "context": {
+          "phase": "test",
+          "epoch": 50,
+          "batch": 156,
+          "final_test": true
+        },
+        "finished_at": "2026-10-29T02:59:27.413540+00:00"
+      },
+      "expression": "((atan(x)*min(x,0))+tanh(x))",
+      "environment_matched": true,
+      "detected_node": null,
+      "detected_op": null,
+      "detected_values": null,
+      "atan_gradient_stack": false,
+      "train_batches_ended": 35200,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 50,
+          "batch": 699,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.8637499809265137",
+            "loss": "0.38374677300453186"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 50,
+          "batch": 700,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.863721489906311",
+            "loss": "0.38386088609695435"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 50,
+          "batch": 701,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.8637598156929016",
+            "loss": "0.3835669755935669"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 50,
+          "batch": 702,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.863731324672699",
+            "loss": "0.38355451822280884"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 50,
+          "batch": 703,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.8637555837631226",
+            "loss": "0.38349777460098267"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 0,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 1.9248754978179932
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 0,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 0.005872194655239582
+        }
+      },
+      "epochs_logged": 50,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "previous/diagnostics/elu_seed_0/check/attempt_0001",
+      "result": {
+        "trial_id": "elu_seed_0",
+        "mode": "check",
+        "started_at": "2026-10-29T02:48:53.347577+00:00",
+        "status": "numerics_check_triggered",
+        "error": "InvalidArgumentError()",
+        "context": {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 14
+        },
+        "finished_at": "2026-10-29T02:48:55.739382+00:00"
+      },
+      "expression": "elu",
+      "environment_matched": true,
+      "detected_node": "sequential_1/conv2d_2_1/convolution/CheckNumericsV2",
+      "detected_op": "Conv2D",
+      "detected_values": "-Inf and +Inf",
+      "atan_gradient_stack": false,
+      "train_batches_ended": 14,
+      "first_nonfinite_train_metric": null,
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 9,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.11093749850988388",
+            "loss": "22.127443313598633"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 10,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.11079545319080353",
+            "loss": "91.69048309326172"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 11,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.1080729141831398",
+            "loss": "94.09954071044922"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 12,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.10336538404226303",
+            "loss": "541305.5625"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 13,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.1015625",
+            "loss": "5.6649692515595924e+20"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 262410,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 1.2041325780844675e+19
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 262410,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 5.70378583832055e+18
+        }
+      },
+      "epochs_logged": 0,
+      "layout_warning": true,
+      "oom_marker": false
+    },
+    {
+      "path": "previous/diagnostics/elu_seed_0/replay/attempt_0001",
+      "result": {
+        "trial_id": "elu_seed_0",
+        "mode": "replay",
+        "started_at": "2026-10-29T02:48:47.309222+00:00",
+        "train_loss": null,
+        "train_accuracy": 0.0892857164144516,
+        "validation_loss": null,
+        "validation_accuracy": 0.09600000083446503,
+        "epochs_completed": 1,
+        "status": "nonfinite",
+        "context": {
+          "phase": "validation",
+          "epoch": 1,
+          "batch": 78
+        },
+        "finished_at": "2026-10-29T02:48:49.457524+00:00"
+      },
+      "expression": "elu",
+      "environment_matched": true,
+      "detected_node": null,
+      "detected_op": null,
+      "detected_values": null,
+      "atan_gradient_stack": false,
+      "train_batches_ended": 14,
+      "first_nonfinite_train_metric": {
+        "phase": "train",
+        "epoch": 1,
+        "batch": 13,
+        "event": "batch_end",
+        "metrics": {
+          "accuracy": "0.0892857164144516",
+          "loss": "nan"
+        }
+      },
+      "last_train_batches": [
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 9,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09843750298023224",
+            "loss": "71.44266510009766"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 10,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09375",
+            "loss": "246.28497314453125"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 11,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0911458358168602",
+            "loss": "6894.158203125"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 12,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.09134615212678909",
+            "loss": "1.592145987239936e+16"
+          }
+        },
+        {
+          "phase": "train",
+          "epoch": 1,
+          "batch": 13,
+          "event": "batch_end",
+          "metrics": {
+            "accuracy": "0.0892857164144516",
+            "loss": "nan"
+          }
+        }
+      ],
+      "saved_variables": {
+        "model": {
+          "size": 306234,
+          "nan": 171402,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 433359381594112.0
+        },
+        "momentum": {
+          "size": 306234,
+          "nan": 171402,
+          "posinf": 0,
+          "neginf": 0,
+          "max_abs_finite": 205275495661568.0
+        }
+      },
+      "epochs_logged": 1,
+      "layout_warning": true,
+      "oom_marker": false
+    }
+  ],
+  "source_sha256": {
+    "DIAGNOSE_RETRAINING_EN.md": "3b53eeb45926d89f2b7ae2cb2e85e298e4f84c3598cd7481a1344c13c441f91b",
+    "DIAGNOSE_RETRAINING_JA.md": "f3457cc5eaf30bf0078e389b716ff44655916bf3149c768e7fe37c414af119ee",
+    "previous/diagnose_retraining.py": "d6eab5ccaaa96e8b15b3362e056ed1411def18b4ee3db472edf8d1b5914c4abf",
+    "previous/diagnostic_environment.py": "2e1f3486e61b928d0db2ab406c8ccb1f9e47b3d15a2c69c6be3c235867d0e8e5",
+    "previous/diagnostic_plan.json": "912a0f696fe23ae716dbea4a273b4f389aca99b91d43431458c03c0752593fb6",
+    "previous/diagnostic_plan.sha256": "2b1272a615f2fe329a796a97dc21bd03f92be366904ce28e5dd197c14a0ddd75",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/batches.jsonl": "2353606189dbfa527f3336d8e19dd907fd1386c0e473f479c2f65f11f6d91540",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/epochs.jsonl": "22f50dbd2ff0a85fdf531e68ca6ed711f1e3d45c3aad12ea6790bd8c6a729e73",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/failure_or_final_variables.npz": "a31bc7747f1ab4275eace1cf9e33c24d9f1b20411528b0da8d185eeeb8518d4c",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/result.json": "56be7c2551f7ef112c4689f32fd131a698016b9a98658bbd37c99c72d529513c",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/variables.json": "0358bbc3b89bf67ade9eb76f0c0ce3e89af4e3ae28c1e70fa2ad59efa097e310",
+    "previous/diagnostics/discovered_13_seed_1/check/attempt_0001/worker.log": "496e8676144e1f54554d5b08a03b33723000aa46a1857481cbb4f642af6b7a37",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/batches.jsonl": "8b50a291dfd2a5c2ecfa5679c88422e384aa4808c0fcc93199844c7e7c9bd6aa",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/error.txt": "490354ec9ade75573632165eb2b30fe8f514350894a91c0f0737e2fe1f76b4ba",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/failure_or_final_variables.npz": "e7f5d93fe3bfb12839d20cf76cacb560c2ad2e2e6b6d0ca7ec4fdb713c08632c",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/result.json": "2a880067085780334fe5078a4dcb9933bbdffbfb7b13e15d9509111368a47a82",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/variables.json": "7e1621eef5d4d901850b20f6f2f84a497c3013c6fc9d8c8f194dfc73d61a1700",
+    "previous/diagnostics/elu_seed_0/check/attempt_0001/worker.log": "88586a0cb217f82f252f52a7d173b22ddf78703afe7eb9299e1a3a199207bea9",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/batches.jsonl": "42d98f6aa28bce222d7dd8e82ef2b555b78bc7f31ff884285628f8b5725f44ae",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/epochs.jsonl": "ea93382f2128afd37cb1cbe04b10477d0202082deda5aaba9d6889b00ec97a52",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/failure_or_final_variables.npz": "5a4485fbc9fe524475786bddc084f55ac63b7549329dd358c7739176750d21bf",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/result.json": "0d58012a55c78448dca8bbcfcafaf50df263f5f2dc7b5e87dc172ed2d8f6256a",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/variables.json": "c7939d26f6b43633a3a5e497f83c3f59c4a028b7d003e26a57707557f6848308",
+    "previous/diagnostics/elu_seed_0/replay/attempt_0001/worker.log": "5d7c5700a4cb751d6c9d58babd84a3ea4802624fe37917f3238e3e5b933d4bc8",
+    "previous/plan.json": "ab04f092d8a4dc407a3258d3c1403dffbbf0774591a2eed400240eb8c3e82f54",
+    "previous/plan.sha256": "a1be2f459db4a44675d57b1915d23800e1569e4e41f6b385838dbfa34ea5c11e",
+    "previous/source_snapshot/paper_afos/__init__.py": "b7a7e8028b3376762cb7b26622c490b0a3800147afbd1211471444b777522846",
+    "previous/source_snapshot/paper_afos/model.py": "35bd14424b082ae54c0aaa8336d5ca346527bf8f0cc2692f9768633f87a79ec3",
+    "previous/source_snapshot/paper_afos/recording.py": "acbcc58eb6b740464a49c40ffca99212df094d9e24b702cc104bc07741a48f79",
+    "previous/source_snapshot/paper_afos/retrain_worker.py": "7faef5709b95853d2ffb0a4f53eeb72fa686fb4598a0a518b77f230719b6c530",
+    "previous/source_snapshot/paper_afos/retraining.py": "9054df0c0c92e6c098c6eab4a4b7b5639c0cbb4f7b06c52515bd5d90618d1712",
+    "previous/source_snapshot/paper_afos/search.py": "e2ef1e601a14849db4f53727f6ada1cc9b3cc140dcb78cc43524e1ba0ffb1631",
+    "previous/source_snapshot/retrain_paper.py": "87a8775d675007d964765ece1bff2ec63e56b9d7cef11bb13b7e097c195e88c9",
+    "previous/source_snapshot/run_paper.py": "78daf4ce83b72984f6ef021422400b2c5f4f4cf636a4c971235239ee568b7d57",
+    "previous/split_indices.npz": "fb97511b4fe6df79b37aa851875d193c93e3cef5b6c836e013941f1301fb9858",
+    "published/diagnose_retraining.py": "d6eab5ccaaa96e8b15b3362e056ed1411def18b4ee3db472edf8d1b5914c4abf",
+    "published/diagnostic_environment.py": "2e1f3486e61b928d0db2ab406c8ccb1f9e47b3d15a2c69c6be3c235867d0e8e5",
+    "published/diagnostic_plan.json": "d0b7a349f3742d7a2b8986d8a793a24ac9d6f42ff742e447247121fa75447b09",
+    "published/diagnostic_plan.sha256": "4997c7d568434f26bc2a565eb7413dde35c9b8c63387ec641d75583e317e57a6",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/batches.jsonl": "8042f0712dd64a5bed9383bb3b78b7ac33768e6115c985bd74ea4e47628df665",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/error.txt": "60e1a38220dc4fa5e024947ab3cbd97045abcd2eed9eba93ca8a3ce7535d65a1",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/failure_or_final_variables.npz": "9e4b10e3b10ae88e51bec3c5c210338eb974b9052ec827d48c9a831a0767641b",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/result.json": "f6f9ef5cf01372acbf11114839824e3d11ad5cbb561047c5b5c040178c1f783c",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/variables.json": "24eefe4fc4a225771f5325954a88ce5053a753ac6966d1195ddde0e7822c6b16",
+    "published/diagnostics/paper_08_seed_0/check/attempt_0001/worker.log": "20e332c2033c11b9415db3da2530f0c5cf115139def699429a6d85e065d3e0a4",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/batches.jsonl": "1c4bb223beeab6ab3415aa69d0f8eeb4d7b44ef96adfdb06aaa7966d6b6b91af",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/error.txt": "5da20f590369ba1843902d833c721ddabf8e27eeaf9396e31ea757af7316bcbe",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/failure_or_final_variables.npz": "e7edfbe05e030af5e5de31ad5c764884df04d6d5e856a35186b0f9c9b06e6762",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/result.json": "11c3eb50891578d7cbb0a27156b873f622eb8802c9ad5175358b49f023ccfaff",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/variables.json": "e29073158f3232a9eeb2071e7c73c4c52325446b2b168ec2ff0567e3317b66a4",
+    "published/diagnostics/paper_10_seed_0/check/attempt_0001/worker.log": "d6d5f34271562b74c65e5f2336e68e70307a5382b4d340b35a5b01ee0cfd47ac",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/batches.jsonl": "0a5c9ac5c85f98cd2798f107e24b0fa3070818be9229d35fc840030aa876536d",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/error.txt": "c05e122770edf72155b012b1f61d352ac51b07ecb6106ecfeb25f8afa521fe37",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/failure_or_final_variables.npz": "be734b07ad510f6f8fe452287e3e46adc4f581f12dce4e7bfd777105bbe5d669",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/result.json": "b6348c934976783747060920b9ff27ae2dbba38b6110c37b5c35f2fbdd33a3bc",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/variables.json": "cbbf6ae586313063837aedf4d44c0f8246f6bf2a9e1cbdb602365b2c2e1a7d6e",
+    "published/diagnostics/paper_11_seed_0/check/attempt_0001/worker.log": "580c25e79a4abfbb9a9190f137b8fcf02f603acb41c25ae2ec1d9fcdf7b4d636",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/batches.jsonl": "21eb4f23a4f22fd38c52470bf5e3ec23dd05955602cab554f1f547f6ded5626d",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/error.txt": "ce1b2b66e60ac05ccbca308cec0ef940ddcd65d05548e7449ad9f955cecf98fd",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/failure_or_final_variables.npz": "e7edfbe05e030af5e5de31ad5c764884df04d6d5e856a35186b0f9c9b06e6762",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/result.json": "618491d243652e6b4f7a5f004bc508a7359701fdc745da1e98d4ca79043bdd05",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/variables.json": "e29073158f3232a9eeb2071e7c73c4c52325446b2b168ec2ff0567e3317b66a4",
+    "published/diagnostics/paper_12_seed_0/check/attempt_0001/worker.log": "4f8d760f1d9ba61e42ab5b71c4d959aa0a63566aa79adcb0cfd21826d23d4d8e",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/batches.jsonl": "5b275de89ee4f3cdd1a0972967589a41e4af736e905b851969d7ffabc4624193",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/epochs.jsonl": "d36039e4e1a7d45b395f2156229478ab2a232f0aeb326917a15fa52d54443a3e",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/failure_or_final_variables.npz": "a7c0d52c9cdd2709ff865212a1091f9f7bf70c65ce2aa209ff6efbd8d5b6824a",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/result.json": "7fd4f82bf1488f2bf21109b4d3ddd3d7b555cf3ed95b486ba9c230a88a65f5fb",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/variables.json": "fb6b06e1d1e94464da40bed53fdcb57450e2c8d941eff2c8fce0166b61e6ed4a",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0001/worker.log": "0c6af787ea50db93442482541447b835644280996826face22ceb6a0dbc8eb54",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/batches.jsonl": "7ad3881f2b3e70d5779e79d6d81b4a3c4ed27930c531fb0635cc93afe95665f9",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/environment.json": "d31a71c4c93afd979f9894393931b9fb0d76f11898931a2756ab2ebbbe06a6a3",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/environment_check.json": "1ee7fdca3bc3467fd10e07920a941392d5a41c630fbb26f4deab0492e785d6dc",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/epochs.jsonl": "dcabcfae3063688b0db7d9611e9a1d38e229c1cb4addf27346404aa67e54758d",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/failure_or_final_variables.npz": "a7c0d52c9cdd2709ff865212a1091f9f7bf70c65ce2aa209ff6efbd8d5b6824a",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/result.json": "bb8fd5194aba22a77ccab41a91d7431964d0130ecd0b48246f1895f01ec6ff1e",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/variables.json": "fb6b06e1d1e94464da40bed53fdcb57450e2c8d941eff2c8fce0166b61e6ed4a",
+    "published/diagnostics/paper_13_seed_0/replay/attempt_0002/worker.log": "ae506a0fc8e0e8e836c6e4a61d708c8d3ef32dfddd001eb4645e0935a83306df",
+    "published/plan.json": "e9929a296d51c1f8ddaa76176cfb98e82508b5d99ec76547b2b1b84aba759b09",
+    "published/plan.sha256": "cabd308f61bfe6e4d7c6d202952f7df28af183a670c1f169d9c9c7fe74249174",
+    "published/source_snapshot/paper_afos/__init__.py": "b7a7e8028b3376762cb7b26622c490b0a3800147afbd1211471444b777522846",
+    "published/source_snapshot/paper_afos/model.py": "35bd14424b082ae54c0aaa8336d5ca346527bf8f0cc2692f9768633f87a79ec3",
+    "published/source_snapshot/paper_afos/published_top15.py": "25fb230a638598a9aebc5cd7f53e3fd559d887b47312109411c00485a08dc27e",
+    "published/source_snapshot/paper_afos/recording.py": "acbcc58eb6b740464a49c40ffca99212df094d9e24b702cc104bc07741a48f79",
+    "published/source_snapshot/paper_afos/retrain_worker.py": "8ec6222823ca8ef50bff4dff50508ddb5fe0f989dfe5c03498c3ce22a40c4e1d",
+    "published/source_snapshot/paper_afos/retraining.py": "9054df0c0c92e6c098c6eab4a4b7b5639c0cbb4f7b06c52515bd5d90618d1712",
+    "published/source_snapshot/paper_afos/runtime_environment.py": "2e1f3486e61b928d0db2ab406c8ccb1f9e47b3d15a2c69c6be3c235867d0e8e5",
+    "published/source_snapshot/paper_afos/search.py": "e2ef1e601a14849db4f53727f6ada1cc9b3cc140dcb78cc43524e1ba0ffb1631",
+    "published/source_snapshot/retrain_paper.py": "87a8775d675007d964765ece1bff2ec63e56b9d7cef11bb13b7e097c195e88c9",
+    "published/source_snapshot/retrain_published_top15.py": "83bb86649d52be38553beb29f1fea9d2618a01d3ef88a158c51a4c120b66dc82",
+    "published/source_snapshot/run_paper.py": "78daf4ce83b72984f6ef021422400b2c5f4f4cf636a4c971235239ee568b7d57",
+    "published/split_indices.npz": "fb97511b4fe6df79b37aa851875d193c93e3cef5b6c836e013941f1301fb9858"
+  },
+  "status_counts": {
+    "numerics_check_triggered": 5,
+    "nonfinite": 3,
+    "not_reproduced": 1
+  },
+  "note": "Saved variables are post-stop snapshots, not pre-failure checkpoints; detected node is not proof of the globally earliest nonfinite operation."
+}

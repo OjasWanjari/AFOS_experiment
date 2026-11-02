@@ -1,0 +1,43 @@
+{
+  "python": "3.10.12",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "packages": {
+    "tensorflow": "2.21.0",
+    "keras": "3.12.4",
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.2"
+  },
+  "tensorflow": "2.21.0",
+  "build": {
+    "cpu_compiler": "clang",
+    "cuda_compute_capabilities": [
+      "sm_60",
+      "sm_70",
+      "sm_80",
+      "sm_89",
+      "compute_90"
+    ],
+    "cuda_version": "12.5.1",
+    "cudnn_version": "9",
+    "is_cuda_build": true,
+    "is_rocm_build": false,
+    "is_tensorrt_build": false
+  },
+  "devices": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ],
+  "runtime": {
+    "device": "gpu",
+    "jit_compile": false,
+    "memory_growth": true,
+    "save_models": true
+  },
+  "gpu_names": [
+    "NVIDIA GeForce RTX 4080 SUPER"
+  ],
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": null,
+    "TF_XLA_FLAGS": "--tf_xla_auto_jit=0",
+    "XLA_FLAGS": null
+  }
+}

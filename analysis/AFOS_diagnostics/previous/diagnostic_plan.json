@@ -1,0 +1,84 @@
+{
+  "created_at": "2026-10-28T12:13:47.469473+00:00",
+  "reference": "D:\\vscode\\AFOS-main\\paper_full_results\\retrain_runs\\pooled_top15_updated",
+  "failures": [
+    {
+      "trial_id": "discovered_13_seed_1",
+      "status": "nonfinite",
+      "epochs_completed": 50
+    },
+    {
+      "trial_id": "elu_seed_0",
+      "status": "nonfinite",
+      "epochs_completed": 1
+    },
+    {
+      "trial_id": "elu_seed_1",
+      "status": "nonfinite",
+      "epochs_completed": 1
+    },
+    {
+      "trial_id": "elu_seed_2",
+      "status": "nonfinite",
+      "epochs_completed": 1
+    },
+    {
+      "trial_id": "elu_seed_3",
+      "status": "nonfinite",
+      "epochs_completed": 1
+    },
+    {
+      "trial_id": "elu_seed_4",
+      "status": "nonfinite",
+      "epochs_completed": 1
+    }
+  ],
+  "environment": {
+    "python": "3.10.12",
+    "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+    "packages": {
+      "tensorflow": "2.21.0",
+      "keras": "3.12.4",
+      "numpy": "2.2.6",
+      "scikit-learn": "1.7.2"
+    },
+    "tensorflow": "2.21.0",
+    "build": {
+      "cpu_compiler": "clang",
+      "cuda_compute_capabilities": [
+        "sm_60",
+        "sm_70",
+        "sm_80",
+        "sm_89",
+        "compute_90"
+      ],
+      "cuda_version": "12.5.1",
+      "cudnn_version": "9",
+      "is_cuda_build": true,
+      "is_rocm_build": false,
+      "is_tensorrt_build": false
+    },
+    "devices": [
+      "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+    ],
+    "runtime": {
+      "device": "gpu",
+      "jit_compile": false,
+      "memory_growth": true,
+      "save_models": true
+    },
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": null,
+      "TF_XLA_FLAGS": "--tf_xla_auto_jit=0",
+      "XLA_FLAGS": null
+    },
+    "gpu_names": [
+      "NVIDIA GeForce RTX 4080 SUPER"
+    ]
+  },
+  "reference_plan_sha256": "ab04f092d8a4dc407a3258d3c1403dffbbf0774591a2eed400240eb8c3e82f54",
+  "diagnostic_source_sha256": {
+    "diagnose_retraining.py": "d6eab5ccaaa96e8b15b3362e056ed1411def18b4ee3db472edf8d1b5914c4abf",
+    "diagnostic_environment.py": "2e1f3486e61b928d0db2ab406c8ccb1f9e47b3d15a2c69c6be3c235867d0e8e5"
+  }
+}

@@ -1,0 +1,336 @@
+[
+  {
+    "key": "variable_000",
+    "name": "sequential/conv2d/kernel",
+    "shape": [
+      3,
+      3,
+      3,
+      28
+    ],
+    "finite_count": 756,
+    "size": 756,
+    "max_abs_finite": 2.3695286468398285e+17
+  },
+  {
+    "key": "variable_001",
+    "name": "sequential/conv2d/bias",
+    "shape": [
+      28
+    ],
+    "finite_count": 28,
+    "size": 28,
+    "max_abs_finite": 4.0342559091851264e+17
+  },
+  {
+    "key": "variable_002",
+    "name": "sequential/conv2d_1/kernel",
+    "shape": [
+      3,
+      3,
+      28,
+      32
+    ],
+    "finite_count": 8064,
+    "size": 8064,
+    "max_abs_finite": 1.4163125057122153e+20
+  },
+  {
+    "key": "variable_003",
+    "name": "sequential/conv2d_1/bias",
+    "shape": [
+      32
+    ],
+    "finite_count": 32,
+    "size": 32,
+    "max_abs_finite": 2.7610437780504576e+16
+  },
+  {
+    "key": "variable_004",
+    "name": "sequential/conv2d_2/kernel",
+    "shape": [
+      3,
+      3,
+      32,
+      64
+    ],
+    "finite_count": 18432,
+    "size": 18432,
+    "max_abs_finite": 5.052464836839997e+18
+  },
+  {
+    "key": "variable_005",
+    "name": "sequential/conv2d_2/bias",
+    "shape": [
+      64
+    ],
+    "finite_count": 64,
+    "size": 64,
+    "max_abs_finite": 101564584820736.0
+  },
+  {
+    "key": "variable_006",
+    "name": "sequential/conv2d_3/kernel",
+    "shape": [
+      3,
+      3,
+      64,
+      64
+    ],
+    "finite_count": 36864,
+    "size": 36864,
+    "max_abs_finite": 2.1110542164316652e+18
+  },
+  {
+    "key": "variable_007",
+    "name": "sequential/conv2d_3/bias",
+    "shape": [
+      64
+    ],
+    "finite_count": 64,
+    "size": 64,
+    "max_abs_finite": 158961582080.0
+  },
+  {
+    "key": "variable_008",
+    "name": "sequential/conv2d_4/kernel",
+    "shape": [
+      3,
+      3,
+      64,
+      128
+    ],
+    "finite_count": 73728,
+    "size": 73728,
+    "max_abs_finite": 2.1577600015007744e+16
+  },
+  {
+    "key": "variable_009",
+    "name": "sequential/conv2d_4/bias",
+    "shape": [
+      128
+    ],
+    "finite_count": 128,
+    "size": 128,
+    "max_abs_finite": 11605788.0
+  },
+  {
+    "key": "variable_010",
+    "name": "sequential/conv2d_5/kernel",
+    "shape": [
+      3,
+      3,
+      128,
+      128
+    ],
+    "finite_count": 147456,
+    "size": 147456,
+    "max_abs_finite": 1.689634228666368e+16
+  },
+  {
+    "key": "variable_011",
+    "name": "sequential/conv2d_5/bias",
+    "shape": [
+      128
+    ],
+    "finite_count": 128,
+    "size": 128,
+    "max_abs_finite": 192.77511596679688
+  },
+  {
+    "key": "variable_012",
+    "name": "sequential/dense/kernel",
+    "shape": [
+      2048,
+      10
+    ],
+    "finite_count": 20480,
+    "size": 20480,
+    "max_abs_finite": 6.171268426917478e+16
+  },
+  {
+    "key": "variable_013",
+    "name": "sequential/dense/bias",
+    "shape": [
+      10
+    ],
+    "finite_count": 10,
+    "size": 10,
+    "max_abs_finite": 0.07640647888183594
+  },
+  {
+    "key": "variable_014",
+    "name": "SGD/iteration",
+    "shape": [],
+    "finite_count": 1,
+    "size": 1,
+    "max_abs_finite": 13.0
+  },
+  {
+    "key": "variable_015",
+    "name": "SGD/learning_rate",
+    "shape": [],
+    "finite_count": 1,
+    "size": 1,
+    "max_abs_finite": 0.009999999776482582
+  },
+  {
+    "key": "variable_016",
+    "name": "SGD/sequential_conv2d_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      3,
+      28
+    ],
+    "finite_count": 756,
+    "size": 756,
+    "max_abs_finite": 2.3695286468398285e+17
+  },
+  {
+    "key": "variable_017",
+    "name": "SGD/sequential_conv2d_bias_momentum",
+    "shape": [
+      28
+    ],
+    "finite_count": 28,
+    "size": 28,
+    "max_abs_finite": 4.0342559091851264e+17
+  },
+  {
+    "key": "variable_018",
+    "name": "SGD/sequential_conv2d_1_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      28,
+      32
+    ],
+    "finite_count": 8064,
+    "size": 8064,
+    "max_abs_finite": 1.4163125057122153e+20
+  },
+  {
+    "key": "variable_019",
+    "name": "SGD/sequential_conv2d_1_bias_momentum",
+    "shape": [
+      32
+    ],
+    "finite_count": 32,
+    "size": 32,
+    "max_abs_finite": 2.7610437780504576e+16
+  },
+  {
+    "key": "variable_020",
+    "name": "SGD/sequential_conv2d_2_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      32,
+      64
+    ],
+    "finite_count": 18432,
+    "size": 18432,
+    "max_abs_finite": 5.052464836839997e+18
+  },
+  {
+    "key": "variable_021",
+    "name": "SGD/sequential_conv2d_2_bias_momentum",
+    "shape": [
+      64
+    ],
+    "finite_count": 64,
+    "size": 64,
+    "max_abs_finite": 101564584820736.0
+  },
+  {
+    "key": "variable_022",
+    "name": "SGD/sequential_conv2d_3_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      64,
+      64
+    ],
+    "finite_count": 36864,
+    "size": 36864,
+    "max_abs_finite": 2.1110542164316652e+18
+  },
+  {
+    "key": "variable_023",
+    "name": "SGD/sequential_conv2d_3_bias_momentum",
+    "shape": [
+      64
+    ],
+    "finite_count": 64,
+    "size": 64,
+    "max_abs_finite": 158961582080.0
+  },
+  {
+    "key": "variable_024",
+    "name": "SGD/sequential_conv2d_4_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      64,
+      128
+    ],
+    "finite_count": 73728,
+    "size": 73728,
+    "max_abs_finite": 2.1577600015007744e+16
+  },
+  {
+    "key": "variable_025",
+    "name": "SGD/sequential_conv2d_4_bias_momentum",
+    "shape": [
+      128
+    ],
+    "finite_count": 128,
+    "size": 128,
+    "max_abs_finite": 11605788.0
+  },
+  {
+    "key": "variable_026",
+    "name": "SGD/sequential_conv2d_5_kernel_momentum",
+    "shape": [
+      3,
+      3,
+      128,
+      128
+    ],
+    "finite_count": 147456,
+    "size": 147456,
+    "max_abs_finite": 1.689634228666368e+16
+  },
+  {
+    "key": "variable_027",
+    "name": "SGD/sequential_conv2d_5_bias_momentum",
+    "shape": [
+      128
+    ],
+    "finite_count": 128,
+    "size": 128,
+    "max_abs_finite": 192.77279663085938
+  },
+  {
+    "key": "variable_028",
+    "name": "SGD/sequential_dense_kernel_momentum",
+    "shape": [
+      2048,
+      10
+    ],
+    "finite_count": 20480,
+    "size": 20480,
+    "max_abs_finite": 6.171268426917478e+16
+  },
+  {
+    "key": "variable_029",
+    "name": "SGD/sequential_dense_bias_momentum",
+    "shape": [
+      10
+    ],
+    "finite_count": 10,
+    "size": 10,
+    "max_abs_finite": 0.005508133675903082
+  }
+]

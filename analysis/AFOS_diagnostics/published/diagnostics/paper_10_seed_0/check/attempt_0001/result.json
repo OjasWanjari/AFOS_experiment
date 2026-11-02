@@ -1,0 +1,13 @@
+{
+  "trial_id": "paper_10_seed_0",
+  "mode": "check",
+  "started_at": "2026-10-29T02:48:26.311444+00:00",
+  "status": "numerics_check_triggered",
+  "error": "InvalidArgumentError()",
+  "context": {
+    "phase": "train",
+    "epoch": 1,
+    "batch": 4
+  },
+  "finished_at": "2026-10-29T02:48:29.494206+00:00"
+}

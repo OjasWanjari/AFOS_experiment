@@ -1,0 +1,177 @@
+{"phase": "train", "epoch": 1, "batch": null, "event": "epoch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 0, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 0, "event": "batch_end", "metrics": {"accuracy": "0.09375", "loss": "6.344107627868652"}}
+{"phase": "train", "epoch": 1, "batch": 1, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 1, "event": "batch_end", "metrics": {"accuracy": "0.078125", "loss": "9.630544662475586"}}
+{"phase": "train", "epoch": 1, "batch": 2, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 2, "event": "batch_end", "metrics": {"accuracy": "0.0885416641831398", "loss": "9.767594337463379"}}
+{"phase": "train", "epoch": 1, "batch": 3, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 3, "event": "batch_end", "metrics": {"accuracy": "0.0859375", "loss": "9.50934886932373"}}
+{"phase": "train", "epoch": 1, "batch": 4, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 4, "event": "batch_end", "metrics": {"accuracy": "0.08749999850988388", "loss": "77.54625701904297"}}
+{"phase": "train", "epoch": 1, "batch": 5, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 5, "event": "batch_end", "metrics": {"accuracy": "0.0859375", "loss": "70.23531341552734"}}
+{"phase": "train", "epoch": 1, "batch": 6, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 6, "event": "batch_end", "metrics": {"accuracy": "0.09375", "loss": "3892.612548828125"}}
+{"phase": "train", "epoch": 1, "batch": 7, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 7, "event": "batch_end", "metrics": {"accuracy": "0.09765625", "loss": "865598976.0"}}
+{"phase": "train", "epoch": 1, "batch": 8, "event": "batch_begin", "metrics": {}}
+{"phase": "train", "epoch": 1, "batch": 8, "event": "batch_end", "metrics": {"accuracy": "0.1006944477558136", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 0, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 0, "event": "batch_end", "metrics": {"accuracy": "0.03125", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 1, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 1, "event": "batch_end", "metrics": {"accuracy": "0.0703125", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 2, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 2, "event": "batch_end", "metrics": {"accuracy": "0.0833333358168602", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 3, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 3, "event": "batch_end", "metrics": {"accuracy": "0.08203125", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 4, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 4, "event": "batch_end", "metrics": {"accuracy": "0.10312499850988388", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 5, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 5, "event": "batch_end", "metrics": {"accuracy": "0.1015625", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 6, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 6, "event": "batch_end", "metrics": {"accuracy": "0.1004464253783226", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 7, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 7, "event": "batch_end", "metrics": {"accuracy": "0.103515625", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 8, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 8, "event": "batch_end", "metrics": {"accuracy": "0.0989583358168602", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 9, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 9, "event": "batch_end", "metrics": {"accuracy": "0.1015625", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 10, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 10, "event": "batch_end", "metrics": {"accuracy": "0.10227272659540176", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 11, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 11, "event": "batch_end", "metrics": {"accuracy": "0.1002604141831398", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 12, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 12, "event": "batch_end", "metrics": {"accuracy": "0.09615384787321091", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 13, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 13, "event": "batch_end", "metrics": {"accuracy": "0.0993303582072258", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 14, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 14, "event": "batch_end", "metrics": {"accuracy": "0.09583333134651184", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 15, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 15, "event": "batch_end", "metrics": {"accuracy": "0.09375", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 16, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 16, "event": "batch_end", "metrics": {"accuracy": "0.09558823704719543", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 17, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 17, "event": "batch_end", "metrics": {"accuracy": "0.0954861119389534", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 18, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 18, "event": "batch_end", "metrics": {"accuracy": "0.09786184132099152", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 19, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 19, "event": "batch_end", "metrics": {"accuracy": "0.10000000149011612", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 20, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 20, "event": "batch_end", "metrics": {"accuracy": "0.0974702388048172", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 21, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 21, "event": "batch_end", "metrics": {"accuracy": "0.09446022659540176", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 22, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 22, "event": "batch_end", "metrics": {"accuracy": "0.09578804671764374", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 23, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 23, "event": "batch_end", "metrics": {"accuracy": "0.0963541641831398", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 24, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 24, "event": "batch_end", "metrics": {"accuracy": "0.09437499940395355", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 25, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 25, "event": "batch_end", "metrics": {"accuracy": "0.09615384787321091", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 26, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 26, "event": "batch_end", "metrics": {"accuracy": "0.09837962687015533", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 27, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 27, "event": "batch_end", "metrics": {"accuracy": "0.0970982164144516", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 28, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 28, "event": "batch_end", "metrics": {"accuracy": "0.0996767207980156", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 29, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 29, "event": "batch_end", "metrics": {"accuracy": "0.09843750298023224", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 30, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 30, "event": "batch_end", "metrics": {"accuracy": "0.09727822244167328", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 31, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 31, "event": "batch_end", "metrics": {"accuracy": "0.0966796875", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 32, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 32, "event": "batch_end", "metrics": {"accuracy": "0.09659090638160706", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 33, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 33, "event": "batch_end", "metrics": {"accuracy": "0.09742647409439087", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 34, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 34, "event": "batch_end", "metrics": {"accuracy": "0.09732142835855484", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 35, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 35, "event": "batch_end", "metrics": {"accuracy": "0.0967881977558136", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 36, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 36, "event": "batch_end", "metrics": {"accuracy": "0.09755067527294159", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 37, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 37, "event": "batch_end", "metrics": {"accuracy": "0.09745065867900848", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 38, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 38, "event": "batch_end", "metrics": {"accuracy": "0.09655448794364929", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 39, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 39, "event": "batch_end", "metrics": {"accuracy": "0.09765625", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 40, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 40, "event": "batch_end", "metrics": {"accuracy": "0.09794207662343979", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 41, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 41, "event": "batch_end", "metrics": {"accuracy": "0.0982142835855484", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 42, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 42, "event": "batch_end", "metrics": {"accuracy": "0.09702035039663315", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 43, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 43, "event": "batch_end", "metrics": {"accuracy": "0.09694602340459824", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 44, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 44, "event": "batch_end", "metrics": {"accuracy": "0.09652777761220932", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 45, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 45, "event": "batch_end", "metrics": {"accuracy": "0.09782608598470688", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 46, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 46, "event": "batch_end", "metrics": {"accuracy": "0.09740691632032394", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 47, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 47, "event": "batch_end", "metrics": {"accuracy": "0.0973307266831398", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 48, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 48, "event": "batch_end", "metrics": {"accuracy": "0.09630101919174194", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 49, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 49, "event": "batch_end", "metrics": {"accuracy": "0.09562499821186066", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 50, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 50, "event": "batch_end", "metrics": {"accuracy": "0.09589460492134094", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 51, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 51, "event": "batch_end", "metrics": {"accuracy": "0.09555288404226303", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 52, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 52, "event": "batch_end", "metrics": {"accuracy": "0.09581367671489716", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 53, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 53, "event": "batch_end", "metrics": {"accuracy": "0.09577546268701553", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 54, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 54, "event": "batch_end", "metrics": {"accuracy": "0.09573863446712494", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 55, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 55, "event": "batch_end", "metrics": {"accuracy": "0.0954241082072258", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 56, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 56, "event": "batch_end", "metrics": {"accuracy": "0.09457236528396606", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 57, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 57, "event": "batch_end", "metrics": {"accuracy": "0.09455818682909012", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 58, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 58, "event": "batch_end", "metrics": {"accuracy": "0.09427966177463531", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 59, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 59, "event": "batch_end", "metrics": {"accuracy": "0.0950520858168602", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 60, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 60, "event": "batch_end", "metrics": {"accuracy": "0.09426229447126389", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 61, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 61, "event": "batch_end", "metrics": {"accuracy": "0.09450604766607285", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 62, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 62, "event": "batch_end", "metrics": {"accuracy": "0.0947420671582222", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 63, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 63, "event": "batch_end", "metrics": {"accuracy": "0.094970703125", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 64, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 64, "event": "batch_end", "metrics": {"accuracy": "0.0956730768084526", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 65, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 65, "event": "batch_end", "metrics": {"accuracy": "0.09469696879386902", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 66, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 66, "event": "batch_end", "metrics": {"accuracy": "0.09421642124652863", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 67, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 67, "event": "batch_end", "metrics": {"accuracy": "0.09397977590560913", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 68, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 68, "event": "batch_end", "metrics": {"accuracy": "0.0939764529466629", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 69, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 69, "event": "batch_end", "metrics": {"accuracy": "0.09375", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 70, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 70, "event": "batch_end", "metrics": {"accuracy": "0.09485035389661789", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 71, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 71, "event": "batch_end", "metrics": {"accuracy": "0.0944010391831398", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 72, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 72, "event": "batch_end", "metrics": {"accuracy": "0.09439212083816528", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 73, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 73, "event": "batch_end", "metrics": {"accuracy": "0.09459459781646729", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 74, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 74, "event": "batch_end", "metrics": {"accuracy": "0.09562499821186066", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 75, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 75, "event": "batch_end", "metrics": {"accuracy": "0.09560032933950424", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 76, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 76, "event": "batch_end", "metrics": {"accuracy": "0.09517045319080353", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 77, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 77, "event": "batch_end", "metrics": {"accuracy": "0.09595352411270142", "loss": "nan"}}
+{"phase": "validation", "epoch": 1, "batch": 78, "event": "batch_begin", "metrics": {}}
+{"phase": "validation", "epoch": 1, "batch": 78, "event": "batch_end", "metrics": {"accuracy": "0.09600000083446503", "loss": "nan"}}

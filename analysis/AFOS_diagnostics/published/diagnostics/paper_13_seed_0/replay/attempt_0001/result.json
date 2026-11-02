@@ -1,0 +1,17 @@
+{
+  "trial_id": "paper_13_seed_0",
+  "mode": "replay",
+  "started_at": "2026-10-29T02:46:10.609335+00:00",
+  "train_loss": null,
+  "train_accuracy": 0.0972222238779068,
+  "validation_loss": null,
+  "validation_accuracy": 0.09600000083446503,
+  "epochs_completed": 1,
+  "status": "nonfinite",
+  "context": {
+    "phase": "validation",
+    "epoch": 1,
+    "batch": 78
+  },
+  "finished_at": "2026-10-29T02:46:13.289261+00:00"
+}
