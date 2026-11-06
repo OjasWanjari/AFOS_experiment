@@ -10,36 +10,55 @@
 ## 同じ条件で比較する
 
 `paper_parameters.json` は固定確率（交叉0.8・突然変異0.2）のままです。
-適応型設定との差は `search.adaptive_probabilities` の追加だけです。
+現在の標準設定と適応型設定の差は `search.adaptive_probabilities` の追加だけです。
 30個体、40世代、seed 0〜4、親6個体、交叉の子は最大6個、突然変異の子は最大1個、
 ランダム個体は最低17個、CNN、データ分割、学習条件、fitnessの計算、再学習条件は同じです。
+これは数値設定・探索条件の比較です。前回の実験で実際に使ったコードと現在のコードには、
+下記の「適応化とは別に存在する差分」もあります。コード全体が確率制御以外すべて同一という意味ではありません。
 実行環境も前回と揃えてください。同じseedでも、確率が変われば生成個体やその後の乱数列は変わります。
 
 ## 前回のコードから変更した箇所
 
-比較元は、この変更を追加する直前のコミット
-[`54982d93`](https://github.com/OjasWanjari/AFOS_experiment/commit/54982d93cd36eec2c1623f2c1107c7fb6da5ced2)
-にある固定確率版です。以下の行番号は今回保存するコードの位置です。
-過去の実験結果の `source_snapshot` は編集していません。
+比較元は、**前回のAFOS実験で実際に使われ、結果フォルダーに保存された `source_snapshot`** です。
+今回のfitness改善率の図に使ったseed 0〜4（seed 4は更新後）の記録を対象に、以下を照合しました。
+Gitの直前コミットや、会話中の途中の適応案を比較元にはしていません。
+
+| 図に採用したseed | 実験結果フォルダー（この下の `source_snapshot/` を比較） | 保存された実行設定のsearch seeds |
+| --- | --- | --- |
+| 0 | `paper_full_results/paper_full_seeds0/` | `[0]` |
+| 1 | `paper_full_results/paper_full_seeds1/` | `[1]` |
+| 2 | `paper_full_results/paper_full_seeds2/` | `[2, 3, 4]` |
+| 3 | `paper_full_results/paper_full_seeds3 and 4/` | `[3, 4]` |
+| 4（更新後） | `paper_full_results/paper_full_seeds4/` | `[4]` |
+
+各フォルダーの `manifest.json` に記録された `source_sha256` と、保存コードの実際のSHA-256を照合しました。
+対象は `run_paper.py` と `paper_afos/{__init__,model,recording,search}.py` の5ファイル×5フォルダーで、
+**25件すべて一致**しました。実験記録とスナップショットは変更していません。
+これらの結果フォルダーのパスはローカルの実験記録の所在を示し、このブランチへの結果データの追加を意味しません。
+
+以下の「旧行」は更新後seed 4のスナップショット内の行番号です。seed 0・3の `run_paper.py` は
+このファイルと同じSHA-256です。seed 1・2の違いは後述します。「新行」のリンクは現在のコードです。
+
+### 今回の適応化で追加・変更した処理
 
 | ファイル・場所 | 前回 | 今回の変更 |
 | --- | --- | --- |
-| [run_paper.py：21行目](run_paper.py#L21) | 適応制御のimportなし | `generation_probabilities` と `validate_adaptive_config` を追加 |
-| [run_paper.py：load_config()、82行目](run_paper.py#L82) | 固定確率など既存設定だけを検証 | 適応制御の世代数・改善基準・確率上限も検証 |
-| [run_paper.py：search()、177行目](run_paper.py#L177) | 世代終了後も固定確率を使用 | 同じseedの世代履歴から改善率と次世代の確率を計算 |
-| [run_paper.py：180行目](run_paper.py#L180) | `next_population()` に設定 `s` をそのまま渡す | `s` をコピーし、その世代の確率だけ差し替えた `generation_config` を渡す |
-| [run_paper.py：185行目](run_paper.py#L185) | 確率の更新ログなし | 改善率・確率・生成個体数を出力。世代履歴にも保存 |
-| [run_paper.py：193行目](run_paper.py#L193) | 最終世代の適応情報なし | 次世代を作らない最終世代は確率・次世代番号を空欄にする |
+| [run_paper.py：新21行目](run_paper.py#L21) | 旧20〜22行目には適応制御のimportなし | `generation_probabilities` と `validate_adaptive_config` を追加 |
+| [run_paper.py：load_config()、新82行目](run_paper.py#L82) | 旧66行目からの関数は固定確率など既存設定だけを検証 | 適応制御の世代数・改善基準・確率上限も検証 |
+| [run_paper.py：search()、新177行目](run_paper.py#L177) | 旧199〜200行目は世代の最高成績を記録するだけ | 同じseedの世代履歴から改善率と次世代の確率を計算 |
+| [run_paper.py：新180行目](run_paper.py#L180) | 旧202〜203行目で `next_population()` に固定設定 `s` を渡す | `s` をコピーし、その世代の確率だけ差し替えた `generation_config` を渡す |
+| [run_paper.py：新185行目](run_paper.py#L185) | 旧204行目では生成個体数だけを世代履歴に追加 | 改善率・確率・生成個体数を出力。世代履歴にも保存 |
+| [run_paper.py：新193行目](run_paper.py#L193) | 旧206行目以降の最終世代処理には適応情報なし | 次世代を作らない最終世代は確率・次世代番号を空欄にする |
 | [paper_afos/adaptive.py：5行目](paper_afos/adaptive.py#L5) | ファイルなし | `validate_adaptive_config()` を新設 |
 | [paper_afos/adaptive.py：34行目](paper_afos/adaptive.py#L34) | ファイルなし | `generation_probabilities()` を新設。改善率、初期3世代、seedの分離、0除算対策を実装 |
-| [paper_parameters_adaptive.json：22行目](paper_parameters_adaptive.json#L22) | ファイルなし | 元の設定をコピーし、`search.adaptive_probabilities` だけ追加 |
+| [paper_parameters_adaptive.json：22行目](paper_parameters_adaptive.json#L22) | 実験時の設定は交叉0.8・突然変異0.2の固定 | 現在の標準設定をコピーし、`search.adaptive_probabilities` を追加。seed分割の違いは後述 |
 | [tests/test_adaptive_search.py](tests/test_adaptive_search.py) | ファイルなし | 確率計算、個体数、固定方式との一致、中断再開などのテストを追加 |
 | [RUN_GUIDE_JA.md](RUN_GUIDE_JA.md) / [RUN_GUIDE_EN.md](RUN_GUIDE_EN.md) | 適応型の案内なし | 適応型説明書へのリンクと、必要な `adaptive.py` の案内を追加 |
 | [ADAPTIVE_SEARCH_JA.md](ADAPTIVE_SEARCH_JA.md) / [ADAPTIVE_SEARCH_EN.md](ADAPTIVE_SEARCH_EN.md) | ファイルなし | この変更の仕様・差分・実行手順を日本語と英語で追加 |
 
 中心となる差分は、次世代生成へ渡す設定です。以下は `search()` 内の抜粋です。
 
-変更前：
+変更前（更新後seed 4の `source_snapshot/run_paper.py`、旧202〜203行目。改行のみ整理）：
 
 ```python
 state["population"], counts = next_population(
@@ -66,15 +85,39 @@ if generation < s["generations"]:
     )
 ```
 
-`paper_afos/search.py` の交叉・突然変異・親選択・ランダム補充処理は変更していません。
-`paper_afos/model.py` のCNN・学習処理と、元の `paper_parameters.json` も変更していません。
+`paper_afos/search.py`、`paper_afos/recording.py`、`paper_afos/__init__.py` は、
+前回の5フォルダーすべての保存コードと、改行コードを正規化したテキストが一致します。
+したがって交叉・突然変異そのもの、親選択、ランダム補充、fitness計算、エポック記録は同じです。
 `run_paper.py` は `adaptive.py` を常にimportするため、固定確率で実行する場合も新しいファイルを含めて取得してください。
 
-会話中の最初の適応案からは、停滞時の交叉確率を50%から100%へ変更しています。
-設定名は `min_crossover_probability` から `max_crossover_probability` に変わり、
-交叉の式は `0.5 + 0.3 × q` から `1.0 - 0.2 × q` になりました。
-突然変異の式、1%の改善基準、3世代の比較期間は同じです。
-以前の適応案の設定を使う場合は新しい設定ファイルへ置き換え、新規実験として開始してください。
+### 適応化とは別に存在する差分
+
+次の差分は、適応処理を実装する前から現在の作業用コードに存在していました。
+前回の実験コードとの比較では省略できないため、今回の適応化による変更と分けて記載します。
+今回の説明書修正で実験コードを変更したものではありません。
+
+| 箇所 | 前回の実験コード | 現在のコードと影響 |
+| --- | --- | --- |
+| `run_paper.py` の探索時例外処理（旧159〜169行目 → [新154行目](run_paper.py#L154)） | seed 0・3・更新後4は学習呼び出しを `try/except Exception` で囲み、例外をscore 0の `nonfinite` として記録して継続 | 現在はこの包括的な捕捉がなく、例外は実行全体の失敗処理へ伝播。seed 1・2の旧コードにも包括的な捕捉はない |
+| 学習表示の引数（旧163行目 → [新156行目](run_paper.py#L156)） | seed 0・2・3・更新後4は `verbose=0`、seed 1は `verbose=verbose` | 現在は `verbose=verbose`。`--quiet` で抑制できる |
+| 探索最良モデルの保存（旧182行目 → [新166行目](run_paper.py#L166)） | 全seedで `best_search_seed_{seed}.keras` | 現在は拡張子なしの `best_search_seed_{seed}`。前回環境で保存まで正常に動くかの確認が必要 |
+| 再学習モデルの保存（旧246行目 → [新234行目](run_paper.py#L234)） | seed 0・2・3・更新後4は `{name}_seed_{seed}.keras`、seed 1は拡張子なし | 現在は拡張子なし。探索確率の制御とは別の保存処理の差 |
+| 個体ごとの時間計測（旧150、192〜196行目） | 全seedのrunnerで `perf_counter()` による計測・表示あり | 現在はこの個体単位の計測・表示なし。重複していた `import time` も整理済み |
+| [model.py：build_model()、新59行目](paper_afos/model.py#L59) | 旧59行目の関数に `jit_compile` 引数なし | 任意引数 `jit_compile=None` とcompileオプションを追加済み。現在の探索runnerは指定せず、フレームワークの既定動作を使う |
+| [model.py：load_data()、新135行目](paper_afos/model.py#L135) | 旧134行目の関数に `split_file` 引数なし（seed 0では空行のため旧136行目） | 保存された分割を読み込んで検証する任意経路を追加済み。現在の探索runnerは指定せず、従来のsplit seedによる分割を使う |
+
+CNNの構造、optimizer、loss、`train_candidate()` の学習・早期打ち切り処理は、前回のコードと同じです。
+seed 0の `model.py` と他seedの旧 `model.py` の違いは空行だけでした。
+
+設定は各実験の `manifest.json.config` と比較しました。元の学習・GAパラメーターは一致しますが、
+前回は上表のとおりseedを分けて実行しており、`search` と `post_search` の `seeds` / `replications` が
+現在の全seed一括設定 `[0, 1, 2, 3, 4]` / `5` と異なります。
+`smoke_test: false` は実行時に追加される記録項目です。これらを区別したうえで、適応型では制御設定を追加しています。
+
+例えば更新後seed 4のmanifestはPython 3.10.12、TensorFlow 2.21.0、Keras 3.12.4を記録しています。
+現在のWindows向け案内の環境と自動的に同一にはなりません。
+**前回と確率制御だけを変えた厳密な比較を行う場合は、使用する過去のスナップショットと環境を固定し、
+上の適応処理を移植するか、ここに列挙した既存の差分を揃える必要があります。**
 
 ## 計算方法
 

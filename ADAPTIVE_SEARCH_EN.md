@@ -8,32 +8,44 @@ Use `paper_parameters_adaptive.json` to calculate the probabilities for generati
 
 `paper_parameters.json` still uses fixed crossover and mutation probabilities of 0.8 and 0.2. The adaptive configuration differs only by the added `search.adaptive_probabilities` section.
 
-The following conditions remain the same: 30 individuals, 40 generations, seeds 0–4, six retained parents, at most six crossover children, at most one mutation child, at least 17 random individuals, CNN architecture, data split, training settings, fitness calculation, and retraining settings. Match the previous runtime environment as well. The same seeds do not imply the same populations or subsequent random-number sequences once the probabilities change.
+The following numerical settings and search conditions remain the same: 30 individuals, 40 generations, seeds 0–4 across the experiment, six retained parents, at most six crossover children, at most one mutation child, at least 17 random individuals, CNN architecture, data-split settings, training settings, fitness calculation, and retraining settings. This does not mean the complete current source is identical to the previous experiment except for adaptive control: the existing differences below also apply. Match the previous runtime environment as well. The same seeds do not imply the same populations or subsequent random-number sequences once the probabilities change.
 
 ## Changes from the previous code
 
-The comparison baseline is the fixed-probability implementation in commit
-[`54982d93`](https://github.com/OjasWanjari/AFOS_experiment/commit/54982d93cd36eec2c1623f2c1107c7fb6da5ced2),
-immediately before this change. Line references below point to the code saved with this guide. Existing experiment `source_snapshot` directories have not been edited.
+The baseline is **the actual code preserved in `source_snapshot` for the previous AFOS experiment**. The comparison covers the sources behind seeds 0–4 in the fitness-improvement figure, using the updated seed 4. It is not a comparison against the immediately preceding Git commit or an intermediate adaptive proposal.
+
+| Seed used in the figure | Experiment directory (compare its `source_snapshot/`) | Search seeds recorded in the execution configuration |
+| --- | --- | --- |
+| 0 | `paper_full_results/paper_full_seeds0/` | `[0]` |
+| 1 | `paper_full_results/paper_full_seeds1/` | `[1]` |
+| 2 | `paper_full_results/paper_full_seeds2/` | `[2, 3, 4]` |
+| 3 | `paper_full_results/paper_full_seeds3 and 4/` | `[3, 4]` |
+| 4 (updated) | `paper_full_results/paper_full_seeds4/` | `[4]` |
+
+For each directory, the actual source SHA-256 values were checked against `source_sha256` in `manifest.json`. All **25 checks passed**: `run_paper.py` and `paper_afos/{__init__,model,recording,search}.py` in each of the five directories. The experiment records and snapshots were not modified. These paths identify local experiment records; they do not mean those result directories were added to this branch.
+
+Old line numbers below refer to the updated seed 4 snapshot. Seeds 0 and 3 have the same `run_paper.py` SHA-256 as that snapshot; differences for seeds 1 and 2 are described separately. Linked new line numbers refer to the current source.
+
+### Changes introduced for adaptive control
 
 | File and location | Before | Change |
 | --- | --- | --- |
-| [run_paper.py:21](run_paper.py#L21) | No adaptive-control imports | Import `generation_probabilities` and `validate_adaptive_config` |
-| [run_paper.py:82, load_config()](run_paper.py#L82) | Validate the existing configuration | Also validate the lookback window, improvement target, and probability limits |
-| [run_paper.py:177, search()](run_paper.py#L177) | Use fixed rates after every generation | Calculate improvement and next-generation rates from the same seed's generation history |
-| [run_paper.py:180](run_paper.py#L180) | Pass `s` directly to `next_population()` | Copy `s` into `generation_config`, replacing only the two probabilities |
-| [run_paper.py:185](run_paper.py#L185) | No probability-update log | Log improvement, applied probabilities, and offspring counts; also save them in generation history |
-| [run_paper.py:193](run_paper.py#L193) | No adaptive information for the final generation | Leave probabilities and next-generation number empty when no offspring are generated |
+| [run_paper.py, new line 21](run_paper.py#L21) | No adaptive imports at old lines 20–22 | Import `generation_probabilities` and `validate_adaptive_config` |
+| [run_paper.py, new line 82, load_config()](run_paper.py#L82) | The function starting at old line 66 validates the fixed configuration | Also validate the lookback window, improvement target, and probability limits |
+| [run_paper.py, new line 177, search()](run_paper.py#L177) | Old lines 199–200 record only generation-best metrics | Calculate improvement and next-generation rates from the same seed's history |
+| [run_paper.py, new line 180](run_paper.py#L180) | Old lines 202–203 pass fixed configuration `s` to `next_population()` | Copy `s` into `generation_config`, replacing only the two probabilities |
+| [run_paper.py, new line 185](run_paper.py#L185) | Old line 204 adds offspring counts to generation history | Also record improvement and applied probabilities, and print the update |
+| [run_paper.py, new line 193](run_paper.py#L193) | The final-generation branch at old line 206 has no adaptive information | Leave probabilities and next-generation number empty when no offspring are generated |
 | [paper_afos/adaptive.py:5](paper_afos/adaptive.py#L5) | File did not exist | Add `validate_adaptive_config()` |
 | [paper_afos/adaptive.py:34](paper_afos/adaptive.py#L34) | File did not exist | Add `generation_probabilities()`, including warmup, seed isolation, and zero-denominator handling |
-| [paper_parameters_adaptive.json:22](paper_parameters_adaptive.json#L22) | File did not exist | Copy the original configuration and add only `search.adaptive_probabilities` |
+| [paper_parameters_adaptive.json:22](paper_parameters_adaptive.json#L22) | Experiment configuration uses fixed crossover 0.8 and mutation 0.2 | Copy the current standard configuration and add `search.adaptive_probabilities`; seed-group differences are described below |
 | [tests/test_adaptive_search.py](tests/test_adaptive_search.py) | File did not exist | Add probability, population-allocation, fixed-mode equivalence, and resume tests |
 | [RUN_GUIDE_JA.md](RUN_GUIDE_JA.md) / [RUN_GUIDE_EN.md](RUN_GUIDE_EN.md) | No adaptive-search instructions | Link the adaptive guides and list `adaptive.py` as a required file |
 | [ADAPTIVE_SEARCH_JA.md](ADAPTIVE_SEARCH_JA.md) / [ADAPTIVE_SEARCH_EN.md](ADAPTIVE_SEARCH_EN.md) | Files did not exist | Document the behavior, code changes, and execution steps in Japanese and English |
 
 The main change is the configuration passed to next-generation creation. These excerpts are from `search()`.
 
-Before:
+Before (old lines 202–203 of the updated seed 4 `source_snapshot/run_paper.py`, with line wrapping adjusted):
 
 ```python
 state["population"], counts = next_population(
@@ -60,9 +72,27 @@ if generation < s["generations"]:
     )
 ```
 
-The crossover, mutation, parent-selection, and random-population-filling operators in `paper_afos/search.py` are unchanged. The CNN and training code in `paper_afos/model.py` and the original `paper_parameters.json` are also unchanged. The current `run_paper.py` always imports `adaptive.py`, so include that new file even when running in fixed mode.
+After normalizing line endings, `paper_afos/search.py`, `paper_afos/recording.py`, and `paper_afos/__init__.py` match all five experiment snapshots. Crossover and mutation operators, parent selection, random filling, fitness calculation, and epoch recording are therefore unchanged. The current `run_paper.py` always imports `adaptive.py`, so include that new file even when running in fixed mode.
 
-Compared with the first adaptive proposal discussed before this version, stagnation crossover has changed from 50% to 100%. The configuration key changed from `min_crossover_probability` to `max_crossover_probability`, and the crossover formula changed from `0.5 + 0.3 * q` to `1.0 - 0.2 * q`. The mutation formula, 1% improvement target, and three-generation window remain the same. Replace any configuration from that earlier proposal with the current configuration and start a new experiment.
+### Existing differences separate from adaptive control
+
+The following differences from the actual experiment source already existed in the working code before adaptive control was implemented. They are listed separately because a comparison against the previous experiment must account for them. This documentation correction does not change these implementations.
+
+| Location | Previous experiment source | Current source and implication |
+| --- | --- | --- |
+| Search exception handling, old lines 159–169 → [new line 154](run_paper.py#L154) | Seeds 0, 3, and updated 4 catch `Exception` around training and continue with `nonfinite` metrics and score zero | The current runner propagates these exceptions to run-level failure handling. Old runners for seeds 1 and 2 also lack this broad catch |
+| Training verbosity, old line 163 → [new line 156](run_paper.py#L156) | Seeds 0, 2, 3, and updated 4 pass `verbose=0`; seed 1 passes `verbose=verbose` | The current runner passes `verbose=verbose`; `--quiet` suppresses output |
+| Best-search model saving, old line 182 → [new line 166](run_paper.py#L166) | All seeds save `best_search_seed_{seed}.keras` | The current name is `best_search_seed_{seed}` without an extension; saving must be checked in the previous runtime environment |
+| Retrained model saving, old line 246 → [new line 234](run_paper.py#L234) | Seeds 0, 2, 3, and updated 4 use `{name}_seed_{seed}.keras`; seed 1 uses no extension | The current name has no extension; this is separate from search probability control |
+| Per-individual timing, old lines 150 and 192–196 | All old runners measure and print elapsed time with `perf_counter()` | The current runner omits this timing block and the duplicate `import time` |
+| [model.py, build_model(), new line 59](paper_afos/model.py#L59) | No `jit_compile` argument at old line 59 | Optional `jit_compile=None` and compile options were added earlier. The current search runner does not pass it and uses framework defaults |
+| [model.py, load_data(), new line 135](paper_afos/model.py#L135) | No `split_file` argument at old line 134 (line 136 in seed 0 because of blank lines) | An optional saved-split loading and validation path was added earlier. The current search runner does not use it and still generates the split from the split seed |
+
+The CNN architecture, optimizer, loss, and `train_candidate()` training and early-stopping logic are unchanged. The old seed 0 `model.py` differs from the other old model files only in blank lines.
+
+Configurations were compared against each experiment's `manifest.json.config`. Original training and GA parameter values match, but the experiments were run in seed groups as shown above: `search` and `post_search` values for `seeds` / `replications` differ from the current all-seed configuration `[0, 1, 2, 3, 4]` / `5`. `smoke_test: false` is execution metadata added at runtime. Adaptive control adds its settings on top of this distinction.
+
+For example, the updated seed 4 manifest records Python 3.10.12, TensorFlow 2.21.0, and Keras 3.12.4; this is not automatically the same environment as the current Windows guide. **For a strict experiment where probability control is the only change, pin the selected historical snapshot and environment and port the adaptive changes into it, or align the existing differences listed here.**
 
 ## Calculation
 
