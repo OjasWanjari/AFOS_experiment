@@ -6,6 +6,9 @@ This guide covers **activation-function search and retraining on CIFAR-10 using 
 This is a separate entry point from the legacy `main.py` experiment. It does not include the paper's generalization experiments on other architectures or datasets.
 See [PAPER_REPRODUCTION.md](PAPER_REPRODUCTION.md) (in Japanese) for reproduction assumptions, including parameters not specified in the paper.
 
+For fitness-driven crossover and mutation probabilities, see the [adaptive search guide](ADAPTIVE_SEARCH_EN.md).
+The default `paper_parameters.json` retains the original fixed probabilities.
+
 ## 1. Required files
 
 Keep the following files in the same relative locations as in this repository. Cloning the entire repository is the easiest option.
@@ -16,6 +19,7 @@ Keep the following files in the same relative locations as in this repository. C
 | `paper_parameters.json` | Population size, generations, seeds, training settings, and other parameters |
 | `paper_afos/__init__.py` | Python package definition |
 | `paper_afos/search.py` | Chromosomes, mathematical expressions, genetic algorithm, and fitness |
+| `paper_afos/adaptive.py` | Adaptive probabilities and configuration validation; also required by the current entry point in fixed mode |
 | `paper_afos/model.py` | CNN, activation functions, training, and data loading |
 | `paper_afos/recording.py` | CSV recording of epoch histories and execution events |
 | `requirements-paper-windows.txt` | Windows dependencies validated on the development PC |

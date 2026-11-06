@@ -18,6 +18,7 @@ from pathlib import Path
 from paper_afos.search import (BINARY, UNARY, expression, fitness_score,
                                next_population, random_chromosome, select_top)
 from paper_afos.recording import EpochCSV, event, read_results
+from paper_afos.adaptive import generation_probabilities, validate_adaptive_config
 
 
 def clean(value):
@@ -78,6 +79,7 @@ def load_config(path):
     for field in ("crossover_probability", "mutation_probability"):
         if not 0 <= s[field] <= 1:
             raise ValueError(f"Invalid {field}")
+    validate_adaptive_config(s)
     if s["max_crossover_children"] % 2 or s["max_crossover_children"] < 0 or s["max_mutation_children"] < 0:
         raise ValueError("Invalid child counts")
     if s["population_size"] - s["selected_parents"] - s["max_crossover_children"] - s["max_mutation_children"] < s["minimum_random_individuals"]:
@@ -172,12 +174,24 @@ def search(root, state, config, train, validation, verbose, smoke):
             del model
         entry = dict(seed=seed, generation=generation, best_score=max(r["score"] for r in done),
                      best_validation_accuracy=max((r["validation_accuracy"] for r in done if r["validation_accuracy"] is not None), default=None))
+        entry.update(generation_probabilities(s, state["generations"], seed, generation, entry["best_score"]))
         if generation < s["generations"]:
-            state["population"], counts = next_population(state["population"], [r["score"] for r in done], s,
+            entry["next_generation"] = generation + 1
+            generation_config = dict(s, crossover_probability=entry["crossover_probability"],
+                                     mutation_probability=entry["mutation_probability"])
+            state["population"], counts = next_population(state["population"], [r["score"] for r in done], generation_config,
                                                          random.Random(training_seed(seed, generation, 999999)))
             entry.update(counts)
+            print(f"seed={seed} next_generation={generation + 1} "
+                  f"probability_mode={entry['probability_mode']} "
+                  f"fitness_improvement={entry['fitness_relative_improvement']} "
+                  f"crossover_probability={entry['crossover_probability']:.6f} "
+                  f"mutation_probability={entry['mutation_probability']:.6f} counts={counts}", flush=True)
             state["generation"] += 1
         else:
+            # The final generation has no offspring; do not report unused rates.
+            entry.update(next_generation=None, crossover_probability=None,
+                         mutation_probability=None, probability_mode="search_complete")
             state["population"] = None
             state["seed_index"] += 1
             state["generation"] = 1

@@ -6,6 +6,9 @@
 旧実験の `main.py` とは別の入口です。論文の他モデル・他データセットの汎化実験は含みません。
 論文に未記載のパラメーターなど、再現上の仮定は [PAPER_REPRODUCTION.md](PAPER_REPRODUCTION.md) を確認してください。
 
+fitnessの改善率で交叉・突然変異確率を変更する実験は [適応型探索の手順](ADAPTIVE_SEARCH_JA.md) を参照してください。
+標準の `paper_parameters.json` は従来の固定確率のままです。
+
 ## 1. 必要なファイル
 
 次のファイルを、リポジトリ内と同じ位置関係で揃えます。通常はリポジトリ全体をcloneしてください。
@@ -16,6 +19,7 @@
 | `paper_parameters.json` | 個体数・世代数・seed・学習条件など |
 | `paper_afos/__init__.py` | Pythonパッケージの定義 |
 | `paper_afos/search.py` | 染色体、数式、遺伝的アルゴリズム、評価値 |
+| `paper_afos/adaptive.py` | 適応確率の計算・設定検証。現在の入口では固定確率の場合も必要 |
 | `paper_afos/model.py` | CNN、活性化関数、学習、データ読み込み |
 | `paper_afos/recording.py` | エポック履歴と実行イベントのCSV記録 |
 | `requirements-paper-windows.txt` | このPCで確認したWindows用依存パッケージ |
