@@ -2,6 +2,8 @@
 
 [Japanese version](ADAPTIVE_SEARCH_JA.md)
 
+For setup, execution, and resume on another PC, see the [other-PC execution guide](ADAPTIVE_OTHER_PC_EN.md).
+
 Use `paper_parameters_adaptive.json` to calculate the probabilities for generating the next population from each seed's improvement in best-so-far fitness. This is an extension to the original fixed-probability experiment. At 0% improvement, crossover is 100% and mutation is 80%. At 1% improvement or higher, they return to the original 80% and 20%. Performance gains have not yet been evaluated through full training runs.
 
 ## Conditions retained for comparison

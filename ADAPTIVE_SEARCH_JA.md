@@ -2,6 +2,8 @@
 
 [English version](ADAPTIVE_SEARCH_EN.md)
 
+別PCでの取得・環境準備・実行・再開は [別PC向け実行手順](ADAPTIVE_OTHER_PC_JA.md) を参照してください。
+
 `paper_parameters_adaptive.json` を指定すると、各seedの最高fitnessの改善率から、
 次世代を生成する交叉確率と突然変異確率を計算します。これは今回追加した実験方式で、
 元の論文の固定確率方式とは区別します。改善0%で交叉100%・突然変異80%、
