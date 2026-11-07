@@ -110,42 +110,21 @@ python -c "import tensorflow as tf; print('TensorFlow:', tf.__version__); print(
 `GPUs: []` ならTensorFlowからGPUを使えません。GPUを使う本番実行は、一覧にGPUが表示されてから始めます。
 `nvidia-smi` が成功しても、TensorFlowのGPU認識が成功するとは限りません。
 
-## 4. Keras 3でモデルを保存するための準備
+## 4. Keras 3用のモデル保存名（変更済み）
 
-現在の `run_paper.py` のモデル保存名は拡張子なしです。Keras 3では `model.save()` に
-`.keras` などの対応した拡張子が必要なので、**新規実験の開始前に**保存名の2か所を変更します。
-これは保存処理の準備で、fitness・学習条件・確率計算は変更しません。
+このブランチの `run_paper.py` は、Keras 3で保存できるように変更済みです。
+**手動でコードを変更する必要はありません。そのまま手順5へ進んでください。**
+
+| 保存するモデル | 保存先 |
+| --- | --- |
+| 探索中の各seedの最良モデル | `models/best_search_seed_{seed}.keras` |
+| 再学習モデル | `models/{name}_seed_{seed}.keras` |
+
+変更箇所は `run_paper.py` の探索処理 `search()` と再学習処理 `retrain()` にある `model.save()` の保存名です。
+両方に `.keras` を追加しました。fitness・学習条件・確率計算は変更していません。
 [Keras公式移行ガイド](https://keras.io/guides/migrating_to_keras_3/#saving-a-model-in-the-tf-savedmodel-format)
 
-次のブロック全体を、`python -` から最後の `PY` まで端末へ貼り付けてください。
-既に変更済みなら再変更しません。想定と違うコードの場合は書き込む前に停止します。
-
-```bash
-python - <<'PY'
-from pathlib import Path
-
-path = Path('run_paper.py')
-text = path.read_text(encoding='utf-8')
-replacements = [
-    ('f"best_search_seed_{seed}"', 'f"best_search_seed_{seed}.keras"'),
-    ('f"{name}_seed_{seed}"', 'f"{name}_seed_{seed}.keras"'),
-]
-for old, new in replacements:
-    if text.count(old) == 1 and text.count(new) == 0:
-        text = text.replace(old, new, 1)
-    elif text.count(old) == 0 and text.count(new) == 1:
-        pass
-    else:
-        raise RuntimeError(f'Unexpected save code: {old}')
-path.write_text(text, encoding='utf-8')
-print('Model filenames are ready for Keras 3.')
-PY
-
-git diff -- run_paper.py
-```
-
-差分は探索最良モデルと再学習モデルの保存名への `.keras` 追加です。
-実験開始後は、このファイルを含む実行コードを変更しないでください。実際に使用したコードは出力先に保存されます。
+実験開始後は実行コードを変更しないでください。変更前に開始した実験を再開する場合は、その実験で使用したソースが必要です。
 
 ## 5. 実験設定を確認・変更する
 
@@ -288,7 +267,7 @@ python -u run_paper.py --config paper_parameters_adaptive.json --stage retrain -
 | `python3.10: command not found` | Python 3.10の設置場所・venv対応を実行先で確認。無指定の最新版Pythonへ置き換えない |
 | `No matching distribution` / 依存競合 | Pythonのバージョン、x86_64環境、指定パッケージを確認。Windows用依存ファイルを混ぜない |
 | `No GPU detected` / `GPUs: []` | `nvidia-smi` とTensorFlowの一覧を両方確認。GPUドライバー・CUDA依存・GPU公開を確認 |
-| `Invalid filepath extension` | 手順4の `.keras` 保存名の準備が済んでいるか確認 |
+| `Invalid filepath extension` | 実行中のコードが手順4の `.keras` 保存名に対応した版か確認 |
 | 出力フォルダーが既に存在 | 新しい実験は別名にする。続きからなら `--resume` |
 | `Resume config differs` | 開始時の設定に戻す。別条件なら新規出力先で実行 |
 | `Source changed since this run` | 保存された `source_snapshot` の実行コードに戻す。開始後に保存名修正や更新をしない |
@@ -299,7 +278,7 @@ python -u run_paper.py --config paper_parameters_adaptive.json --stage retrain -
 
 前回の記録はLinuxです。Windowsネイティブで実行する場合は [Windows環境の準備](RUN_GUIDE_JA.md) を使い、
 実行時には必ず適応型の `--config paper_parameters_adaptive.json` を指定してください。
-WindowsのTensorFlow 2.10／DirectML環境では、この手順書のLinux向けインストールやKeras 3用の準備は不要です。
+WindowsのTensorFlow 2.10／DirectML環境では、この手順書のLinux向けインストールは不要です。モデル保存名はこのブランチで変更済みです。
 WSL2ではLinux側で環境を作ります。NVIDIAドライバーとGPU対応を確認し、同じテスト・smoke確認を通してから実行します。
 
 ## この手順の確認範囲

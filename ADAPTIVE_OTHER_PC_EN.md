@@ -87,37 +87,21 @@ python -c "import tensorflow as tf; print('TensorFlow:', tf.__version__); print(
 
 Do not start GPU training if TensorFlow prints `GPUs: []`. A successful `nvidia-smi` check alone does not prove TensorFlow can use the GPU.
 
-## 4. Prepare model filenames for Keras 3
+## 4. Keras 3 model filenames (already updated)
 
-The current `run_paper.py` saves models to extensionless paths. Keras 3 requires a supported filename extension such as `.keras` for `model.save()`. Make the following two filename changes **before starting a new experiment**. They do not change fitness, training settings, or probability calculations. See the [Keras migration guide](https://keras.io/guides/migrating_to_keras_3/#saving-a-model-in-the-tf-savedmodel-format).
+The `run_paper.py` on this branch already uses model filenames supported by Keras 3.
+**No manual source edit is needed. Continue directly to section 5.**
 
-Paste the entire block, from `python -` through the final `PY`, into the terminal. It leaves already-prepared names unchanged and stops before writing if the source is unexpected.
+| Model | Saved path |
+| --- | --- |
+| Best search model for each seed | `models/best_search_seed_{seed}.keras` |
+| Retrained model | `models/{name}_seed_{seed}.keras` |
 
-```bash
-python - <<'PY'
-from pathlib import Path
+The two changes are the filenames passed to `model.save()` in `search()` and `retrain()` in `run_paper.py`.
+Both now end in `.keras`. Fitness, training settings, and probability calculations are unchanged.
+See the [Keras migration guide](https://keras.io/guides/migrating_to_keras_3/#saving-a-model-in-the-tf-savedmodel-format).
 
-path = Path('run_paper.py')
-text = path.read_text(encoding='utf-8')
-replacements = [
-    ('f"best_search_seed_{seed}"', 'f"best_search_seed_{seed}.keras"'),
-    ('f"{name}_seed_{seed}"', 'f"{name}_seed_{seed}.keras"'),
-]
-for old, new in replacements:
-    if text.count(old) == 1 and text.count(new) == 0:
-        text = text.replace(old, new, 1)
-    elif text.count(old) == 0 and text.count(new) == 1:
-        pass
-    else:
-        raise RuntimeError(f'Unexpected save code: {old}')
-path.write_text(text, encoding='utf-8')
-print('Model filenames are ready for Keras 3.')
-PY
-
-git diff -- run_paper.py
-```
-
-The diff should only add `.keras` to the best-search and retraining model filenames. Keep the execution source unchanged after starting a run. The output directory stores the source actually used.
+Keep the execution source unchanged after starting a run. Resuming an experiment started before this update requires the source originally used for that experiment.
 
 ## 5. Inspect or edit experiment settings
 
@@ -238,7 +222,7 @@ In a new terminal, return to the repository and reactivate `.venv-afos` with `so
 | `python3.10: command not found` | Locate/install Python 3.10 and venv support on the target PC; do not silently substitute the latest Python |
 | `No matching distribution` / dependency conflict | Python version, x86_64 platform, pinned packages; do not mix Windows requirements into Linux |
 | `No GPU detected` / `GPUs: []` | Both `nvidia-smi` and TensorFlow GPU visibility; drivers, CUDA dependencies, container GPU access |
-| `Invalid filepath extension` | Complete the `.keras` filename preparation in section 4 |
+| `Invalid filepath extension` | Check that the source being executed uses the updated `.keras` filenames described in section 4 |
 | Output directory already exists | Use a new name for a new experiment, or `--resume` to continue |
 | `Resume config differs` | Restore the starting configuration, or use a new output for different settings |
 | `Source changed since this run` | Restore the recorded `source_snapshot`; do not apply filename changes or updates after starting |
@@ -247,7 +231,7 @@ In a new terminal, return to the repository and reactivate `.venv-afos` with `so
 
 ## Windows / WSL2
 
-The historical records describe Linux. For native Windows, use the [Windows setup guide](RUN_GUIDE_EN.md) and explicitly pass `--config paper_parameters_adaptive.json` when running. The Windows TensorFlow 2.10 / DirectML setup does not need this guide's Linux installation or Keras 3 filename preparation. For WSL2, create the environment inside Linux, verify the NVIDIA driver/GPU setup, and pass the same tests and smoke check before full training.
+The historical records describe Linux. For native Windows, use the [Windows setup guide](RUN_GUIDE_EN.md) and explicitly pass `--config paper_parameters_adaptive.json` when running. The Windows TensorFlow 2.10 / DirectML setup does not need this guide's Linux installation. Model filenames are already updated on this branch. For WSL2, create the environment inside Linux, verify the NVIDIA driver/GPU setup, and pass the same tests and smoke check before full training.
 
 ## Verification scope
 

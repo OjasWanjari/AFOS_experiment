@@ -163,7 +163,7 @@ def search(root, state, config, train, validation, verbose, smoke):
                              activation_expression=expression(chromosome), score=score, **metrics))
             prior = [r["score"] for r in state["evaluations"] if r["seed"] == seed and r["status"] != "nonfinite"]
             if row["status"] != "nonfinite" and (not prior or score > max(prior)):
-                model.save(str(root / "models" / f"best_search_seed_{seed}"), include_optimizer=True)
+                model.save(str(root / "models" / f"best_search_seed_{seed}.keras"), include_optimizer=True)
             state["evaluations"].append(row)
             done.append(row)
             write_json(root / "checkpoint.json", state)
@@ -231,7 +231,7 @@ def retrain(root, state, config, train, validation, test, verbose):
                 if not math.isfinite(test_loss) or not math.isfinite(test_accuracy):
                     metrics["status"] = "nonfinite_test"
                 else:
-                    model.save(str(root / "models" / f"{name}_seed_{seed}"), include_optimizer=True)
+                    model.save(str(root / "models" / f"{name}_seed_{seed}.keras"), include_optimizer=True)
             row = clean(dict(function=name, seed=seed, chromosome=chromosome,
                              activation_expression=formula, test_loss=test_loss,
                              test_accuracy=test_accuracy, **metrics))
