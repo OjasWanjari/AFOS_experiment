@@ -10,6 +10,7 @@ import platform
 import random
 import shutil
 import statistics
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -130,10 +131,11 @@ def save_search_outputs(root, state, config):
     write_csv(root / "results" / "retraining_results.csv", state["retraining"])
 
 
-def search(root, state, config, train, validation, verbose, smoke):
+def search(root, state, config, train, validation, verbose, smoke, one_seed=False):
     import tensorflow as tf
     from paper_afos.model import build_model, train_candidate
     s = config["search"]
+    starting_seed_index = state["seed_index"]
     while state["seed_index"] < len(s["seeds"]):
         seed = s["seeds"][state["seed_index"]]
         generation = state["generation"]
@@ -198,13 +200,16 @@ def search(root, state, config, train, validation, verbose, smoke):
         state["generations"].append(entry)
         write_json(root / "checkpoint.json", state)
         save_search_outputs(root, state, config)
+        if (one_seed and state["seed_index"] != starting_seed_index
+                and state["seed_index"] < len(s["seeds"])):
+            return
     state["search_complete"] = True
     state["selected"] = select_top(state["evaluations"], config["post_search"]["top_functions"])
     write_json(root / "checkpoint.json", state)
     write_csv(root / "results" / "selected_top15.csv", state["selected"])
 
 
-def retrain(root, state, config, train, validation, test, verbose):
+def retrain(root, state, config, train, validation, test, verbose, one_trial=False):
     import tensorflow as tf
     from paper_afos.model import build_model, train_candidate
     if not state["search_complete"]:
@@ -214,10 +219,13 @@ def retrain(root, state, config, train, validation, test, verbose):
     candidates = [(f"discovered_{r['rank']:02d}", r["chromosome"], None, r["activation_expression"])
                   for r in state["selected"]]
     candidates += [(name, None, name, name) for name in config["post_search"]["baselines"]]
+    processed = 0
     for name, chromosome, baseline, formula in candidates:
         for seed in config["post_search"]["seeds"]:
             if any(r["function"] == name and r["seed"] == seed for r in state["retraining"]):
                 continue
+            if one_trial and processed:
+                return
             tf.keras.backend.clear_session()
             tf.keras.utils.set_random_seed(seed)
             model = build_model(config, chromosome=chromosome, baseline=baseline)
@@ -241,6 +249,7 @@ def retrain(root, state, config, train, validation, test, verbose):
             summarize(root, state, config)
             event(root, "retraining_completed", f"{name}_{seed}", json.dumps(row))
             del model
+            processed += 1
     state["retraining_complete"] = True
     write_json(root / "checkpoint.json", state)
 
@@ -382,6 +391,74 @@ class Tee:
         return False
 
 
+def wait_for_worker(command):
+    """Wait for process exit before launching another GPU workload."""
+    child = subprocess.Popen(command)
+    try:
+        code = child.wait()
+    except BaseException:
+        # Do not leave a training process behind after Ctrl+C in the launcher.
+        if child.poll() is None:
+            child.terminate()
+            try:
+                child.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                child.kill()
+                child.wait()
+        raise
+    if code:
+        raise RuntimeError(f"Worker exited with code {code}; stopped without starting the next seed/trial")
+
+
+def run_isolated(args):
+    """Coordinate workers without importing TensorFlow or retaining training data."""
+    if args.resume:
+        root = args.resume.resolve()
+        state = json.loads((root / "checkpoint.json").read_text(encoding="utf-8"))
+    else:
+        if args.stage == "retrain":
+            raise ValueError("--stage retrain requires --resume")
+        root = (args.output or Path("runs") / ("paper_smoke_" if args.smoke else "paper_") /
+                datetime.now().strftime("%Y%m%d_%H%M%S_%f")).resolve()
+        if root.exists():
+            raise FileExistsError(f"Output already exists: {root}; use --resume or a new directory")
+        state = None
+    resume = bool(args.resume)
+    while True:
+        if args.stage in ("all", "search") and (state is None or not state["search_complete"]):
+            job = "search"
+        elif args.stage in ("all", "retrain") and not state["retraining_complete"]:
+            if not state["search_complete"]:
+                raise ValueError("Finish search before retraining")
+            job = "retrain"
+        else:
+            job = "finalize"
+        command = [sys.executable, "-u", str(Path(__file__).resolve()),
+                   "--config", str(args.config.resolve()), "--stage", args.stage,
+                   "--device", args.device, "--_worker", job,
+                   "--resume" if resume else "--output", str(root)]
+        if args.smoke:
+            command.append("--smoke")
+        if args.quiet:
+            command.append("--quiet")
+        before = None if state is None else (state["seed_index"], state["search_complete"],
+                                            len(state["retraining"]), state["retraining_complete"])
+        print(f"Starting isolated {job} worker. Output: {root}", flush=True)
+        try:
+            wait_for_worker(command)
+        except BaseException:
+            print(f"Stopped. Resume with the same config and --resume {root}", flush=True)
+            raise
+        if job == "finalize":
+            return
+        state = json.loads((root / "checkpoint.json").read_text(encoding="utf-8"))
+        after = (state["seed_index"], state["search_complete"],
+                 len(state["retraining"]), state["retraining_complete"])
+        if after == before:
+            raise RuntimeError("Worker exited without advancing its checkpoint; refusing to loop")
+        resume = True
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path(__file__).with_name("paper_parameters.json"))
@@ -392,6 +469,7 @@ def main(argv=None):
     parser.add_argument("--dry-run", action="store_true", help="Print plan without loading TensorFlow/data")
     parser.add_argument("--smoke", action="store_true", help="Synthetic tiny integration check, not scientific results")
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument("--_worker", choices=("search", "retrain", "finalize"), help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     if args.resume and args.output:
         parser.error("--resume and --output are mutually exclusive")
@@ -405,14 +483,17 @@ def main(argv=None):
     count = config["search"]["population_size"] * config["search"]["generations"] * config["search"]["replications"]
     if args.dry_run:
         print(json.dumps(dict(config=config, search_evaluations=count,
-                              retraining_runs=(config["post_search"]["top_functions"] + len(config["post_search"]["baselines"])) * config["post_search"]["replications"]), indent=2))
+                              retraining_runs=(config["post_search"]["top_functions"] + len(config["post_search"]["baselines"])) * config["post_search"]["replications"],
+                              execution="sequential isolated processes: one search seed or retraining trial per worker"), indent=2))
         return
+    if not args._worker:
+        return run_isolated(args)
     import tensorflow as tf
     from paper_afos.model import build_model, load_data
-    if args.device == "cpu":
+    if args.device == "cpu" or args._worker == "finalize":
         tf.config.set_visible_devices([], "GPU")
     gpus = tf.config.get_visible_devices("GPU")
-    if args.device == "gpu" and not gpus:
+    if args.device == "gpu" and args._worker != "finalize" and not gpus:
         raise RuntimeError("No GPU detected. Fix the environment or explicitly use --device cpu")
     if args.resume:
         root = args.resume.resolve()
@@ -456,9 +537,20 @@ def main(argv=None):
     sys.stdout, sys.stderr = Tee(original_stdout, log), Tee(original_stderr, log)
     print(f"Output: {root}\nSearch evaluations: {count}\nDevice: {args.device}", flush=True)
     try:
-        event(root, "run_started", detail=args.stage)
+        event(root, "worker_started", detail=json.dumps(dict(job=args._worker, pid=os.getpid())))
+        if args._worker == "finalize":
+            finish_outputs(root, state, config, args.stage)
+            write_json(root / "status.json", dict(status="completed", stage=args.stage,
+                                                  search_complete=state["search_complete"],
+                                                  retraining_complete=state["retraining_complete"],
+                                                  failed_retraining_runs=sum(r["status"] != "completed" for r in state["retraining"])))
+            print(f"Finished: {root}", flush=True)
+            event(root, "run_completed", detail=args.stage)
+            return
+        write_json(root / "status.json", dict(status="running", stage=args.stage,
+                                              worker=args._worker, pid=os.getpid()))
         train, validation, test, split = load_data(config, args.smoke)
-        if split is not None:
+        if split is not None and not (root / "split_indices.npz").exists():
             import numpy as np
             np.savez_compressed(root / "split_indices.npz", **split)
         model = build_model(config, baseline="relu")
@@ -468,17 +560,16 @@ def main(argv=None):
         del model
         (root / "models").mkdir(exist_ok=True)
         save_search_outputs(root, state, config)
-        if args.stage in ("all", "search") and not state["search_complete"]:
-            search(root, state, config, train, validation, 0 if args.quiet else 1, args.smoke)
-        if args.stage in ("all", "retrain"):
-            retrain(root, state, config, train, validation, test, 0 if args.quiet else 1)
-        finish_outputs(root, state, config, args.stage)
-        write_json(root / "status.json", dict(status="completed", stage=args.stage,
+        if args._worker == "search" and not state["search_complete"]:
+            search(root, state, config, train, validation, 0 if args.quiet else 1, args.smoke, one_seed=True)
+        if args._worker == "retrain":
+            retrain(root, state, config, train, validation, test, 0 if args.quiet else 1, one_trial=True)
+        write_json(root / "status.json", dict(status="worker_completed", stage=args.stage,
                                               search_complete=state["search_complete"],
                                               retraining_complete=state["retraining_complete"],
                                               failed_retraining_runs=sum(r["status"] != "completed" for r in state["retraining"])))
-        print(f"Finished: {root}", flush=True)
-        event(root, "run_completed", detail=args.stage)
+        print(f"Worker finished: {args._worker} pid={os.getpid()}", flush=True)
+        event(root, "worker_completed", detail=json.dumps(dict(job=args._worker, pid=os.getpid())))
     except BaseException as exc:
         event(root, "run_interrupted" if isinstance(exc, KeyboardInterrupt) else "run_failed", detail=repr(exc))
         write_json(root / "status.json", dict(status="interrupted" if isinstance(exc, KeyboardInterrupt) else "failed",

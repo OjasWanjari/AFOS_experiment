@@ -208,6 +208,13 @@ class AdaptiveSearchIntegrationTests(unittest.TestCase):
             self.assertEqual(rows[3]["next_generation"], "5")
             self.assertAlmostEqual(float(rows[3]["fitness_relative_improvement"]), 0.005)
             self.assertEqual(rows[-1]["crossover_probability"], "")
+            isolated = copy.deepcopy(initial)
+            for seed_index in range(2):
+                run_paper.search(root / "isolated", isolated, config, (None, None), (None, None),
+                                 0, False, one_seed=True)
+                self.assertEqual(isolated["seed_index"], seed_index + 1)
+                isolated = json.loads((root / "isolated/checkpoint.json").read_text(encoding="utf-8"))
+            self.assertEqual(isolated, expected)
             for failure in ("evaluation", "checkpoint"):
                 with self.subTest(failure=failure):
                     interruption[0] = failure

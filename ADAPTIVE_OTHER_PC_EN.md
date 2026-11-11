@@ -148,6 +148,9 @@ Expect a final `Finished:` message. Smoke results are not scientific results. Th
 
 ## 7. Start the experiment
 
+Multiple seeds in JSON run sequentially in separate processes.
+See [multi-seed execution](MULTI_SEED_EN.md) for seeds 2–4 and interruption/resume instructions.
+
 ### Search only
 
 ```bash

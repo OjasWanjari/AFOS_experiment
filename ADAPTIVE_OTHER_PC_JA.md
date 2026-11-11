@@ -180,6 +180,9 @@ python -u run_paper.py --config paper_parameters_adaptive.json --smoke --device 
 
 ## 7. 本番を開始する
 
+JSONに複数のseedを指定すると、各seedを独立したプロセスで順に実行します。
+seed 2・3・4の設定例と中断再開は [複数seedの実行手順](MULTI_SEED_JA.md) を参照してください。
+
 ### 探索だけ実行する場合
 
 ```bash
